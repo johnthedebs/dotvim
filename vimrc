@@ -46,6 +46,7 @@ set foldmethod=indent
 set foldnestmax=3
 set nofoldenable
 set autoread
+set mouse=a
 set t_Co=256
 "set colorcolumn=80
 "set virtualedit=onemore
