@@ -98,6 +98,8 @@ inoremap jj <ESC>
 nnoremap <leader>; :silent !
 " Avoid needing to use shift for ex mode
 nnoremap ; :
+" Quick scratch access
+nnoremap <leader><tab> :Sscratch<CR>
 " Turn NERDTree on or off
 nnoremap <leader>\ :NERDTreeToggle<CR>
 " Edit ~/.vimrc
