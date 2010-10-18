@@ -3,6 +3,7 @@ call pathogen#runtime_append_all_bundles()
 call pathogen#helptags()
 
 set nocompatible
+set modelines=0
 set background=dark
 set autoindent
 set smartindent
@@ -19,8 +20,8 @@ set ruler
 set title
 set wildmenu
 set wildignore+=*.pyc,.git,.svn,.hg
-set listchars=tab:▸\ ,eol:¬,trail:·
 set list
+set listchars=tab:▸\ ,eol:¬,trail:·
 set encoding=utf-8
 set fileformats=unix,dos,mac
 set scrolloff=10
@@ -31,7 +32,6 @@ set linespace=0
 set incsearch
 set hlsearch
 set gdefault
-set pastetoggle=<F12>
 set nowrap
 set backspace=indent,eol,start
 set cursorline
