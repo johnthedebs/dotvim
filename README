@@ -6,7 +6,9 @@ Installation
     # Link in the .vimrc file
     ln -s ~/.vim/vimrc ~/.vimrc
 
-Thanks to:
-Drew Neil (http://vimcasts.org)
-Steve Losh (http://stevelosh.com/blog/2010/09/coming-home-to-vim/)
+Thanks to
+=========
+
+* Drew Neil (http://vimcasts.org)
+* Steve Losh (http://stevelosh.com/blog/2010/09/coming-home-to-vim/)
 
