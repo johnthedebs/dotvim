@@ -1,0 +1,7 @@
+Installation
+============
+
+    # Clone the git repository
+    git clone git://github/johnthedebs/dotvim.git ~/.vim
+    # Link in the .vimrc file
+    ln -s ~/.vim/vimrc ~/.vimrc
