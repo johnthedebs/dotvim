@@ -3,13 +3,15 @@ Installation
 
     # Clone the git repository
     git clone git://github/johnthedebs/dotvim.git ~/.vim
-    # Link in the .vimrc fil
-    #
+    # Link in the .vimrc file
     ln -s ~/.vim/vimrc ~/.vimrc
+    # Set up the submodules
+    cd ~/.vim
+    git submodule init
+    git submodule update
 
 Thanks to
 =========
 
 * Drew Neil (http://vimcasts.org)
 * Steve Losh (http://stevelosh.com/blog/2010/09/coming-home-to-vim/)
-
