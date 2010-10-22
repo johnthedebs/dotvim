@@ -10,10 +10,10 @@ set smartindent
 set ignorecase
 set smartcase
 set smarttab
+set expandtab
 set tabstop=4
 set shiftwidth=4
 set softtabstop=4
-set expandtab
 set showmatch
 set showmode
 set ruler
@@ -95,35 +95,36 @@ nmap <leader>l :set list!<CR>
 nmap <leader>d :!git diff %<CR>
 " Get out of insert mode more easily
 inoremap jj <ESC>
-" Run a command line operation
-nnoremap <leader>; :silent !
 " Avoid needing to use shift for ex mode
 nnoremap ; :
+" Run a command line operation
+nnoremap <leader>; :silent !
 " Quick scratch access
 nnoremap <leader><tab> :Sscratch<CR>
-" Turn NERDTree on or off
-nnoremap <leader>\ :NERDTreeToggle<CR>
-" Edit ~/.vimrc
-nnoremap <leader>ev <C-w><C-v><C-l>:e $MYVIMRC<cr>
 " Clear search highlights
 nnoremap <leader><space> :noh<CR>
+" Turn NERDTree on or off
+nnoremap <leader>\ :NERDTreeToggle<CR>
+" Get to Ack
+nnoremap <leader>a :Ack 
+" Edit ~/.vimrc
+nnoremap <leader>ev <C-w><C-v><C-l>:e $MYVIMRC<CR>
 " Find the current file in the NERDTree
-nnoremap <leader>f :NERDTreeFind
+nnoremap <leader>f :NERDTreeFind<CR>
 " Open gitx
 nnoremap <leader>g :silent ! gitx<CR>
+" Toggle Hex Highlight plugin
+nnoremap <leader>h :call HexHighlight()<CR>
 " Turn Rainbow Parentheses on or off
 nmap <leader>r :RainbowParenthesesToggle<CR>
-" Refresh Command-T and NERTree
-nmap <leader>R :CommandTFlush
-nmap <leader>NR :NERDTreeMapRefreshRoot
+" Refresh Command-T
+nmap <leader>R :CommandTFlush<CR>
 " Open new v split and switch to it
 nnoremap <leader>w <C-w>v<C-w>l
 " Strip trailing whitespace in the current file
 nnoremap <leader>W :%s/\s\+$//<cr>:let @/=''<CR>
 " Sort CSS properties
 nnoremap <leader>S ?{<CR>jV/^\s*\}?$<CR>k:sort<CR>:noh<CR>
-" Get to Ack
-nnoremap <leader>a :Ack 
 
 " Switch windows
 map <C-h> <C-w>h
