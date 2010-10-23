@@ -7,12 +7,12 @@
 [submodule "bundle/nerdtree"]
 	path = bundle/nerdtree
 	url = http://github.com/scrooloose/nerdtree.git
-[submodule "bundle/unimpaired"]
-	path = bundle/unimpaired
-	url = http://github.com/tpope/vim-unimpaired.git
 [submodule "bundle/haml"]
 	path = bundle/haml
 	url = http://github.com/tpope/vim-haml.git
+[submodule "bundle/unimpaired"]
+	path = bundle/unimpaired
+	url = http://github.com/tpope/vim-unimpaired.git
 [submodule "bundle/nerdcommenter"]
 	path = bundle/nerdcommenter
 	url = http://github.com/scrooloose/nerdcommenter.git
