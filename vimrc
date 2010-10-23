@@ -1,6 +1,8 @@
 filetype off
 call pathogen#runtime_append_all_bundles()
 call pathogen#helptags()
+" Enable file type detection. Just needed to be off for pathogen
+filetype plugin indent on
 
 set nocompatible
 set modelines=0
@@ -37,8 +39,6 @@ set backspace=indent,eol,start
 set cursorline
 set textwidth=79
 set formatoptions=qrn1
-set undofile
-set undodir=~/.undo
 set visualbell
 set binary noeol
 set clipboard=unnamed
@@ -49,7 +49,6 @@ set autoread
 set mouse=a
 set t_Co=256
 "set colorcolumn=80
-"set virtualedit=onemore
 
 colors molokai
 syntax on
@@ -60,9 +59,12 @@ if has("gui_running")
     set guioptions-=T " Hide menu icons by default in MacVim
 endif
 
+if has("persistent_undo")
+    set undofile
+    set undodir=~/.undo
+endif
+
 if has("autocmd")
-    " Enable file type detection
-    filetype plugin indent on
     " Use soft 4-space tabs for my most common files
     autocmd FileType html setlocal ts=4 sts=4 sw=4 expandtab
     autocmd FileType python setlocal ts=4 sts=4 sw=4 expandtab
@@ -97,6 +99,10 @@ nmap <leader>d :!git diff %<CR>
 inoremap jj <ESC>
 " Avoid needing to use shift for ex mode
 nnoremap ; :
+" Make CommandT work
+nnoremap <leader>t :CommandT<CR>
+" Gundo
+nnoremap <leader>G :GundoToggle<CR>
 " Run a command line operation
 nnoremap <leader>; :silent !
 " Quick scratch access
