@@ -102,6 +102,8 @@ inoremap jj <ESC>
 nnoremap ; :
 " Make CommandT work
 nnoremap <leader>t :CommandT<CR>
+" Open current working directory in TextMate
+nnoremap <leader>T :silent !mate .<CR>
 " Gundo
 nnoremap <leader>G :GundoToggle<CR>
 " Run a command line operation
