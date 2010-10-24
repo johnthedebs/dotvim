@@ -21,6 +21,7 @@ set showmode
 set ruler
 set title
 set wildmenu
+set wildmode=list:longest
 set wildignore+=*.pyc,.git,.svn,.hg
 set list
 set listchars=tab:▸\ ,eol:¬,trail:·
@@ -67,6 +68,7 @@ endif
 if has("autocmd")
     " Use soft 4-space tabs for my most common files
     autocmd FileType html setlocal ts=4 sts=4 sw=4 expandtab
+    autocmd FileType htmldjango setlocal ts=4 sts=4 sw=4 expandtab
     autocmd FileType javascript setlocal ts=4 sts=4 sw=4 expandtab
     autocmd FileType python setlocal ts=4 sts=4 sw=4 expandtab
     autocmd FileType sass setlocal ts=4 sts=4 sw=4 expandtab
