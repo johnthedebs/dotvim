@@ -48,19 +48,20 @@ set foldnestmax=3
 set nofoldenable
 set autoread
 set mouse=a
+set t_Co=256
 "set colorcolumn=80
 
+noh
+syntax on
+colors molokai
+
 if has("gui_running")
-    colors molokai
     set fuopt=maxhorz,maxvert " Proper fullscreen mode in MacVim
     set guioptions-=T " Hide menu icons by default in MacVim
-    set t_Co=256
     highlight SpellBad term=underline gui=undercurl guisp=Orange
-    if has("gui_macvim")
-        " Start in the projects directory; define $WORKDIR in your
-        " .bashrc or .bash_profile 
-        cd $WORKDIR
-    endif
+    " Start in the projects directory; define $WORKDIR in
+    " your .bashrc or .bash_profile
+    cd $WORKDIR
 endif
 
 if has("persistent_undo")
@@ -89,9 +90,6 @@ if has("autocmd")
         autocmd VimEnter * silent NERDTree
     endif
 endif
-
-noh
-syntax on
 
 " Save file when vim loses focus
 au FocusLost * :wa
