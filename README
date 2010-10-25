@@ -10,6 +10,10 @@ Installation
     git submodule init
     git submodule update
 
+As for MacVim itself, I recommend you get the latest snapshot from here (go for the .tbz file):
+
+    http://github.com/b4winckler/macvim/downloads
+
 Thanks to
 =========
 
