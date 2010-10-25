@@ -111,6 +111,7 @@ nmap <leader>r :RainbowParenthesesToggle<CR>
 " Refresh Command-T
 nmap <leader>R :CommandTFlush<CR>
 " Get out of insert mode more easily
+call arpeggio#map('i', '', 0, 'jk', '<Esc>') " Press j and k at the same time
 inoremap jj <ESC>
 " HTML tag closing
 inoremap <C-_> <Space><BS><Esc>:call InsertCloseTag()<cr>a
