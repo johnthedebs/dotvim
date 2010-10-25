@@ -97,6 +97,10 @@ au FocusLost * :wa
 let g:CommandTMaxHeight=8
 " Set the leader to something easier than \
 let mapleader=" "
+" Disable netrw (it interferes with NERDTree when a
+" directory argument is passed from the command line)
+let loaded_netrw=1
+let loaded_netrwPlugin=1
 
 " Shortcut to rapidly toggle `set list`
 nmap <leader>l :set list!<CR>
