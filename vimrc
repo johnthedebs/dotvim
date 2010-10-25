@@ -4,7 +4,7 @@ call pathogen#helptags()
 " Enable file type detection. Just needed to be off for pathogen
 filetype plugin indent on
 
-set nocompatible
+set nocompatible " Always first
 set modelines=0
 set background=dark
 set autoindent
@@ -48,16 +48,19 @@ set foldnestmax=3
 set nofoldenable
 set autoread
 set mouse=a
-set t_Co=256
 "set colorcolumn=80
 
-colors molokai
-syntax on
-noh
-
 if has("gui_running")
+    colors molokai
     set fuopt=maxhorz,maxvert " Proper fullscreen mode in MacVim
     set guioptions-=T " Hide menu icons by default in MacVim
+    set t_Co=256
+    highlight SpellBad term=underline gui=undercurl guisp=Orange
+    if has("gui_macvim")
+        " Start in the projects directory; define $WORKDIR in your
+        " .bashrc or .bash_profile 
+        cd $WORKDIR
+    endif
 endif
 
 if has("persistent_undo")
@@ -73,33 +76,42 @@ if has("autocmd")
     autocmd FileType python setlocal ts=4 sts=4 sw=4 expandtab
     autocmd FileType sass setlocal ts=4 sts=4 sw=4 expandtab
     autocmd FileType vim setlocal ts=4 sts=4 sw=4 expandtab
-    " Start NERTree when vim starts
-    autocmd VimEnter * silent NERDTree
-    " Use the same NERDTree between buffers
-    autocmd BufEnter * silent NERDTreeMirror
 endif
 
 " NERDTree settings
 let NERDTreeIgnore=['\.pyc$']
 let NERDTreeChDirMode=2
-let g:NERDTreeMapOpenVSplit="i"
+if has("autocmd")
+    " Use the same NERDTree between buffers
+    autocmd BufEnter * silent NERDTreeMirror
+    if has("gui_macvim")
+        " Start NERTree when vim starts
+        autocmd VimEnter * silent NERDTree
+    endif
+endif
 
-" Command-T settings
-let g:CommandTMaxHeight=8
+noh
+syntax on
 
 " Save file when vim loses focus
 au FocusLost * :wa
-" Start in the projects directory
-cd $WORKDIR
-
+" Command-T settings
+let g:CommandTMaxHeight=8
 " Set the leader to something easier than \
 let mapleader=" "
+
 " Shortcut to rapidly toggle `set list`
 nmap <leader>l :set list!<CR>
 " Git diff
 nmap <leader>d :!git diff %<CR>
+" Turn Rainbow Parentheses on or off
+nmap <leader>r :RainbowParenthesesToggle<CR>
+" Refresh Command-T
+nmap <leader>R :CommandTFlush<CR>
 " Get out of insert mode more easily
 inoremap jj <ESC>
+" HTML tag closing
+inoremap <C-_> <Space><BS><Esc>:call InsertCloseTag()<cr>a
 " Avoid needing to use shift for ex mode
 nnoremap ; :
 " Make CommandT work
@@ -120,22 +132,25 @@ nnoremap <leader>\ :NERDTreeToggle<CR>
 nnoremap <leader>a :Ack 
 " Edit ~/.vimrc
 nnoremap <leader>ev <C-w><C-v><C-l>:e $MYVIMRC<CR>
+" Source (reload) ~/.vimrc
+nnoremap <leader>sv :source $MYVIMRC<CR>
 " Find the current file in the NERDTree
 nnoremap <leader>f :NERDTreeFind<CR>
+" Open current working directory in Finder
+nnoremap <leader>F :silent !open .<CR>
 " Open gitx
 nnoremap <leader>g :silent ! gitx<CR>
 " Toggle Hex Highlight plugin
 nnoremap <leader>h :call HexHighlight()<CR>
-" Turn Rainbow Parentheses on or off
-nmap <leader>r :RainbowParenthesesToggle<CR>
-" Refresh Command-T
-nmap <leader>R :CommandTFlush<CR>
 " Open new v split and switch to it
 nnoremap <leader>w <C-w>v<C-w>l
 " Strip trailing whitespace in the current file
 nnoremap <leader>W :%s/\s\+$//<cr>:let @/=''<CR>
 " Sort CSS properties
 nnoremap <leader>S ?{<CR>jV/^\s*\}?$<CR>k:sort<CR>:noh<CR>
+" Make j/k move by display line, rather than by file line
+nnoremap j gj
+nnoremap k gk
 
 " Switch windows
 map <C-h> <C-w>h
@@ -156,10 +171,6 @@ map <D-7> 7gt
 map <D-8> 8gt
 map <D-9> 9gt
 map <D-0> :tablast<CR>
-
-" Make j/k move by display line, rather than by file line
-nnoremap j gj
-nnoremap k gk
 
 " Show syntax highlighting groups for word under cursor
 nmap <C-S-P> :call <SID>SynStack()<CR>
