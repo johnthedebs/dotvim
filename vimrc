@@ -56,7 +56,7 @@ syntax on
 colors molokai
 
 if has("gui_running")
-    set fuopt=maxhorz,maxvert " Proper fullscreen mode in MacVim
+    set fuoptions=maxhorz,maxvert " Proper fullscreen mode in MacVim
     set guioptions-=T " Hide menu icons by default in MacVim
     highlight SpellBad term=underline gui=undercurl guisp=Orange
     " Start in the projects directory; define $WORKDIR in
