@@ -25,9 +25,9 @@
 [submodule "bundle/gundo"]
 	path = bundle/gundo
 	url = http://github.com/sjl/gundo.vim.git
-[submodule "bundle/delimitMate"]
-	path = bundle/delimitMate
-	url = http://github.com/vim-scripts/delimitMate.vim.git
 [submodule "bundle/arpeggio"]
 	path = bundle/arpeggio
 	url = http://github.com/kana/vim-arpeggio.git
+[submodule "bundle/delimitMate"]
+	path = bundle/delimitMate
+	url = http://github.com/Raimondi/delimitMate.git
