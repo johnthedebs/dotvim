@@ -31,3 +31,6 @@
 [submodule "bundle/delimitMate"]
 	path = bundle/delimitMate
 	url = http://github.com/Raimondi/delimitMate.git
+[submodule "bundle/repeat"]
+	path = bundle/repeat
+	url = http://github.com/tpope/vim-repeat.git
