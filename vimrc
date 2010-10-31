@@ -56,7 +56,7 @@ noh
 syntax on
 colors molokai
 
-if !has("python")
+if !has("python") || version < 730
     let loaded_gundo=1
 endif
 
