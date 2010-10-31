@@ -95,6 +95,10 @@ endif
 
 " Command-T settings
 let g:CommandTMaxHeight=8
+" Gundo settings
+let g:gundo_preview_bottom=1
+" Complete Python syntax highlighting
+let python_highlight_all=1
 " NERDTree settings
 let NERDTreeIgnore=['\.pyc$']
 let NERDTreeChDirMode=2
@@ -105,6 +109,8 @@ let loaded_netrwPlugin=1
 
 " Set the leader to \
 let mapleader="\\"
+" Visual select the current line
+nmap vv V
 " Shortcut to rapidly toggle `set list`
 nmap <leader>l :set list!<CR>
 " Turn Rainbow Parentheses on or off
