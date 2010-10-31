@@ -63,6 +63,7 @@ endif
 if has("gui_running")
     set fuoptions=maxhorz,maxvert " Proper fullscreen mode in MacVim
     set guioptions-=T " Hide menu icons by default in MacVim
+    set guioptions-=L " Disable left scroll bar
     highlight SpellBad term=underline gui=undercurl guisp=Orange
 endif
 
@@ -110,8 +111,8 @@ let NERDTreeChDirMode=2
 let loaded_netrw=1
 let loaded_netrwPlugin=1
 
-" Set the leader to \
-let mapleader="\\"
+" Set the leader to something easier than \
+let mapleader=" "
 " Visual select the current line
 nmap vv V
 " Shortcut to rapidly toggle `set list`
