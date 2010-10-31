@@ -103,6 +103,8 @@ let mapleader=" "
 let loaded_netrw=1
 let loaded_netrwPlugin=1
 
+" Set the leader to \
+let mapleader="\\"
 " Shortcut to rapidly toggle `set list`
 nmap <leader>l :set list!<CR>
 " Turn Rainbow Parentheses on or off
