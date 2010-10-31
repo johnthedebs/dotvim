@@ -82,24 +82,22 @@ if has("autocmd")
     autocmd FileType python setlocal ts=4 sts=4 sw=4 expandtab
     autocmd FileType sass setlocal ts=4 sts=4 sw=4 expandtab
     autocmd FileType vim setlocal ts=4 sts=4 sw=4 expandtab
-endif
 
-" NERDTree settings
-let NERDTreeIgnore=['\.pyc$']
-let NERDTreeChDirMode=2
-if has("autocmd")
+    " Save file when vim loses focus
+    autocmd FocusLost * :wa
     " Use the same NERDTree between buffers
     autocmd BufEnter * silent NERDTreeMirror
-    if has("gui_macvim")
-        " Start NERTree when vim starts
+    " Start NERTree when vim starts without any file or directory arguments
+    if argc() == 0
         autocmd VimEnter * silent NERDTree
     endif
 endif
 
-" Save file when vim loses focus
-au FocusLost * :wa
 " Command-T settings
 let g:CommandTMaxHeight=8
+" NERDTree settings
+let NERDTreeIgnore=['\.pyc$']
+let NERDTreeChDirMode=2
 " Disable netrw (it interferes with NERDTree when a
 " directory argument is passed from the command line)
 let loaded_netrw=1
