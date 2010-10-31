@@ -6,6 +6,7 @@ filetype plugin indent on
 
 set nocompatible " Always first
 set modelines=0
+set encoding=utf-8
 set background=dark
 set autoindent
 set smartindent
@@ -25,7 +26,6 @@ set wildmode=list:longest
 set wildignore+=*.pyc,.git,.svn,.hg
 set list
 set listchars=tab:▸\ ,eol:¬,trail:·
-set encoding=utf-8
 set fileformats=unix,dos,mac
 set scrolloff=10
 set sidescrolloff=7
