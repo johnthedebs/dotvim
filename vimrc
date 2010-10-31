@@ -56,6 +56,10 @@ noh
 syntax on
 colors molokai
 
+if !has("python")
+    let loaded_gundo=1
+endif
+
 if has("gui_running")
     set fuoptions=maxhorz,maxvert " Proper fullscreen mode in MacVim
     set guioptions-=T " Hide menu icons by default in MacVim
