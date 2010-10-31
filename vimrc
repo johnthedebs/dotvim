@@ -64,9 +64,6 @@ if has("gui_running")
     set fuoptions=maxhorz,maxvert " Proper fullscreen mode in MacVim
     set guioptions-=T " Hide menu icons by default in MacVim
     highlight SpellBad term=underline gui=undercurl guisp=Orange
-    " Start in the projects directory; define $WORKDIR in
-    " your .bashrc or .bash_profile
-    cd $WORKDIR
 endif
 
 if has("persistent_undo")
@@ -90,6 +87,12 @@ if has("autocmd")
     " Start NERTree when vim starts without any file or directory arguments
     if argc() == 0
         autocmd VimEnter * silent NERDTree
+        " If $WORKDIR is defined, start NERDTree there.
+        if strlen($WORKDIR) > 0
+            cd $WORKDIR
+        endif
+    elseif isdirectory(argv(0))
+        exec "cd " . argv(0)
     endif
 endif
 
