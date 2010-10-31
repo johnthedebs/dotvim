@@ -47,6 +47,7 @@ set foldmethod=indent
 set foldnestmax=3
 set nofoldenable
 set autoread
+set statusline=%f\ %=%-14.(%m%r%h%w\ FF=%{&ff}\ FT=%Y\ \ %l,%v\ \ %p%%\ LEN=%L%)
 set mouse=a
 set t_Co=256
 "set colorcolumn=80
@@ -104,8 +105,6 @@ let loaded_netrwPlugin=1
 
 " Shortcut to rapidly toggle `set list`
 nmap <leader>l :set list!<CR>
-" Git diff
-nmap <leader>d :!git diff %<CR>
 " Turn Rainbow Parentheses on or off
 nmap <leader>r :RainbowParenthesesToggle<CR>
 " Refresh Command-T
@@ -114,7 +113,7 @@ nmap <leader>R :CommandTFlush<CR>
 call arpeggio#map('i', '', 0, 'jk', '<Esc>') " Press j and k at the same time
 inoremap jj <ESC>
 " HTML tag closing
-inoremap <C-_> <Space><BS><Esc>:call InsertCloseTag()<cr>a
+inoremap <C-_> <Space><BS><Esc>:call InsertCloseTag()<CR>
 " Avoid needing to use shift for ex mode
 nnoremap ; :
 " Make CommandT work
