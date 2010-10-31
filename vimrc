@@ -131,8 +131,10 @@ nnoremap <leader><tab> :Sscratch<CR>
 nnoremap <leader><space> :noh<CR>
 " Turn NERDTree on or off
 nnoremap <leader>\ :NERDTreeToggle<CR>
-" Get to Ack
-nnoremap <leader>a :Ack 
+" Ack with a literal
+nnoremap <leader>al :Ack --literal 
+" Ack with a regex
+nnoremap <leader>ar :Ack 
 " Edit ~/.vimrc
 nnoremap <leader>ev <C-w><C-v><C-l>:e $MYVIMRC<CR>
 " Source (reload) ~/.vimrc
