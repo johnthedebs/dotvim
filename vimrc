@@ -57,13 +57,7 @@ noh
 syntax on
 colorscheme molokai
 
-if version >= 730
-    set relativenumber
-else
-    set number
-endif
-
-if !has("python") || version < 730
+if !has("python") || version < 703
     let loaded_gundo=1
 endif
 
