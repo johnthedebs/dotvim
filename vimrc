@@ -47,7 +47,7 @@ set foldmethod=indent
 set foldnestmax=3
 set nofoldenable
 set autoread
-set statusline=%f\ %=%-14.(%m%r%h%w\ ft:%Y\ \ %l,%v\ @\ %p%%\ of\ %L\ Line\(s\)%)
+set statusline=%f\ %=%-14.(%m%r%h%w\ ft:%Y\ \ %l,%v\ @\ %p%%\ of\ %L\ %)
 set laststatus=2
 set mouse=a
 set t_Co=256
