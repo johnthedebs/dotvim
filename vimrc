@@ -27,8 +27,8 @@ set wildignore+=*.pyc,.git,.svn,.hg
 set list
 set listchars=tab:▸\ ,eol:¬,trail:·
 set fileformats=unix,dos,mac
-set scrolloff=10
-set sidescrolloff=7
+set scrolloff=8
+set sidescrolloff=5
 set sidescroll=1
 set history=1000
 set linespace=0
@@ -47,14 +47,21 @@ set foldmethod=indent
 set foldnestmax=3
 set nofoldenable
 set autoread
-set statusline=%f\ %=%-14.(%m%r%h%w\ ff:%{&ff}\ ft:%Y\ \ %l,%v\ @\ %p%%\ of\ %L%)\ Line\(s\)
+set statusline=%f\ %=%-14.(%m%r%h%w\ ft:%Y\ \ %l,%v\ @\ %p%%\ of\ %L\ Line\(s\)%)
+set laststatus=2
 set mouse=a
 set t_Co=256
-"set colorcolumn=80
+set colorcolumn=80
 
 noh
 syntax on
-colors molokai
+colorscheme molokai
+
+if version >= 730
+    set relativenumber
+else
+    set number
+endif
 
 if !has("python") || version < 730
     let loaded_gundo=1
@@ -64,6 +71,8 @@ if has("gui_running")
     set fuoptions=maxhorz,maxvert " Proper fullscreen mode in MacVim
     set guioptions-=T " Hide menu icons by default in MacVim
     set guioptions-=L " Disable left scroll bar
+    set columns=84
+    set lines=999
     highlight SpellBad term=underline gui=undercurl guisp=Orange
 endif
 
@@ -113,6 +122,7 @@ let loaded_netrwPlugin=1
 
 " Set the leader to something easier than \
 let mapleader=" "
+
 " Visual select the current line
 nmap vv V
 " Shortcut to rapidly toggle `set list`
@@ -128,20 +138,14 @@ inoremap jj <ESC>
 inoremap <C-_> <Space><BS><Esc>:call InsertCloseTag()<CR>
 " Avoid needing to use shift for ex mode
 nnoremap ; :
-" Make CommandT work
-nnoremap <leader>t :CommandT<CR>
-" Open current working directory in TextMate
-nnoremap <leader>T :silent !mate .<CR>
-" Gundo
-nnoremap <leader>G :GundoToggle<CR>
 " Run a command line operation
 nnoremap <leader>; :silent !
-" Quick scratch access
-nnoremap <leader><tab> :Sscratch<CR>
-" Clear search highlights
-nnoremap <leader><space> :noh<CR>
 " Turn NERDTree on or off
 nnoremap <leader>\ :NERDTreeToggle<CR>
+" Clear search highlights
+nnoremap <leader><space> :noh<CR>
+" Quick scratch access
+nnoremap <leader><tab> :Sscratch<CR>
 " Ack with a literal
 nnoremap <leader>al :Ack --literal 
 " Ack with a regex
@@ -150,20 +154,28 @@ nnoremap <leader>ar :Ack
 nnoremap <leader>ev <C-w><C-v><C-l>:e $MYVIMRC<CR>
 " Source (reload) ~/.vimrc
 nnoremap <leader>sv :source $MYVIMRC<CR>
+" Set filetype to htmldjango
+nnoremap <leader>sd :set filetype=htmldjango<CR>
 " Find the current file in the NERDTree
 nnoremap <leader>f :NERDTreeFind<CR>
 " Open current working directory in Finder
 nnoremap <leader>F :silent !open .<CR>
-" Open gitx
+" Open GitX
 nnoremap <leader>g :silent ! gitx<CR>
-" Toggle Hex Highlight plugin
+" Open Gundo
+nnoremap <leader>G :GundoToggle<CR>
+" Toggle HexHighlight plugin
 nnoremap <leader>h :call HexHighlight()<CR>
+" Sort CSS properties
+nnoremap <leader>S ?{<CR>jV/^\s*\}?$<CR>k:sort<CR>:noh<CR>
+" Make CommandT work
+nnoremap <leader>t :CommandT<CR>
+" Open current working directory in TextMate
+nnoremap <leader>T :silent !mate .<CR>
 " Open new v split and switch to it
 nnoremap <leader>w <C-w>v<C-w>l
 " Strip trailing whitespace in the current file
 nnoremap <leader>W :%s/\s\+$//<cr>:let @/=''<CR>
-" Sort CSS properties
-nnoremap <leader>S ?{<CR>jV/^\s*\}?$<CR>k:sort<CR>:noh<CR>
 " Make j/k move by display line, rather than by file line
 nnoremap j gj
 nnoremap k gk
