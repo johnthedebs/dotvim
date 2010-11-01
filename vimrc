@@ -51,7 +51,6 @@ set statusline=%f\ %=%-14.(%m%r%h%w\ ft:%Y\ \ %l,%v\ @\ %p%%\ of\ %L\ %)
 set laststatus=2
 set mouse=a
 set t_Co=256
-set colorcolumn=80
 
 noh
 syntax on
@@ -65,7 +64,7 @@ if has("gui_running")
     set fuoptions=maxhorz,maxvert " Proper fullscreen mode in MacVim
     set guioptions-=T " Hide menu icons by default in MacVim
     set guioptions-=L " Disable left scroll bar
-    set columns=84
+    set columns=110
     set lines=999
     highlight SpellBad term=underline gui=undercurl guisp=Orange
 endif
@@ -83,11 +82,8 @@ if has("autocmd")
     autocmd FileType python setlocal ts=4 sts=4 sw=4 expandtab
     autocmd FileType sass setlocal ts=4 sts=4 sw=4 expandtab
     autocmd FileType vim setlocal ts=4 sts=4 sw=4 expandtab
-
     " Save file when vim loses focus
     autocmd FocusLost * :wa
-    " Use the same NERDTree between buffers
-    autocmd BufEnter * silent NERDTreeMirror
     " Start NERTree when vim starts without any file or directory arguments
     if argc() == 0
         autocmd VimEnter * silent NERDTree
