@@ -1,6 +1,8 @@
 Installation
 ============
 
+To install this vim configuration to a new machine:
+
     # Clone the git repository
     git clone git://github.com/johnthedebs/dotvim.git ~/.vim
     # Link in the .vimrc file
@@ -9,6 +11,9 @@ Installation
     cd ~/.vim
     git submodule init
     git submodule update
+    # Finish installing Command-T
+    cd ~/.vim/bundle/command-t
+    rake make
 
 As for MacVim itself, I recommend you get the latest snapshot from here (go for the .tbz file):
 
