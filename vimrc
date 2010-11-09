@@ -114,8 +114,10 @@ let loaded_netrwPlugin=1
 " Set the leader to something easier than \
 let mapleader=" "
 
-" Visual select the current line
+" Fix `vv`
 nmap vv V
+" Fix `Y`
+nmap Y y$
 " Shortcut to rapidly toggle `set list`
 nmap <leader>l :set list!<CR>
 " Turn Rainbow Parentheses on or off
