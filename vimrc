@@ -49,6 +49,8 @@ set statusline=%f\ %m%r\ [%Y]%=%(\ %l,%v\ @\ %p%%\ of\ %L\ %)
 set laststatus=2
 set mouse=a
 set t_Co=256
+set hidden
+set formatprg=par
 
 noh
 syntax on
