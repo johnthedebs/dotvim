@@ -27,8 +27,8 @@ set wildignore+=*.pyc,.git,.svn,.hg
 set list
 set listchars=tab:▸\ ,eol:¬,trail:·
 set fileformats=unix,dos,mac
-set scrolloff=8
-set sidescrolloff=5
+set scrolloff=5
+set sidescrolloff=3
 set sidescroll=1
 set history=1000
 set linespace=0
@@ -43,11 +43,9 @@ set formatoptions=qrn1
 set visualbell
 set binary noeol
 set clipboard=unnamed
-set foldmethod=indent
-set foldnestmax=3
 set nofoldenable
 set autoread
-set statusline=%f\ %=%-14.(%m%r%h%w\ ft:%Y\ \ %l,%v\ @\ %p%%\ of\ %L\ %)
+set statusline=%f\ %m%r\ [%Y]%=%(\ %l,%v\ @\ %p%%\ of\ %L\ %)
 set laststatus=2
 set mouse=a
 set t_Co=256
@@ -64,6 +62,7 @@ if has("gui_running")
     set fuoptions=maxhorz,maxvert " Proper fullscreen mode in MacVim
     set guioptions-=T " Hide menu icons by default in MacVim
     set guioptions-=L " Disable left scroll bar
+    set guioptions-=r " Disable right scroll bar
     set columns=110
     set lines=999
     highlight SpellBad term=underline gui=undercurl guisp=Orange
@@ -84,7 +83,7 @@ if has("autocmd")
     autocmd FileType vim setlocal ts=4 sts=4 sw=4 expandtab
     " Save file when vim loses focus
     autocmd FocusLost * :wa
-    " Start NERTree when vim starts without any file or directory arguments
+    " Start NERDTree when Vim starts without any file or directory arguments
     if argc() == 0
         autocmd VimEnter * silent NERDTree
         " If $WORKDIR is defined, start NERDTree there.
