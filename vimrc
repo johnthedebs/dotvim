@@ -42,6 +42,7 @@ set textwidth=79
 set formatoptions=qrn1
 set visualbell
 set binary noeol
+set noequalalways
 set clipboard=unnamed
 set nofoldenable
 set autoread
@@ -57,7 +58,7 @@ syntax on
 colorscheme molokai
 
 if !has("python") || version < 703
-    let loaded_gundo=1
+    let g:gundo_disable=1
 endif
 
 if has("gui_running")
