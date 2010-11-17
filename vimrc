@@ -88,6 +88,8 @@ if has("autocmd")
         " If $WORKDIR is defined, start NERDTree there.
         if strlen($WORKDIR) > 0
             cd $WORKDIR
+            " Switch to a different project
+            nnoremap <leader>sp :cd $WORKDIR/
         endif
     elseif isdirectory(argv(0))
         exec "cd " . argv(0)
