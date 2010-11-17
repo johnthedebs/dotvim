@@ -79,6 +79,7 @@ endif
 if has("autocmd")
     " Use soft 4-space tabs by default for everything
     autocmd BufEnter * set ts=4 sts=4 sw=4 expandtab
+    autocmd FileType python set colorcolumn=80
     " Save file when vim loses focus
     autocmd FocusLost * :wa
     " Start NERDTree when Vim starts without any file or directory arguments
