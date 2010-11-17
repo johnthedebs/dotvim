@@ -199,6 +199,8 @@ map <D-8> 8gt
 map <D-9> 9gt
 map <D-0> :tablast<CR>
 
+command! -nargs=* Wrap set wrap linebreak nolist
+
 " Show syntax highlighting groups for word under cursor
 nmap <C-S-P> :call <SID>SynStack()<CR>
 function! <SID>SynStack()
