@@ -100,6 +100,8 @@ let g:CommandTMaxHeight=8
 let g:gundo_preview_bottom=1
 " Complete Python syntax highlighting
 let python_highlight_all=1
+" YankRing settings
+let g:yankring_history_file='.yankring_history'
 " NERDTree settings
 let NERDTreeIgnore=['\.pyc$']
 let NERDTreeChDirMode=2
