@@ -38,7 +38,7 @@ set gdefault
 set nowrap
 set backspace=indent,eol,start
 set cursorline
-set textwidth=79
+set textwidth=130
 set formatoptions=qrn1
 set visualbell
 set binary noeol
@@ -75,6 +75,9 @@ if has("persistent_undo")
     set undofile
     set undodir=~/.undo
 endif
+
+set backupdir=~/.vim/backup
+set directory=~/.vim/backup
 
 if has("autocmd")
     " Use soft 4-space tabs by default for everything
@@ -157,10 +160,10 @@ nnoremap <leader>ev <C-w><C-v><C-l>:e $MYVIMRC<CR>
 nnoremap <leader>sv :source $MYVIMRC<CR>
 " Set filetype to htmldjango
 nnoremap <leader>sd :set filetype=htmldjango<CR>
-" Find the current file in the NERDTree
-nnoremap <leader>f :NERDTreeFind<CR>
 " Open current working directory in Finder
-nnoremap <leader>F :silent !open .<CR>
+nnoremap <leader>f :silent !open .<CR>
+" Find the current file in the NERDTree
+nnoremap <leader>F :NERDTreeFind<CR>
 " Open GitX
 nnoremap <leader>g :silent ! gitx<CR>
 " Open Gundo
@@ -173,6 +176,8 @@ nnoremap <leader>S ?{<CR>jV/^\s*\}?$<CR>k:sort<CR>:noh<CR>
 nnoremap <leader>t :CommandT<CR>
 " Open current working directory in TextMate
 nnoremap <leader>T :silent !mate .<CR>
+" Reselect pasted text
+nnoremap <leader>v V`]
 " Open new v split and switch to it
 nnoremap <leader>w <C-w>v<C-w>l
 " Strip trailing whitespace in the current file
