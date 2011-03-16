@@ -23,9 +23,10 @@ set ruler
 set title
 set wildmenu
 set wildmode=list:longest
-set wildignore+=*.pyc,.git,.svn,.hg
+set wildignore+=*.pyc,*.o,*.obj,*.rbc,.git,.svn,.hg
 set list
 set listchars=tab:▸\ ,eol:¬,trail:·
+set showbreak=↪
 set fileformats=unix,dos,mac
 set scrolloff=5
 set sidescrolloff=3
@@ -48,7 +49,6 @@ set nofoldenable
 set autoread
 set statusline=%f\ %m%r\ [%Y]%=%(\ %l,%v\ @\ %p%%\ of\ %L\ %)
 set laststatus=2
-set mouse=a
 set t_Co=256
 set hidden
 set formatprg=par
@@ -57,18 +57,32 @@ noh
 syntax on
 colorscheme molokai
 
+" Set the leader to something easier than \
+let mapleader=" "
+
 if !has("python") || version < 703
     let g:gundo_disable=1
 endif
 
 if has("gui_running")
+    set columns=120
     set fuoptions=maxhorz,maxvert " Proper fullscreen mode in MacVim
     set guioptions-=T " Hide menu icons by default in MacVim
     set guioptions-=L " Disable left scroll bar
     set guioptions-=r " Disable right scroll bar
-    set columns=110
     set lines=999
+    set mouse=a
     highlight SpellBad term=underline gui=undercurl guisp=Orange
+    " Command-][ to increase/decrease indentation
+    vnoremap <D-]> >gv
+    vnoremap <D-[> <gv
+    nnoremap <D-]> v>gv<ESC>
+    nnoremap <D-[> v<gv<ESC>
+
+
+    " Adjust viewports to the same size
+    nnoremap <Leader>= <C-w>=
+    imap <Leader>= <Esc> <C-w>=
 endif
 
 if has("persistent_undo")
@@ -108,15 +122,12 @@ let python_highlight_all=1
 " YankRing settings
 let g:yankring_history_file='.yankring_history'
 " NERDTree settings
-let NERDTreeIgnore=['\.pyc$']
+let NERDTreeIgnore=['\.pyc$', '\.rbc$', '\~$']
 let NERDTreeChDirMode=2
 " Disable netrw (it interferes with NERDTree when a
 " directory argument is passed from the command line)
 let loaded_netrw=1
 let loaded_netrwPlugin=1
-
-" Set the leader to something easier than \
-let mapleader=" "
 
 " Bubble single lines
 nmap <C-Up> [e
@@ -126,7 +137,9 @@ vmap <C-Up> [egv
 vmap <C-Down> ]egv
 
 " Fix `vv`
-nmap vv V
+noremap vv V
+" Fix `V`
+noremap V <ESC>v$h
 " Fix `Y`
 nmap Y y$
 " Shortcut to rapidly toggle `set list`
@@ -145,15 +158,15 @@ nnoremap ; :
 " Run a command line operation
 nnoremap <leader>; :silent !
 " Turn NERDTree on or off
-nnoremap <leader>\ :NERDTreeToggle<CR>
+nnoremap <leader>n :NERDTreeToggle<CR>
 " Clear search highlights
 nnoremap <leader><space> :noh<CR>
 " Quick scratch access
 nnoremap <leader><tab> :Sscratch<CR>
 " Ack with a literal
-nnoremap <leader>al :Ack --literal 
+nnoremap <leader>al :Ack --literal<space>
 " Ack with a regex
-nnoremap <leader>ar :Ack 
+nnoremap <leader>ar :Ack<space>
 " Edit ~/.vimrc
 nnoremap <leader>ev <C-w><C-v><C-l>:e $MYVIMRC<CR>
 " Source (reload) ~/.vimrc
