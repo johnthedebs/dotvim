@@ -79,10 +79,6 @@ if has("gui_running")
     nnoremap <D-]> v>gv<ESC>
     nnoremap <D-[> v<gv<ESC>
 
-
-    " Adjust viewports to the same size
-    nnoremap <Leader>= <C-w>=
-    imap <Leader>= <Esc> <C-w>=
 endif
 
 if has("persistent_undo")
