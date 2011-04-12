@@ -57,6 +57,8 @@ colorscheme solarized
 noh
 syntax on
 
+let loaded_delimitMate=1
+
 " Set the leader to something easier than \
 let mapleader=" "
 
@@ -80,6 +82,15 @@ if has("gui_running")
     nnoremap <D-]> v>gv<ESC>
     nnoremap <D-[> v<gv<ESC>
 
+    " Command-Option-ArrowKey to switch viewports
+    map <D-M-Up> <C-w>k
+    imap <D-M-Up> <Esc> <C-w>k
+    map <D-M-Down> <C-w>j
+    imap <D-M-Down> <Esc> <C-w>j
+    map <D-M-Right> <C-w>l
+    imap <D-M-Right> <Esc> <C-w>l
+    map <D-M-Left> <C-w>h
+    imap <D-M-Left> <C-w>h
 endif
 
 if has("persistent_undo")
@@ -94,11 +105,12 @@ if has("autocmd")
     " Use soft 4-space tabs by default for everything
     autocmd BufEnter * set ts=4 sts=4 sw=4 expandtab
     autocmd FileType python set colorcolumn=80
+    autocmd FileType html set ft=htmldjango
     " Save file when vim loses focus
     autocmd FocusLost * :wa
     " Start NERDTree when Vim starts without any file or directory arguments
     if argc() == 0
-        autocmd VimEnter * silent NERDTree
+        "autocmd VimEnter * silent NERDTree
         " If $WORKDIR is defined, start NERDTree there.
         if strlen($WORKDIR) > 0
             cd $WORKDIR
@@ -149,7 +161,7 @@ nmap <leader>R :CommandTFlush<CR>
 call arpeggio#map('i', '', 0, 'jk', '<Esc>') " Press j and k at the same time
 inoremap jj <ESC>
 " HTML tag closing
-inoremap <C-_> <Space><BS><Esc>:call InsertCloseTag()<CR>
+inoremap <C-c> :call InsertCloseTag()<CR>
 " Avoid needing to use shift for ex mode
 nnoremap ; :
 " Run a command line operation
