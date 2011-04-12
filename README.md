@@ -15,6 +15,10 @@ As for MacVim itself, I recommend you get the latest snapshot from here (go for 
 
     https://github.com/b4winckler/macvim/downloads
 
+To update all the submodules to their latest versions:
+
+    git submodule foreach git pull
+
 Thanks to
 =========
 
