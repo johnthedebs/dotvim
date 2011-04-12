@@ -7,7 +7,6 @@ filetype plugin indent on
 set nocompatible " Always first
 set modelines=0
 set encoding=utf-8
-set background=dark
 set autoindent
 set smartindent
 set ignorecase
@@ -24,7 +23,7 @@ set title
 set wildmenu
 set wildmode=list:longest
 set wildignore+=*.pyc,*.o,*.obj,*.rbc,.git,.svn,.hg
-set list
+set nolist
 set listchars=tab:▸\ ,eol:¬,trail:·
 set showbreak=↪
 set fileformats=unix,dos,mac
@@ -52,10 +51,11 @@ set laststatus=2
 set t_Co=256
 set hidden
 set formatprg=par
+set background=dark
 
+colorscheme solarized
 noh
 syntax on
-colorscheme molokai
 
 " Set the leader to something easier than \
 let mapleader=" "
@@ -70,6 +70,7 @@ if has("gui_running")
     set guioptions-=T " Hide menu icons by default in MacVim
     set guioptions-=L " Disable left scroll bar
     set guioptions-=r " Disable right scroll bar
+    set guifont=Menlo:h11
     set lines=999
     set mouse=a
     highlight SpellBad term=underline gui=undercurl guisp=Orange
