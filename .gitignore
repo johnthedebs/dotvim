@@ -1,5 +1,9 @@
-.DS_Store
 *.swo
 *.swp
-.VimballRecord
+
+yankring_history*
+.DS_Store
 .netrwhist
+.VimballRecord
+
+undo/%*
