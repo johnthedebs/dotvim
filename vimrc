@@ -95,7 +95,7 @@ endif
 
 if has("persistent_undo")
     set undofile
-    set undodir=~/.undo
+    set undodir=~/.vim/undo
 endif
 
 set backupdir=~/.vim/backup
