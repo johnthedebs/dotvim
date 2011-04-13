@@ -81,7 +81,6 @@ if has("gui_running")
     vnoremap <D-[> <gv
     nnoremap <D-]> v>gv<ESC>
     nnoremap <D-[> v<gv<ESC>
-
     " Command-Option-ArrowKey to switch viewports
     map <D-M-Up> <C-w>k
     imap <D-M-Up> <Esc> <C-w>k
@@ -90,7 +89,7 @@ if has("gui_running")
     map <D-M-Right> <C-w>l
     imap <D-M-Right> <Esc> <C-w>l
     map <D-M-Left> <C-w>h
-    imap <D-M-Left> <C-w>h
+    imap <D-M-Left> <Esc> <C-w>h
 endif
 
 if has("persistent_undo")
@@ -101,6 +100,17 @@ endif
 set backupdir=~/.vim/backup
 set directory=~/.vim/backup
 
+if argc() == 0
+    " If $WORKDIR is defined, start NERDTree there.
+    if strlen($WORKDIR) > 0
+        cd $WORKDIR
+        " Switch to a different project
+        nnoremap <leader>sp :cd $WORKDIR/
+    endif
+elseif isdirectory(argv(0))
+    exec "cd " . argv(0)
+endif
+
 if has("autocmd")
     " Use soft 4-space tabs by default for everything
     autocmd BufEnter * set ts=4 sts=4 sw=4 expandtab
@@ -108,18 +118,6 @@ if has("autocmd")
     autocmd FileType html set ft=htmldjango
     " Save file when vim loses focus
     autocmd FocusLost * :wa
-    " Start NERDTree when Vim starts without any file or directory arguments
-    if argc() == 0
-        "autocmd VimEnter * silent NERDTree
-        " If $WORKDIR is defined, start NERDTree there.
-        if strlen($WORKDIR) > 0
-            cd $WORKDIR
-            " Switch to a different project
-            nnoremap <leader>sp :cd $WORKDIR/
-        endif
-    elseif isdirectory(argv(0))
-        exec "cd " . argv(0)
-    endif
 endif
 
 " Command-T settings
@@ -129,7 +127,7 @@ let g:gundo_preview_bottom=1
 " Complete Python syntax highlighting
 let python_highlight_all=1
 " YankRing settings
-let g:yankring_history_file='.yankring_history'
+let g:yankring_history_file='.vim/yankring_history'
 " NERDTree settings
 let NERDTreeIgnore=['\.pyc$', '\.rbc$', '\~$']
 let NERDTreeChDirMode=2
@@ -161,7 +159,7 @@ nmap <leader>R :CommandTFlush<CR>
 call arpeggio#map('i', '', 0, 'jk', '<Esc>') " Press j and k at the same time
 inoremap jj <ESC>
 " HTML tag closing
-inoremap <C-c> :call InsertCloseTag()<CR>
+inoremap <C-c> <ESC>:call InsertCloseTag()<CR>i
 " Avoid needing to use shift for ex mode
 nnoremap ; :
 " Run a command line operation
@@ -413,4 +411,3 @@ call s:DefineCommand("touch", "Touch")
 call s:DefineCommand("rm", "Remove")
 call s:DefineCommand("e", "Edit")
 call s:DefineCommand("mkdir", "Mkdir")
-
