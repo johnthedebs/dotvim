@@ -151,10 +151,6 @@ noremap V <ESC>v$h
 nmap Y y$
 " Shortcut to rapidly toggle `set list`
 nmap <leader>l :set list!<CR>
-" Turn Rainbow Parentheses on or off
-nmap <leader>r :RainbowParenthesesToggle<CR>
-" Refresh Command-T
-nmap <leader>R :CommandTFlush<CR>
 " Get out of insert mode more easily
 call arpeggio#map('i', '', 0, 'jk', '<Esc>') " Press j and k at the same time
 inoremap jj <ESC>
@@ -184,6 +180,10 @@ nnoremap <leader>sd :set filetype=htmldjango<CR>
 nnoremap <leader>f :silent !open .<CR>
 " Find the current file in the NERDTree
 nnoremap <leader>F :NERDTreeFind<CR>
+" Reveal current file in Finder
+nnoremap <leader>r :silent !open -R %<CR>
+" Turn Rainbow Parentheses on or off
+nnoremap <leader>R :RainbowParenthesesToggle<CR>
 " Open GitX
 nnoremap <leader>g :silent ! gitx<CR>
 " Open Gundo
