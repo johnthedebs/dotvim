@@ -232,6 +232,8 @@ map <D-0> :tablast<CR>
 
 command! -nargs=* Wrap set wrap linebreak nolist
 
+call togglebg#map("<F5>")
+
 " Project Tree
 autocmd VimEnter * call s:CdIfDirectory(expand("<amatch>"))
 autocmd FocusGained * call s:UpdateNERDTree()
