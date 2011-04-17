@@ -131,6 +131,8 @@ let g:yankring_history_file='.vim/yankring_history'
 " NERDTree settings
 let NERDTreeIgnore=['\.pyc$', '\.rbc$', '\~$']
 let NERDTreeChDirMode=2
+" NERDCommenter settings
+let g:NERDCustomDelimiters = { 'htmldjango': { 'left': '{#','right': '#}', 'leftAlt': '<!--', 'rightAlt': '-->' } }
 " Disable netrw (it interferes with NERDTree when a
 " directory argument is passed from the command line)
 let loaded_netrw=1
@@ -149,6 +151,8 @@ noremap vv V
 noremap V <ESC>v$h
 " Fix `Y`
 nmap Y y$
+" Command-/ to toggle comments
+map <D-/> <plug>NERDCommenterToggle<CR>
 " Shortcut to rapidly toggle `set list`
 nmap <leader>l :set list!<CR>
 " Get out of insert mode more easily
