@@ -17,6 +17,9 @@ As for MacVim itself, I recommend you get the latest snapshot from here (go for 
 
 To update all the submodules to their latest versions:
 
+    # Remove all non-version controlled files
+    git clean -dfx
+    # Update each submodule
     git submodule foreach git pull
 
 Thanks to
