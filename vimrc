@@ -152,7 +152,7 @@ noremap V <ESC>v$h
 " Fix `Y`
 nmap Y y$
 " Command-/ to toggle comments
-map <D-/> <plug>NERDCommenterToggle<CR>
+map <D-/> <plug>NERDCommenterToggle
 " Shortcut to rapidly toggle `set list`
 nmap <leader>l :set list!<CR>
 " Get out of insert mode more easily
