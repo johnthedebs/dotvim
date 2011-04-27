@@ -12,8 +12,7 @@ To install this vim configuration to a new machine:
     rake make
 
 As for MacVim itself, I recommend you get the latest snapshot from here (go for the .tbz file):
-
-    https://github.com/b4winckler/macvim/downloads
+https://github.com/b4winckler/macvim/downloads
 
 To update all the submodules to their latest versions:
 
@@ -23,6 +22,6 @@ To update all the submodules to their latest versions:
 Thanks to
 =========
 
-* Drew Neil (http://vimcasts.org)
-* Steve Losh (http://stevelosh.com/blog/2010/09/coming-home-to-vim/)
-* Jim Dennis (http://stackoverflow.com/questions/1218390/what-is-your-most-productive-shortcut-with-vim/1220118#1220118)
+* Drew Neil – http://vimcasts.org
+* Steve Losh – http://stevelosh.com/blog/2010/09/coming-home-to-vim/
+* Jim Dennis – http://stackoverflow.com/questions/1218390/what-is-your-most-productive-shortcut-with-vim/1220118#1220118

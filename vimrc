@@ -54,7 +54,7 @@ set formatprg=par
 set background=dark
 
 colorscheme solarized
-noh
+nohlsearch
 syntax on
 
 let loaded_delimitMate=1
@@ -116,8 +116,12 @@ if has("autocmd")
     autocmd BufEnter * set ts=4 sts=4 sw=4 expandtab
     autocmd FileType python set colorcolumn=80
     autocmd FileType html set ft=htmldjango
+    " Add json syntax highlighting
+    autocmd BufNewFile,BufRead *.json set ft=javascript
     " Save file when vim loses focus
     autocmd FocusLost * :wa
+    " This beauty remembers where you were the last time you edited the file, and returns to the same position.
+    autocmd BufReadPost * if line("'\"") > 0|if line("'\"") <= line("$")|exe("norm '\"")|else|exe "norm $"|endif|endif
 endif
 
 " Command-T settings
