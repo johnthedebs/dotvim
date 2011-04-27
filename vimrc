@@ -171,9 +171,9 @@ nnoremap <leader><space> :noh<CR>
 " Quick scratch access
 nnoremap <leader><tab> :Sscratch<CR>
 " Ack with a literal
-nnoremap <leader>al :Ack --literal<space>
+nnoremap <leader>al :Ack! --literal<space>
 " Ack with a regex
-nnoremap <leader>ar :Ack<space>
+nnoremap <leader>ar :Ack!<space>
 " Edit ~/.vimrc
 nnoremap <leader>ev <C-w><C-v><C-l>:e $MYVIMRC<CR>
 " Source (reload) ~/.vimrc
