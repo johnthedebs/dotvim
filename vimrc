@@ -200,8 +200,6 @@ nnoremap <leader>G :GundoToggle<CR>
 nnoremap <leader>h :call HexHighlight()<CR>
 " Sort CSS properties
 nnoremap <leader>S ?{<CR>jV/^\s*\}?$<CR>k:sort<CR>:noh<CR>
-" Make CommandT work
-nnoremap <leader>t :CommandT<CR>
 " Open current working directory in TextMate
 nnoremap <leader>T :silent !mate .<CR>
 " Reselect pasted text
