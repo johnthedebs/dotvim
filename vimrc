@@ -212,6 +212,11 @@ nnoremap <leader>W :%s/\s\+$//<cr>:let @/=''<CR>
 nnoremap j gj
 nnoremap k gk
 
+nmap <leader>a= :Tabularize /=<CR>
+vmap <leader>a= :Tabularize /=<CR>
+nmap <leader>a; :Tabularize /:<CR>
+vmap <leader>a; :Tabularize /:<CR>
+
 " Switch windows
 map <C-h> <C-w>h
 map <C-j> <C-w>j
