@@ -51,7 +51,7 @@ set laststatus=2
 set t_Co=256
 set hidden
 set formatprg=par
-set background=light
+set background=dark
 
 colorscheme solarized
 nohlsearch
@@ -67,6 +67,7 @@ if !has("python") || version < 703
 endif
 
 if has("gui_running")
+    set background=light
     set columns=120
     set fuoptions=maxhorz,maxvert " Proper fullscreen mode in MacVim
     set guioptions-=T " Hide menu icons by default in MacVim
