@@ -57,7 +57,9 @@ colorscheme solarized
 nohlsearch
 syntax on
 
+" Things to disable by default
 let loaded_delimitMate=1
+let loaded_xmledit = 1
 
 " Set the leader to something easier than \
 let mapleader=" "
