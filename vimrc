@@ -52,6 +52,7 @@ set t_Co=256
 set hidden
 set formatprg=par
 set background=dark
+set viminfo='10,\"100,:20,%,n~/.vim/info
 
 colorscheme solarized
 nohlsearch
@@ -201,6 +202,8 @@ nnoremap <leader>g :silent ! gitx<CR>
 nnoremap <leader>G :GundoToggle<CR>
 " Toggle HexHighlight plugin
 nnoremap <leader>h :call HexHighlight()<CR>
+" Search/Replace the current file
+nnoremap <leader>s :%s//g<left><left>
 " Sort CSS properties
 nnoremap <leader>S ?{<CR>jV/^\s*\}?$<CR>k:sort<CR>:noh<CR>
 " Open current working directory in TextMate
