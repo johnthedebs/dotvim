@@ -7,3 +7,5 @@ yankring_history*
 .VimballRecord
 
 undo/%*
+info/viminfo
+sessions/*

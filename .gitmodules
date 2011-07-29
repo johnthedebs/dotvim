@@ -58,3 +58,6 @@
 [submodule "bundle/tabular"]
 	path = bundle/tabular
 	url = https://github.com/godlygeek/tabular.git
+[submodule "bundle/sessionman"]
+	path = bundle/sessionman
+	url = https://github.com/vim-scripts/sessionman.vim.git

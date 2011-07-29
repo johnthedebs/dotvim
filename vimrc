@@ -52,7 +52,7 @@ set t_Co=256
 set hidden
 set formatprg=par
 set background=dark
-set viminfo='10,\"100,:20,%,n~/.vim/info
+set viminfo='10,\"100,:20,!,%,n~/.vim/info/viminfo
 
 colorscheme solarized
 nohlsearch
