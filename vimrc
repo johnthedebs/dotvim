@@ -27,7 +27,7 @@ set nolist
 set listchars=tab:▸\ ,eol:¬,trail:·
 set showbreak=↪
 set fileformats=unix,dos,mac
-set scrolloff=5
+set scrolloff=0
 set sidescrolloff=3
 set sidescroll=1
 set history=1000
@@ -126,6 +126,13 @@ if has("autocmd")
     autocmd FocusLost * :wa
     " This beauty remembers where you were the last time you edited the file, and returns to the same position.
     autocmd BufReadPost * if line("'\"") > 0|if line("'\"") <= line("$")|exe("norm '\"")|else|exe "norm $"|endif|endif
+    " Clean up the QuickFix window
+    autocmd Filetype qf setl nolist
+    autocmd Filetype qf setl nowrap
+    " Project Tree
+    autocmd VimEnter * call s:CdIfDirectory(expand("<amatch>"))
+    autocmd FocusGained * call s:UpdateNERDTree()
+    autocmd WinEnter * call s:CloseIfOnlyNerdTreeLeft()
 endif
 
 " Command-T settings
@@ -152,6 +159,9 @@ nmap <C-Down> ]e
 " Bubble multiple lines
 vmap <C-Up> [egv
 vmap <C-Down> ]egv
+
+" Make windows take up the same amount of space
+nnoremap <leader>= <C-w>=
 
 " Fix `vv`
 noremap vv V
@@ -222,6 +232,8 @@ nmap <leader>a= :Tabularize /=<CR>
 vmap <leader>a= :Tabularize /=<CR>
 nmap <leader>a; :Tabularize /:<CR>
 vmap <leader>a; :Tabularize /:<CR>
+nmap <leader>a, :Tabularize /,<CR>
+vmap <leader>a, :Tabularize /,<CR>
 
 " Switch windows
 map <C-h> <C-w>h
@@ -246,11 +258,6 @@ map <D-0> :tablast<CR>
 command! -nargs=* Wrap set wrap linebreak nolist
 
 call togglebg#map("<F5>")
-
-" Project Tree
-autocmd VimEnter * call s:CdIfDirectory(expand("<amatch>"))
-autocmd FocusGained * call s:UpdateNERDTree()
-autocmd WinEnter * call s:CloseIfOnlyNerdTreeLeft()
 
 " Close all open buffers on entering a window if the only
 " buffer that's left is the NERDTree buffer
