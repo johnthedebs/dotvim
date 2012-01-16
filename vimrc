@@ -16,6 +16,7 @@ set expandtab
 set tabstop=4
 set shiftwidth=4
 set softtabstop=4
+set shiftround
 set showmatch
 set showmode
 set ruler
@@ -152,6 +153,9 @@ let g:NERDCustomDelimiters = { 'htmldjango': { 'left': '{#','right': '#}', 'left
 " directory argument is passed from the command line)
 let loaded_netrw=1
 let loaded_netrwPlugin=1
+
+" Easily save a file as root
+cmap w!! w !sudo tee % >/dev/null
 
 " Bubble single lines
 nmap <C-Up> [e
