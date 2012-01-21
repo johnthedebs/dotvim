@@ -59,9 +59,6 @@ colorscheme solarized
 nohlsearch
 syntax on
 
-" Things to disable by default
-let loaded_delimitMate=1
-let loaded_xmledit = 1
 
 " Set the leader to something easier than \
 let mapleader=" "
@@ -137,14 +134,14 @@ if has("autocmd")
     autocmd WinEnter * call s:CloseIfOnlyNerdTreeLeft()
 endif
 
-" Command-T settings
-let g:CommandTMaxHeight=8
+
+" Ctrl-P settings
+let g:ctrlp_jump_to_buffer = 1
+let g:ctrlp_map = '<leader>t'
 " Gundo settings
 let g:gundo_preview_bottom=1
 " Complete Python syntax highlighting
 let python_highlight_all=1
-" YankRing settings
-let g:yankring_history_file='.vim/yankring_history'
 " NERDTree settings
 let NERDTreeIgnore=['\.pyc$', '\.rbc$', '\~$']
 let NERDTreeChDirMode=2
@@ -221,8 +218,6 @@ nnoremap <leader>h :call HexHighlight()<CR>
 nnoremap <leader>s :%s//g<left><left>
 " Sort CSS properties
 nnoremap <leader>S ?{<CR>jV/^\s*\}?$<CR>k:sort<CR>:noh<CR>
-" Open current working directory in TextMate
-nnoremap <leader>T :silent !mate .<CR>
 " Reselect pasted text
 nnoremap <leader>v V`]
 " Open new v split and switch to it
