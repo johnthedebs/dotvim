@@ -119,7 +119,8 @@ endif
 if has("autocmd")
     " Use soft 4-space tabs by default for everything
     autocmd BufEnter * set ts=4 sts=4 sw=4 expandtab
-    autocmd FileType python set colorcolumn=80
+    autocmd FileType coffee set colorcolumn=79
+    autocmd FileType python set colorcolumn=79
     autocmd FileType html set ft=htmldjango
     " Add json syntax highlighting
     autocmd BufNewFile,BufRead *.json set ft=javascript
