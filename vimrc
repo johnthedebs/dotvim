@@ -23,7 +23,7 @@ set ruler
 set title
 set wildmenu
 set wildmode=list:longest
-set wildignore+=*.pyc,*.o,*.obj,*.rbc,.git,.svn,.hg
+set wildignore+=*.pyc,*.o,*.obj,*.rbc,.git,.svn,.hg,.sass-cache
 set nolist
 set listchars=tab:▸\ ,eol:¬,trail:·
 set showbreak=↪
@@ -258,6 +258,7 @@ map <D-0> :tablast<CR>
 command! -nargs=* Wrap set wrap linebreak nolist
 
 call togglebg#map("<F5>")
+noremap <F6> :silent ! kill -HUP `cat /tmp/gunicorn.pid`<CR>
 
 " Close all open buffers on entering a window if the only
 " buffer that's left is the NERDTree buffer
@@ -314,10 +315,6 @@ function s:UpdateNERDTree(...)
         wincmd p
       end
     endif
-  endif
-
-  if exists(":CommandTFlush") == 2
-    CommandTFlush
   endif
 endfunction
 
