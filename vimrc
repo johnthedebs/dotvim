@@ -302,7 +302,7 @@ endfunction
 function s:UpdateNERDTree(...)
   let stay = 0
 
-  if(exists("a:1"))
+  if exists("a:1")
     let stay = a:1
   end
 
@@ -315,6 +315,10 @@ function s:UpdateNERDTree(...)
         wincmd p
       end
     endif
+  endif
+
+  if exists(":ClearCtrlPCache")
+      ClearCtrlPCache
   endif
 endfunction
 
