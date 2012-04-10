@@ -220,8 +220,10 @@ nnoremap <leader>s :%s//g<left><left>
 nnoremap <leader>S ?{<CR>jV/^\s*\}?$<CR>k:sort<CR>:noh<CR>
 " Reselect pasted text
 nnoremap <leader>v V`]
+" Open new h split and switch to it
+nnoremap <leader>h :sp<CR><C-w>j
 " Open new v split and switch to it
-nnoremap <leader>w <C-w>v<C-w>l
+nnoremap <leader>w :vs<CR><C-w>l
 " Strip trailing whitespace in the current file
 nnoremap <leader>W :%s/\s\+$//<cr>:let @/=''<CR>
 " Make j/k move by display line, rather than by file line
@@ -317,8 +319,8 @@ function s:UpdateNERDTree(...)
     endif
   endif
 
-  if exists(":ClearCtrlPCache")
-      ClearCtrlPCache
+  if exists(":CtrlPClearCache")
+      CtrlPClearCache
   endif
 endfunction
 
