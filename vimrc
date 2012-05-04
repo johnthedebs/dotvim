@@ -136,7 +136,7 @@ endif
 
 
 " Ctrl-P settings
-let g:ctrlp_jump_to_buffer = 1
+let g:ctrlp_switch_buffer = 0
 let g:ctrlp_map = '<leader>t'
 " Gundo settings
 let g:gundo_preview_bottom=1
