@@ -37,6 +37,7 @@ set incsearch
 set hlsearch
 set gdefault
 set nowrap
+set paste
 set backspace=indent,eol,start
 set cursorline
 set textwidth=130
@@ -52,7 +53,7 @@ set laststatus=2
 set t_Co=256
 set hidden
 set formatprg=par
-set background=light
+set background=dark
 set viminfo='10,\"100,:20,!,%,n~/.vim/info/viminfo
 
 colorscheme solarized
@@ -68,6 +69,7 @@ if !has("python") || version < 703
 endif
 
 if has("gui_running")
+    colorscheme solarized
     set background=light
     set columns=120
     set fuoptions=maxhorz,maxvert " Proper fullscreen mode in MacVim
@@ -136,8 +138,10 @@ endif
 
 
 " Ctrl-P settings
-let g:ctrlp_switch_buffer = 0
+let g:ctrlp_switch_buffer = 1
 let g:ctrlp_map = '<leader>t'
+
+
 " Gundo settings
 let g:gundo_preview_bottom=1
 " Complete Python syntax highlighting
@@ -213,7 +217,7 @@ nnoremap <leader>g :silent ! gitx<CR>
 " Open Gundo
 nnoremap <leader>G :GundoToggle<CR>
 " Toggle HexHighlight plugin
-nnoremap <leader>h :call HexHighlight()<CR>
+nnoremap <leader>H :call HexHighlight()<CR>
 " Search/Replace the current file
 nnoremap <leader>s :%s//g<left><left>
 " Sort CSS properties
