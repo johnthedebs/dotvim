@@ -117,7 +117,8 @@ endif
 
 if has("autocmd")
     " Use soft 4-space tabs by default for everything
-    autocmd BufEnter * set ts=4 sts=4 sw=4 expandtab
+    autocmd BufEnter *.py,*.html,*.rb,*.sls,*.coffee,*.js,*.css,*.sass,*.md,*.txt set ts=4 sts=4 sw=4 expandtab
+    autocmd BufEnter,BufRead,BufNewFile,FileType make setlocal noexpandtab
     autocmd FileType coffee set colorcolumn=79
     autocmd FileType python set colorcolumn=79
     autocmd FileType html set ft=htmldjango
