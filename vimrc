@@ -8,7 +8,7 @@ set nocompatible " Always first
 set modelines=0
 set encoding=utf-8
 set autoindent
-set smartindent
+set nosmartindent
 set ignorecase
 set smartcase
 set smarttab
