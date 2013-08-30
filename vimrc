@@ -56,7 +56,7 @@ set formatprg=par
 set background=dark
 set viminfo='10,\"100,:20,!,%,n~/.vim/info/viminfo
 
-colorscheme solarized
+colorscheme tomorrow-night
 nohlsearch
 syntax on
 
