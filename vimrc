@@ -180,6 +180,8 @@ nmap Y y$
 map <D-/> <plug>NERDCommenterToggle
 " Shortcut to rapidly toggle `set list`
 nmap <leader>l :set list!<CR>
+" Dash integration
+nmap <silent> <leader>d <plug>DashGlobalSearch
 " Get out of insert mode more easily
 call arpeggio#map('i', '', 0, 'jk', '<Esc>') " Press j and k at the same time
 inoremap jj <ESC>
