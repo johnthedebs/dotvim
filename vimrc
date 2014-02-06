@@ -53,10 +53,11 @@ set laststatus=2
 set t_Co=256
 set hidden
 set formatprg=par
-set background=dark
 set viminfo='10,\"100,:20,!,%,n~/.vim/info/viminfo
 
-colorscheme tomorrow-night
+colorscheme solarized
+set background=dark
+
 nohlsearch
 syntax on
 
@@ -70,13 +71,13 @@ endif
 
 if has("gui_running")
     colorscheme solarized
-    set background=light
+    set background=dark
     set columns=120
     set fuoptions=maxhorz,maxvert " Proper fullscreen mode in MacVim
     set guioptions-=T " Hide menu icons by default in MacVim
     set guioptions-=L " Disable left scroll bar
     set guioptions-=r " Disable right scroll bar
-    set guifont=Menlo:h11
+    set guifont=Menlo:h13
     set lines=999
     set mouse=a
     highlight SpellBad term=underline gui=undercurl guisp=Orange
@@ -213,8 +214,6 @@ nnoremap <leader>f :silent !open .<CR>
 nnoremap <leader>F :NERDTreeFind<CR>
 " Reveal current file in Finder
 nnoremap <leader>r :silent !open -R %<CR>
-" Turn Rainbow Parentheses on or off
-nnoremap <leader>R :RainbowParenthesesToggle<CR>
 " Open GitX
 nnoremap <leader>g :silent ! gitx<CR>
 " Open Gundo
@@ -281,6 +280,7 @@ function s:CloseIfOnlyNerdTreeLeft()
  endif
 endfunction
 
+
 " If the parameter is a directory, cd into it
 function s:CdIfDirectory(directory)
   let explicitDirectory = isdirectory(a:directory)
@@ -331,6 +331,7 @@ function s:UpdateNERDTree(...)
   endif
 endfunction
 
+
 " Show syntax highlighting groups for word under cursor
 nmap <C-S-P> :call <SID>SynStack()<CR>
 function! <SID>SynStack()
@@ -339,6 +340,7 @@ function! <SID>SynStack()
   endif
   echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
 endfunc
+
 
 " Set tabstop, softtabstop and shiftwidth to the same value
 command! -nargs=* Stab call Stab()
@@ -368,6 +370,7 @@ function! SummarizeTabs()
   endtry
 endfunction
 
+
 " Utility functions to create file commands
 function s:CommandCabbr(abbreviation, expansion)
   execute 'cabbrev ' . a:abbreviation . ' <c-r>=getcmdpos() == 1 && getcmdtype() == ":" ? "' . a:expansion . '" : "' . a:abbreviation . '"<CR>'
@@ -387,6 +390,7 @@ function s:DefineCommand(name, destination)
   call s:FileCommand(a:destination)
   call s:CommandCabbr(a:name, a:destination)
 endfunction
+
 
 " Public NERDTree-aware versions of builtin functions
 function ChangeDirectory(dir, ...)
