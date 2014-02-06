@@ -142,6 +142,7 @@ endif
 " Ctrl-P settings
 let g:ctrlp_switch_buffer = 1
 let g:ctrlp_map = '<leader>t'
+let g:ctrlp_custom_ignore = '\v[\/]\.static_files$'
 
 
 " Gundo settings
@@ -193,6 +194,8 @@ inoremap <F2> <F1>
 noremap <F2> <F1>
 " HTML tag closing
 inoremap <C-c> <ESC>:call InsertCloseTag()<CR>i
+" Search in project: Ack with a literal
+nnoremap <leader>/ :Ack! --literal<space>
 " Avoid needing to use shift for ex mode
 nnoremap ; :
 " Run a command line operation
@@ -210,7 +213,7 @@ nnoremap <leader>ar :Ack!<space>
 " Edit ~/.vimrc
 nnoremap <leader>ev <C-w><C-v><C-l>:e $MYVIMRC<CR>
 " Source (reload) ~/.vimrc
-nnoremap <leader>sv :source $MYVIMRC<CR>
+nnoremap <leader>rv :source $MYVIMRC<CR>
 " Set filetype to htmldjango
 nnoremap <leader>sd :set filetype=htmldjango<CR>
 " Open current working directory in Finder
@@ -219,6 +222,8 @@ nnoremap <leader>f :silent !open .<CR>
 nnoremap <leader>F :NERDTreeFind<CR>
 " Reveal current file in Finder
 nnoremap <leader>r :silent !open -R %<CR>
+" Ack with a regex
+nnoremap <leader>R :Ack!<space>
 " Open GitX
 nnoremap <leader>g :silent ! gitx<CR>
 " Open Gundo
@@ -226,9 +231,11 @@ nnoremap <leader>G :GundoToggle<CR>
 " Toggle HexHighlight plugin
 nnoremap <leader>H :call HexHighlight()<CR>
 " Search/Replace the current file
-nnoremap <leader>s :%s//g<left><left>
-" Sort CSS properties
-nnoremap <leader>S ?{<CR>jV/^\s*\}?$<CR>k:sort<CR>:noh<CR>
+nnoremap <leader>sr :%s//g<left><left>
+" Open in Sublime Text
+nnoremap <leader>S :silent ! subl .<CR>
+" Switch tabs to spaces
+nnoremap <leader>t :set expandtab<CR>:retab<CR>
 " Reselect pasted text
 nnoremap <leader>v V`]
 " Open new h split and switch to it
@@ -271,7 +278,7 @@ map <D-0> :tablast<CR>
 command! -nargs=* Wrap set wrap linebreak nolist
 
 call togglebg#map("<F5>")
-noremap <F6> :silent ! kill -HUP `cat /tmp/gunicorn.pid`<CR>
+
 
 " Close all open buffers on entering a window if the only
 " buffer that's left is the NERDTree buffer
