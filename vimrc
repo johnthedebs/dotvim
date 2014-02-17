@@ -56,7 +56,7 @@ set formatprg=par
 set viminfo='10,\"100,:20,!,%,n~/.vim/info/viminfo
 
 colorscheme solarized
-set background=dark
+set background=light
 set mouse=a
 
 nohlsearch
@@ -71,9 +71,7 @@ if !has("python") || version < 703
 endif
 
 if has("gui_running")
-    colorscheme solarized
-    set background=dark
-    set columns=120
+    set columns=90
     set fuoptions=maxhorz,maxvert " Proper fullscreen mode in MacVim
     set guioptions-=T " Hide menu icons by default in MacVim
     set guioptions-=L " Disable left scroll bar
