@@ -57,6 +57,7 @@ set viminfo='10,\"100,:20,!,%,n~/.vim/info/viminfo
 
 colorscheme solarized
 set background=dark
+set mouse=a
 
 nohlsearch
 syntax on
@@ -79,7 +80,6 @@ if has("gui_running")
     set guioptions-=r " Disable right scroll bar
     set guifont=Menlo:h13
     set lines=999
-    set mouse=a
     highlight SpellBad term=underline gui=undercurl guisp=Orange
     " Command-][ to increase/decrease indentation
     vnoremap <D-]> >gv
@@ -225,7 +225,7 @@ nnoremap <leader>r :silent !open -R %<CR>
 " Ack with a regex
 nnoremap <leader>R :Ack!<space>
 " Open GitX
-nnoremap <leader>g :silent ! gitx<CR>
+nnoremap <leader>g :silent ! gitx<CR>:redraw!<CR>
 " Open Gundo
 nnoremap <leader>G :GundoToggle<CR>
 " Toggle HexHighlight plugin
