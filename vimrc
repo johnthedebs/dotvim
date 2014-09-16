@@ -23,7 +23,7 @@ set ruler
 set title
 set wildmenu
 set wildmode=list:longest
-set wildignore+=*.pyc,*.o,*.obj,*.rbc,.git,.svn,.hg,.sass-cache
+set wildignore+=*.pyc,*.o,*.obj,*.rbc,.git,.svn,.hg,.sass-cache,tmp,node_modules
 set nolist
 set listchars=tab:▸\ ,eol:¬,trail:·
 set showbreak=↪
@@ -55,8 +55,8 @@ set hidden
 set formatprg=par
 set viminfo='10,\"100,:20,!,%,n~/.vim/info/viminfo
 
-colorscheme solarized
-set background=light
+colorscheme monokai
+set background=dark
 set mouse=a
 
 nohlsearch
@@ -76,7 +76,7 @@ if has("gui_running")
     set guioptions-=T " Hide menu icons by default in MacVim
     set guioptions-=L " Disable left scroll bar
     set guioptions-=r " Disable right scroll bar
-    set guifont=Menlo:h13
+    set guifont=Inconsolata:h15
     set lines=999
     highlight SpellBad term=underline gui=undercurl guisp=Orange
     " Command-][ to increase/decrease indentation
@@ -116,16 +116,21 @@ endif
 
 if has("autocmd")
     " Use soft 4-space tabs by default for everything
-    autocmd BufEnter *.py,*.html,*.rb,*.sls,*.coffee,*.js,*.css,*.sass,*.md,*.txt set ts=4 sts=4 sw=4 expandtab
+    "autocmd BufEnter *.py,*.html,*.rb,*.sls,*.coffee,*.js,*.css,*.sass,*.md,*.txt set ts=4 sts=4 sw=4 expandtab
+    autocmd BufEnter *.py,*.html,*.sls,*.js,*.css,*.md,*.txt,*.coffee,*.sass set ts=4 sts=4 sw=4 expandtab
     autocmd BufEnter,BufRead,BufNewFile,FileType make setlocal noexpandtab
     autocmd FileType coffee set colorcolumn=79
     autocmd FileType python set colorcolumn=79
     autocmd FileType html set ft=htmldjango
+
     " Add json syntax highlighting
     autocmd BufNewFile,BufRead *.json set ft=javascript
+    " Add hamlc syntax highlighting
+    autocmd BufNewFile,BufRead *.hamlc set ft=haml
+
     " Save file when vim loses focus
     autocmd FocusLost * :wa
-    " This beauty remembers where you were the last time you edited the file, and returns to the same position.
+    " Remember where you were the last time you edited the file and return to the same position
     autocmd BufReadPost * if line("'\"") > 0|if line("'\"") <= line("$")|exe("norm '\"")|else|exe "norm $"|endif|endif
     " Clean up the QuickFix window
     autocmd Filetype qf setl nolist
@@ -233,7 +238,7 @@ nnoremap <leader>sr :%s//g<left><left>
 " Open in Sublime Text
 nnoremap <leader>S :silent ! subl .<CR>
 " Switch tabs to spaces
-nnoremap <leader>t :set expandtab<CR>:retab<CR>
+"nnoremap <leader>t :set expandtab<CR>:retab<CR>
 " Reselect pasted text
 nnoremap <leader>v V`]
 " Open new h split and switch to it
