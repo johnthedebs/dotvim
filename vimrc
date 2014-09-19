@@ -188,7 +188,6 @@ nmap <leader>l :set list!<CR>
 " Dash integration
 nmap <silent> <leader>d <plug>DashGlobalSearch
 " Get out of insert mode more easily
-call arpeggio#map('i', '', 0, 'jk', '<Esc>') " Press j and k at the same time
 inoremap jj <ESC>
 " Remap F1 to do what ESC does, and F2 to do what F1 does
 inoremap <F1> <ESC>
