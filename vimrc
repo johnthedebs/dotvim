@@ -23,7 +23,7 @@ set ruler
 set title
 set wildmenu
 set wildmode=list:longest
-set wildignore+=*.pyc,*.o,*.obj,*.rbc,.git,.svn,.hg,.sass-cache,tmp,node_modules
+set wildignore+=~*,*.pyc,*.o,*.obj,*.rbc,.git,.svn,.hg,__pycache__,.sass-cache,node_modules,tmp
 set nolist
 set listchars=tab:▸\ ,eol:¬,trail:·
 set showbreak=↪
@@ -84,15 +84,20 @@ if has("gui_running")
     vnoremap <D-[> <gv
     nnoremap <D-]> v>gv<ESC>
     nnoremap <D-[> v<gv<ESC>
-    " Command-Option-ArrowKey to switch viewports
-    map <D-M-Up> <C-w>k
-    imap <D-M-Up> <Esc> <C-w>k
-    map <D-M-Down> <C-w>j
-    imap <D-M-Down> <Esc> <C-w>j
-    map <D-M-Right> <C-w>l
-    imap <D-M-Right> <Esc> <C-w>l
-    map <D-M-Left> <C-w>h
-    imap <D-M-Left> <Esc> <C-w>h
+
+    " Switch tabs
+    map <D-S-]> gt
+    map <D-S-[> gT
+    map <D-1> 1gt
+    map <D-2> 2gt
+    map <D-3> 3gt
+    map <D-4> 4gt
+    map <D-5> 5gt
+    map <D-6> 6gt
+    map <D-7> 7gt
+    map <D-8> 8gt
+    map <D-9> 9gt
+    map <D-0> :tablast<CR>
 endif
 
 if has("persistent_undo")
@@ -142,21 +147,32 @@ if has("autocmd")
 endif
 
 
+" vim-airline settings
+let g:airline_detect_paste=0
+let g:airline_section_y=""
+let g:airline_section_z="%(%l\ of\ %L\ @\ %p%%,\ col %v%)"
+let g:airline_right_sep=""
+let g:airline_left_sep=""
+let g:airline#extensions#hunks#enabled=0
+let g:airline#extensions#branch#enabled=0
+
 " Ctrl-P settings
 let g:ctrlp_switch_buffer = 1
-let g:ctrlp_map = '<leader>t'
-let g:ctrlp_custom_ignore = '\v[\/]\.static_files$'
-
+let g:ctrlp_map = '<leader>p'
 
 " Gundo settings
 let g:gundo_preview_bottom=1
+
 " Complete Python syntax highlighting
 let python_highlight_all=1
+
 " NERDTree settings
-let NERDTreeIgnore=['\.pyc$', '\.rbc$', '\~$']
+let NERDTreeIgnore=['\.pyc$', '\.rbc$', '\~$', 'node_modules$']
 let NERDTreeChDirMode=2
+
 " NERDCommenter settings
 let g:NERDCustomDelimiters = { 'htmldjango': { 'left': '{#','right': '#}', 'leftAlt': '<!--', 'rightAlt': '-->' } }
+
 " Disable netrw (it interferes with NERDTree when a
 " directory argument is passed from the command line)
 let loaded_netrw=1
@@ -175,27 +191,28 @@ vmap <C-Down> ]egv
 " Make windows take up the same amount of space
 nnoremap <leader>= <C-w>=
 
+" Toggle comments
+map <D-/> <plug>NERDCommenterToggle
+map <leader>- <plug>NERDCommenterToggle
+
 " Fix `vv`
 noremap vv V
 " Fix `V`
 noremap V <ESC>v$h
 " Fix `Y`
 nmap Y y$
-" Command-/ to toggle comments
-map <D-/> <plug>NERDCommenterToggle
 " Shortcut to rapidly toggle `set list`
 nmap <leader>l :set list!<CR>
 " Dash integration
 nmap <silent> <leader>d <plug>DashGlobalSearch
 " Get out of insert mode more easily
 inoremap jj <ESC>
+inoremap hh <ESC>
 " Remap F1 to do what ESC does, and F2 to do what F1 does
 inoremap <F1> <ESC>
 noremap <F1> <ESC>
 inoremap <F2> <F1>
 noremap <F2> <F1>
-" HTML tag closing
-inoremap <C-c> <ESC>:call InsertCloseTag()<CR>i
 " Search in project: Ack with a literal
 nnoremap <leader>/ :Ack! --literal<space>
 " Avoid needing to use shift for ex mode
@@ -208,24 +225,16 @@ nnoremap <leader>n :NERDTreeToggle<CR>
 nnoremap <leader><space> :noh<CR>
 " Quick scratch access
 nnoremap <leader><tab> :Sscratch<CR>
-" Ack with a literal
-nnoremap <leader>al :Ack! --literal<space>
-" Ack with a regex
-nnoremap <leader>ar :Ack!<space>
 " Edit ~/.vimrc
 nnoremap <leader>ev <C-w><C-v><C-l>:e $MYVIMRC<CR>
 " Source (reload) ~/.vimrc
 nnoremap <leader>rv :source $MYVIMRC<CR>
-" Set filetype to htmldjango
-nnoremap <leader>sd :set filetype=htmldjango<CR>
 " Open current working directory in Finder
 nnoremap <leader>f :silent !open .<CR>
 " Find the current file in the NERDTree
 nnoremap <leader>F :NERDTreeFind<CR>
 " Reveal current file in Finder
 nnoremap <leader>r :silent !open -R %<CR>
-" Ack with a regex
-nnoremap <leader>R :Ack!<space>
 " Open GitX
 nnoremap <leader>g :silent ! gitx<CR>:redraw!<CR>
 " Open Gundo
@@ -233,11 +242,11 @@ nnoremap <leader>G :GundoToggle<CR>
 " Toggle HexHighlight plugin
 nnoremap <leader>H :call HexHighlight()<CR>
 " Search/Replace the current file
-nnoremap <leader>sr :%s//g<left><left>
+nnoremap <leader>R :%s//g<left><left>
 " Open in Sublime Text
 nnoremap <leader>S :silent ! subl .<CR>
 " Switch tabs to spaces
-"nnoremap <leader>t :set expandtab<CR>:retab<CR>
+nnoremap <leader>t :set expandtab<CR>:retab<CR>
 " Reselect pasted text
 nnoremap <leader>v V`]
 " Open new h split and switch to it
@@ -262,20 +271,6 @@ map <C-h> <C-w>h
 map <C-j> <C-w>j
 map <C-k> <C-w>k
 map <C-l> <C-w>l
-
-" Switch tabs
-map <D-S-]> gt
-map <D-S-[> gT
-map <D-1> 1gt
-map <D-2> 2gt
-map <D-3> 3gt
-map <D-4> 4gt
-map <D-5> 5gt
-map <D-6> 6gt
-map <D-7> 7gt
-map <D-8> 8gt
-map <D-9> 9gt
-map <D-0> :tablast<CR>
 
 command! -nargs=* Wrap set wrap linebreak nolist
 
