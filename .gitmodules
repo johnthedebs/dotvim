@@ -70,3 +70,6 @@
 [submodule "bundle/vim-cjsx"]
 	path = bundle/vim-cjsx
 	url = https://github.com/mtscout6/vim-cjsx.git
+[submodule "bundle/airline"]
+	path = bundle/airline
+	url = https://github.com/bling/vim-airline
