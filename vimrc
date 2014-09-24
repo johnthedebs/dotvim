@@ -79,6 +79,7 @@ if has("gui_running")
     set guifont=Inconsolata:h15
     set lines=999
     highlight SpellBad term=underline gui=undercurl guisp=Orange
+
     " Command-][ to increase/decrease indentation
     vnoremap <D-]> >gv
     vnoremap <D-[> <gv
@@ -121,8 +122,7 @@ endif
 
 if has("autocmd")
     " Use soft 4-space tabs by default for everything
-    "autocmd BufEnter *.py,*.html,*.rb,*.sls,*.coffee,*.js,*.css,*.sass,*.md,*.txt set ts=4 sts=4 sw=4 expandtab
-    autocmd BufEnter *.py,*.html,*.sls,*.js,*.css,*.md,*.txt,*.coffee,*.sass set ts=4 sts=4 sw=4 expandtab
+    autocmd BufEnter *.py,*.html,*.rb,*.sls,*.js,*.css,*.md,*.txt,*.coffee,*.sass set ts=4 sts=4 sw=4 expandtab
     autocmd BufEnter,BufRead,BufNewFile,FileType make setlocal noexpandtab
     autocmd FileType coffee set colorcolumn=79
     autocmd FileType python set colorcolumn=79
@@ -195,6 +195,8 @@ nnoremap <leader>= <C-w>=
 map <D-/> <plug>NERDCommenterToggle
 map <leader>- <plug>NERDCommenterToggle
 
+" Use `Q` to repeat macros instead of entering Ex-mode
+nmap Q @@
 " Fix `vv`
 noremap vv V
 " Fix `V`
