@@ -241,8 +241,6 @@ nnoremap <leader>r :silent !open -R %<CR>
 nnoremap <leader>g :silent ! gitx<CR>:redraw!<CR>
 " Open Gundo
 nnoremap <leader>G :GundoToggle<CR>
-" Toggle HexHighlight plugin
-nnoremap <leader>H :call HexHighlight()<CR>
 " Search/Replace the current file
 nnoremap <leader>R :%s//g<left><left>
 " Open in Sublime Text
