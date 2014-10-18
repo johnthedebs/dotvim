@@ -23,7 +23,7 @@ set ruler
 set title
 set wildmenu
 set wildmode=list:longest
-set wildignore+=~*,*.pyc,*.o,*.obj,*.rbc,.git,.svn,.hg,__pycache__,.sass-cache,node_modules,tmp
+set wildignore+=~*,*.pyc,*.o,*.obj,*.rbc,.git,.svn,.hg,__pycache__,.sass-cache,node_modules,bower_components,tmp,vendor,__pycache__
 set nolist
 set listchars=tab:▸\ ,eol:¬,trail:·
 set showbreak=↪
