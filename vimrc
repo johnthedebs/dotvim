@@ -23,7 +23,7 @@ set ruler
 set title
 set wildmenu
 set wildmode=list:longest
-set wildignore+=~*,*.pyc,*.o,*.obj,*.rbc,.git,.svn,.hg,__pycache__,.sass-cache,node_modules,bower_components,tmp,vendor,__pycache__
+set wildignore+=~*,*.pyc,*.o,*.obj,*.rbc,.git,.svn,.hg,.DS_Store,__pycache__,.sass-cache,node_modules,bower_components,tmp,vendor,__pycache__
 set nolist
 set listchars=tab:▸\ ,eol:¬,trail:·
 set showbreak=↪
@@ -160,6 +160,9 @@ let g:airline#extensions#branch#enabled=0
 let g:ctrlp_switch_buffer = 1
 let g:ctrlp_map = '<leader>p'
 
+" DelimitMate settings
+let loaded_delimitMate = 1
+
 " Gundo settings
 let g:gundo_preview_bottom=1
 
@@ -238,7 +241,7 @@ nnoremap <leader>F :NERDTreeFind<CR>
 " Reveal current file in Finder
 nnoremap <leader>r :silent !open -R %<CR>
 " Open GitX
-nnoremap <leader>g :silent ! gitx<CR>:redraw!<CR>
+nnoremap <leader>g :silent ! stree .<CR>:redraw!<CR>
 " Open Gundo
 nnoremap <leader>G :GundoToggle<CR>
 " Search/Replace the current file
