@@ -268,6 +268,8 @@ nmap <leader>a; :Tabularize /:<CR>
 vmap <leader>a; :Tabularize /:<CR>
 nmap <leader>a, :Tabularize /,<CR>
 vmap <leader>a, :Tabularize /,<CR>
+nmap <leader>ai :Tabularize /import<CR>
+vmap <leader>ai :Tabularize /import<CR>
 
 " Switch windows
 map <C-h> <C-w>h
