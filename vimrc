@@ -23,7 +23,7 @@ set ruler
 set title
 set wildmenu
 set wildmode=list:longest
-set wildignore+=~*,*.pyc,*.o,*.obj,*.rbc,.git,.svn,.hg,.DS_Store,__pycache__,.sass-cache,node_modules,bower_components,tmp,vendor,__pycache__
+set wildignore+=~*,*.pyc,*.o,*.obj,*.rbc,.git,.svn,.hg,.DS_Store,__pycache__,.sass-cache,node_modules,bower_components,tmp,vendor,__pycache__,dist
 set nolist
 set listchars=tab:▸\ ,eol:¬,trail:·
 set showbreak=↪
@@ -258,6 +258,8 @@ nnoremap <leader>h :sp<CR><C-w>j
 nnoremap <leader>w :vs<CR><C-w>l
 " Strip trailing whitespace in the current file
 nnoremap <leader>W :%s/\s\+$//<cr>:let @/=''<CR>
+" Pretty print JSON
+nnoremap <leader>ppj :%!python -m json.tool<CR>
 " Make j/k move by display line, rather than by file line
 nnoremap j gj
 nnoremap k gk
