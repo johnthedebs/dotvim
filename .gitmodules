@@ -73,3 +73,6 @@
 [submodule "bundle/ansible-yaml"]
 	path = bundle/ansible-yaml
 	url = https://github.com/chase/vim-ansible-yaml.git
+[submodule "/Users/johndebs/.vim/bundle/airline-themes"]
+	path = /Users/johndebs/.vim/bundle/airline-themes
+	url = https://github.com/vim-airline/vim-airline-themes
