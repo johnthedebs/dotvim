@@ -241,7 +241,7 @@ nnoremap <leader>F :NERDTreeFind<CR>
 " Reveal current file in Finder
 nnoremap <leader>r :silent !open -R %<CR>
 " Open GitX
-nnoremap <leader>g :silent ! stree .<CR>:redraw!<CR>
+nnoremap <leader>g :silent ! stree<CR>:redraw!<CR>
 " Open Gundo
 nnoremap <leader>G :GundoToggle<CR>
 " Search/Replace the current file
