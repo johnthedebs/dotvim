@@ -76,3 +76,6 @@
 [submodule "/Users/johndebs/.vim/bundle/airline-themes"]
 	path = /Users/johndebs/.vim/bundle/airline-themes
 	url = https://github.com/vim-airline/vim-airline-themes
+[submodule "bundle/vimwiki"]
+	path = bundle/vimwiki
+	url = https://github.com/vimwiki/vimwiki.git
