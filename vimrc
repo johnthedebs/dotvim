@@ -13,9 +13,9 @@ set ignorecase
 set smartcase
 set smarttab
 set expandtab
-set tabstop=4
-set shiftwidth=4
-set softtabstop=4
+set tabstop=2
+set shiftwidth=2
+set softtabstop=2
 set shiftround
 set showmatch
 set showmode
@@ -122,7 +122,9 @@ endif
 
 if has("autocmd")
     " Use soft 4-space tabs by default for everything
-    autocmd BufEnter *.py,*.html,*.rb,*.sls,*.js,*.css,*.md,*.txt,*.coffee,*.sass set ts=4 sts=4 sw=4 expandtab
+    "autocmd BufEnter *.py,*.html,*.rb,*.sls,*.js,*.css,*.md,*.txt,*.coffee,*.sass set ts=4 sts=4 sw=4 expandtab
+    autocmd BufEnter *.rb,*.js,*.css,*.sass set ts=2 sts=2 sw=2 expandtab
+    autocmd BufEnter *.py,*.html,*.md,*.coffee,*.txt set ts=4 sts=4 sw=4 expandtab
     autocmd BufEnter,BufRead,BufNewFile,FileType make setlocal noexpandtab
     autocmd FileType coffee set colorcolumn=79
     autocmd FileType python set colorcolumn=79
