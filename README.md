@@ -8,8 +8,10 @@ To install this vim configuration to a new machine:
     # Link in the .vimrc file
     ln -s ~/.vim/vimrc ~/.vimrc
 
+    brew install ack par
+
 As for MacVim itself, I recommend you get the latest snapshot from here (go for the .tbz file):
-https://github.com/b4winckler/macvim/downloads
+https://github.com/macvim-dev/macvim/releases
 
 To update all the submodules to their latest versions:
 
