@@ -257,7 +257,7 @@ nnoremap <leader>v V`]
 " Open new h split and switch to it
 nnoremap <leader>h :sp<CR><C-w>j
 " Open new v split and switch to it
-nnoremap <leader>w :vs<CR><C-w>l
+nnoremap <leader>v :vs<CR><C-w>l
 " Strip trailing whitespace in the current file
 nnoremap <leader>W :%s/\s\+$//<cr>:let @/=''<CR>
 " Pretty print JSON
