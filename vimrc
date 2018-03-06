@@ -28,7 +28,7 @@ set nolist
 set listchars=tab:▸\ ,eol:¬,trail:·
 set showbreak=↪
 set fileformats=unix,dos,mac
-set scrolloff=0
+set scrolloff=1
 set sidescrolloff=3
 set sidescroll=1
 set history=1000
@@ -159,11 +159,11 @@ let g:airline#extensions#hunks#enabled=0
 let g:airline#extensions#branch#enabled=0
 
 " Ctrl-P settings
-let g:ctrlp_switch_buffer = 1
-let g:ctrlp_map = '<leader>p'
+let g:ctrlp_switch_buffer=1
+let g:ctrlp_map='<leader>p'
 
-" DelimitMate settings
-let loaded_delimitMate = 1
+" Disables automatic quote/parenthesis/bracket/etc closing
+"let loaded_delimitMate=1
 
 " Gundo settings
 let g:gundo_preview_bottom=1
@@ -176,7 +176,7 @@ let NERDTreeIgnore=['\.pyc$', '\.rbc$', '\~$', 'node_modules$']
 let NERDTreeChDirMode=2
 
 " NERDCommenter settings
-let g:NERDCustomDelimiters = { 'htmldjango': { 'left': '{#','right': '#}', 'leftAlt': '<!--', 'rightAlt': '-->' } }
+let g:NERDCustomDelimiters={ 'htmldjango': { 'left': '{#','right': '#}', 'leftAlt': '<!--', 'rightAlt': '-->' } }
 
 " Disable netrw (it interferes with NERDTree when a
 " directory argument is passed from the command line)
