@@ -4,9 +4,11 @@ Installation
 To install this vim configuration to a new machine:
 
     # Clone the git repository and submodules
-    git clone --recursive git://github.com/johnthedebs/dotvim.git ~/.vim
+    git clone --recurse-submodules -j8 git://github.com/johnthedebs/dotvim.git ~/.vim
     # Link in the .vimrc file
     ln -s ~/.vim/vimrc ~/.vimrc
+    # Link in the .ackrc file
+    ln -s ~/.vim/ackrc ~/.ackrc
 
     brew install ack par
 
@@ -17,6 +19,7 @@ To update all the submodules to their latest versions:
 
     # Update each submodule
     git submodule foreach git pull
+
 
 Thanks to
 =========
