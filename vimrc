@@ -193,9 +193,6 @@ nmap <C-Down> ]e
 vmap <C-Up> [egv
 vmap <C-Down> ]egv
 
-" Make windows take up the same amount of space
-nnoremap <leader>= <C-w>=
-
 " Toggle comments
 map <D-/> <plug>NERDCommenterToggle
 map <leader>- <plug>NERDCommenterToggle
@@ -226,6 +223,8 @@ nnoremap <leader>/ :Ack! --literal<space>
 nnoremap ; :
 " Run a command line operation
 nnoremap <leader>; :silent !
+" Make windows take up the same amount of space
+nnoremap <leader>= <C-w>=
 " Turn NERDTree on or off
 nnoremap <leader>n :NERDTreeToggle<CR>
 " Clear search highlights
