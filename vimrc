@@ -23,7 +23,7 @@ set ruler
 set title
 set wildmenu
 set wildmode=list:longest
-set wildignore+=~*,*.pyc,*.o,*.obj,*.rbc,.git,.svn,.hg,.DS_Store,__pycache__,.sass-cache,node_modules,bower_components,tmp,__pycache__,dist,.meteor
+set wildignore+=~*,*.pyc,*.o,*.obj,*.rbc,*.tfstate,*.tfstate.backup,.git,.svn,.hg,.DS_Store,__pycache__,.sass-cache,node_modules,bower_components,tmp,__pycache__,dist,.meteor,vendor
 set nolist
 set listchars=tab:▸\ ,eol:¬,trail:·
 set showbreak=↪
@@ -123,7 +123,7 @@ endif
 if has("autocmd")
     " Use soft 4-space tabs by default for everything
     "autocmd BufEnter *.py,*.html,*.rb,*.sls,*.js,*.css,*.md,*.txt,*.coffee,*.sass set ts=4 sts=4 sw=4 expandtab
-    autocmd BufEnter *.rb,*.js,*.css,*.sass set ts=2 sts=2 sw=2 expandtab
+    autocmd BufEnter *.rb,*.js,*.css,*.sass,*.tf set ts=2 sts=2 sw=2 expandtab
     autocmd BufEnter *.py,*.html,*.md,*.coffee,*.txt set ts=4 sts=4 sw=4 expandtab
     autocmd BufEnter,BufRead,BufNewFile,FileType make setlocal noexpandtab
     autocmd FileType coffee set colorcolumn=79
