@@ -243,7 +243,7 @@ nnoremap <leader>F :NERDTreeFind<CR>
 " Reveal current file in Finder
 nnoremap <leader>r :silent !open -R %<CR>
 " Open GitX
-nnoremap <leader>g :silent ! stree<CR>:redraw!<CR>
+nnoremap <leader>g :silent !stree<CR>:redraw!<CR>
 " Open Gundo
 nnoremap <leader>G :GundoToggle<CR>
 " Search/Replace the current file
@@ -252,8 +252,6 @@ nnoremap <leader>R :%s//g<left><left>
 nnoremap <leader>S :silent ! subl .<CR>
 " Switch tabs to spaces
 nnoremap <leader>t :set expandtab<CR>:retab<CR>
-" Reselect pasted text
-nnoremap <leader>v V`]
 " Open new h split and switch to it
 nnoremap <leader>h :sp<CR><C-w>j
 " Open new v split and switch to it
@@ -282,8 +280,6 @@ map <C-k> <C-w>k
 map <C-l> <C-w>l
 
 command! -nargs=* Wrap set wrap linebreak nolist
-
-call togglebg#map("<F5>")
 
 
 " Close all open buffers on entering a window if the only
