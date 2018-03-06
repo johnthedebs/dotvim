@@ -203,7 +203,7 @@ map <leader>- <plug>NERDCommenterToggle
 " Use `Q` to repeat macros instead of entering Ex-mode
 nmap Q @@
 " Fix `vv`
-"noremap vv V
+noremap vv V
 " Fix `V`
 "noremap V <ESC>v$h
 " Fix `Y`
