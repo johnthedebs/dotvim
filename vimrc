@@ -252,9 +252,9 @@ nnoremap <leader>S :silent ! subl .<CR>
 " Switch tabs to spaces
 nnoremap <leader>t :set expandtab<CR>:retab<CR>
 " Open new h split and switch to it
-nnoremap <leader>h :sp<CR><C-w>j
+nnoremap <leader>h :sp<CR><C-w>j<C-w>=
 " Open new v split and switch to it
-nnoremap <leader>v :vs<CR><C-w>l
+nnoremap <leader>v :vs<CR><C-w>l<C-w>=
 " Strip trailing whitespace in the current file
 nnoremap <leader>W :%s/\s\+$//<cr>:let @/=''<CR>
 " Pretty print JSON
