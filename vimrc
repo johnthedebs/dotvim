@@ -180,8 +180,8 @@ let g:NERDCustomDelimiters = { 'htmldjango': { 'left': '{#','right': '#}', 'left
 
 " Disable netrw (it interferes with NERDTree when a
 " directory argument is passed from the command line)
-let loaded_netrw=1
-let loaded_netrwPlugin=1
+"let loaded_netrw=1
+"let loaded_netrwPlugin=1
 
 " Easily save a file as root
 cmap w!! w !sudo tee % >/dev/null
