@@ -172,7 +172,7 @@ let g:gundo_preview_bottom=1
 let python_highlight_all=1
 
 " NERDTree settings
-let NERDTreeIgnore=['\.pyc$', '\.rbc$', '\~$', 'node_modules$']
+let NERDTreeIgnore=['\.pyc$', '\.rbc$', '\~$', 'node_modules$', '__pycache__']
 let NERDTreeChDirMode=2
 
 " NERDCommenter settings
