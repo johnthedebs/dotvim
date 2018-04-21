@@ -20,6 +20,9 @@ To update all the submodules to their latest versions:
     # Update each submodule
     git submodule foreach git pull
 
+    # To add a submodule
+    git submodule add https://<package_url>.git bundle/<package_name>
+
 
 Thanks to
 =========
