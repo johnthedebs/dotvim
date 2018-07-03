@@ -7,9 +7,6 @@
 [submodule "bundle/nerdtree"]
 	path = bundle/nerdtree
 	url = https://github.com/scrooloose/nerdtree.git
-[submodule "bundle/haml"]
-	path = bundle/haml
-	url = https://github.com/tpope/vim-haml.git
 [submodule "bundle/unimpaired"]
 	path = bundle/unimpaired
 	url = https://github.com/tpope/vim-unimpaired.git
@@ -31,9 +28,6 @@
 [submodule "bundle/taglist"]
 	path = bundle/taglist
 	url = https://github.com/vim-scripts/taglist.vim.git
-[submodule "bundle/coffee-script"]
-	path = bundle/coffee-script
-	url = https://github.com/kchmck/vim-coffee-script.git
 [submodule "bundle/solarized"]
 	path = bundle/solarized
 	url = https://github.com/altercation/vim-colors-solarized.git
@@ -55,21 +49,12 @@
 [submodule "bundle/dash"]
 	path = bundle/dash
 	url = https://github.com/rizzatti/dash.vim.git
-[submodule "bundle/vim-jade"]
-	path = bundle/vim-jade
-	url = https://github.com/digitaltoad/vim-jade.git
 [submodule "bundle/delimitMate"]
 	path = bundle/delimitMate
 	url = https://github.com/Raimondi/delimitMate.git
-[submodule "bundle/vim-cjsx"]
-	path = bundle/vim-cjsx
-	url = https://github.com/mtscout6/vim-cjsx.git
 [submodule "bundle/airline"]
 	path = bundle/airline
 	url = https://github.com/bling/vim-airline
-[submodule "bundle/ansible-yaml"]
-	path = bundle/ansible-yaml
-	url = https://github.com/chase/vim-ansible-yaml.git
 [submodule "bundle/airline-themes"]
 	path = bundle/airline-themes
 	url = https://github.com/vim-airline/vim-airline-themes
@@ -79,15 +64,3 @@
 [submodule "bundle/supertab"]
 	path = bundle/supertab
 	url = https://github.com/ervandew/supertab.git
-[submodule "bundle/javascript"]
-	path = bundle/javascript
-	url = https://github.com/pangloss/vim-javascript.git
-[submodule "bundle/jsx"]
-	path = bundle/jsx
-	url = https://github.com/mxw/vim-jsx.git
-[submodule "bundle/typescript"]
-	path = bundle/typescript
-	url = https://github.com/leafgarland/typescript-vim.git
-[submodule "bundle/elixir"]
-	path = bundle/elixir
-	url = git@github.com:elixir-editors/vim-elixir.git
