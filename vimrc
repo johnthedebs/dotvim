@@ -23,7 +23,7 @@ set ruler
 set title
 set wildmenu
 set wildmode=list:longest
-set wildignore+=~*,*.pyc,*.o,*.obj,*.rbc,*.tfstate,*.tfstate.backup,.git,.svn,.hg,.DS_Store,__pycache__,.sass-cache,node_modules,bower_components,tmp,__pycache__,dist,.meteor,vendor
+set wildignore+=~*,*.pyc,*.o,*.obj,*.rbc,*.tfstate,*.tfstate.backup,.git,.svn,.hg,.DS_Store,__pycache__,.sassc,.scssc.sass-cache,node_modules,bower_components,tmp,__pycache__,dist,.meteor,vendor
 set nolist
 set listchars=tab:▸\ ,eol:¬,trail:·
 set showbreak=↪
@@ -76,7 +76,7 @@ if has("gui_running")
     set guioptions-=T " Hide menu icons by default in MacVim
     set guioptions-=L " Disable left scroll bar
     set guioptions-=r " Disable right scroll bar
-    set guifont=Inconsolata:h15
+    set guifont=Inconsolata:h16
     set lines=999
     highlight SpellBad term=underline gui=undercurl guisp=Orange
 
