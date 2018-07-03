@@ -85,3 +85,9 @@
 [submodule "bundle/jsx"]
 	path = bundle/jsx
 	url = https://github.com/mxw/vim-jsx.git
+[submodule "bundle/typescript"]
+	path = bundle/typescript
+	url = https://github.com/leafgarland/typescript-vim.git
+[submodule "bundle/elixir"]
+	path = bundle/elixir
+	url = git@github.com:elixir-editors/vim-elixir.git
