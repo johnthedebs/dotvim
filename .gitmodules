@@ -67,3 +67,9 @@
 [submodule "bundle/polyglot"]
 	path = bundle/polyglot
 	url = git@github.com:sheerun/vim-polyglot.git
+[submodule "bundle/styled-components"]
+	path = bundle/styled-components
+	url = https://github.com/styled-components/vim-styled-components/
+[submodule "bundle/css3-syntax"]
+	path = bundle/css3-syntax
+	url = https://github.com/hail2u/vim-css3-syntax.git
