@@ -32,6 +32,11 @@ To update all the submodules to their latest versions:
     # Commit git commit -m "Removed submodule "
     rm -rf bundle/<package_name>
 
+To clone new submodules that have been added:
+
+    git submodule init
+    git submodule update
+
 
 Thanks to
 =========
