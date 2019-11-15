@@ -23,13 +23,13 @@ To update all the submodules to their latest versions:
     # To add a submodule
     git submodule add https://<package_url>.git bundle/<package_name>
 
-    # To delete a submodule :(
-    # Delete the relevant section from the .gitmodules file.
-    # Stage the .gitmodules changes git add .gitmodules
-    # Delete the relevant section from .git/config.
+    # To delete a submodule
+    # 1. Delete the relevant section from the .gitmodules file.
+    # 2. Stage the .gitmodules changes git add .gitmodules
+    # 3. Delete the relevant section from .git/config.
     git rm --cached bundle/<package_name> # No trailing slash
     rm -rf .git/modules/bundle/<package_name> # No trailing slash
-    # Commit git commit -m "Removed submodule "
+    git commit -m "Remove <package_name> submodule"
     rm -rf bundle/<package_name>
 
 To clone new submodules that have been added:

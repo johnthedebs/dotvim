@@ -23,7 +23,7 @@ set ruler
 set title
 set wildmenu
 set wildmode=list:longest
-set wildignore+=~*,*.pyc,*.o,*.obj,*.rbc,*.tfstate,*.tfstate.backup,.git,.svn,.hg,.DS_Store,__pycache__,.sassc,.scssc.sass-cache,node_modules,bower_components,tmp,__pycache__,dist,.meteor,vendor
+set wildignore+=~*,*.pyc,*.o,*.obj,*.rbc,*.tfstate,*.tfstate.backup,.git,.svn,.hg,.DS_Store,__pycache__,.sassc,.scssc.sass-cache,node_modules,bower_components,tmp,__pycache__,dist,.meteor,vendor,dist-dev
 set nolist
 set listchars=tab:▸\ ,eol:¬,trail:·
 set showbreak=↪
@@ -271,6 +271,8 @@ nmap <leader>a, :Tabularize /,<CR>
 vmap <leader>a, :Tabularize /,<CR>
 nmap <leader>ai :Tabularize /import<CR>
 vmap <leader>ai :Tabularize /import<CR>
+nmap <leader>af :Tabularize /from<CR>
+vmap <leader>af :Tabularize /from<CR>
 
 " Switch windows
 map <C-h> <C-w>h

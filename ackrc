@@ -3,10 +3,15 @@
 --group
 --ignore-file=match:.tfstate
 --ignore-file=match:.tfstate.backup
+--ignore-file=match:.sassc
+--ignore-file=match:.scssc
 --ignore-dir=log
 --ignore-dir=dist
+--ignore-dir=dist-dev
+--ignore-dir=.git
 --ignore-dir=node_modules
 --ignore-dir=vendor/bundle
+--ignore-dir=vendor/cache
 --smart-case
 --sort-files
 
