@@ -7,8 +7,8 @@ To install this vim configuration to a new machine:
     git clone --recurse-submodules -j8 git://github.com/johnthedebs/dotvim.git ~/.vim
     # Link in the .vimrc file
     ln -s ~/.vim/vimrc ~/.vimrc
-    # Link in the .ackrc file
-    ln -s ~/.vim/ackrc ~/.ackrc
+    # Link in the .agrc file
+    ln -s ~/.vim/agrc ~/.agrc
 
     brew install ag fd fzf par
 

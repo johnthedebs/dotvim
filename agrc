@@ -1,0 +1,7 @@
+--color
+--group
+--hidden
+--smart-case
+--sort-files
+--ignore=.tfstate
+--ignore=.tfstate.backup
