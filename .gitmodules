@@ -13,9 +13,6 @@
 [submodule "bundle/nerdcommenter"]
 	path = bundle/nerdcommenter
 	url = https://github.com/scrooloose/nerdcommenter.git
-[submodule "bundle/ack"]
-	path = bundle/ack
-	url = https://github.com/mileszs/ack.vim.git
 [submodule "bundle/gundo"]
 	path = bundle/gundo
 	url = https://github.com/sjl/gundo.vim.git
@@ -70,6 +67,6 @@
 [submodule "bundle/css3-syntax"]
 	path = bundle/css3-syntax
 	url = https://github.com/hail2u/vim-css3-syntax.git
-[submodule "bundle/ctrlp"]
-	path = bundle/ctrlp
-	url = https://github.com/ctrlpvim/ctrlp.vim.git
+[submodule "bundle/fzf"]
+	path = bundle/fzf
+	url = https://github.com/junegunn/fzf.vim.git
