@@ -10,7 +10,7 @@ To install this vim configuration to a new machine:
     # Link in the .ackrc file
     ln -s ~/.vim/ackrc ~/.ackrc
 
-    brew install ack par
+    brew install ag fd fzf par
 
 As for MacVim itself, I recommend you get the latest snapshot from here (go for the .tbz file):
 https://github.com/macvim-dev/macvim/releases
@@ -25,7 +25,7 @@ To update all the submodules to their latest versions:
 
     # To delete a submodule
     # 1. Delete the relevant section from the .gitmodules file.
-    # 2. Stage the .gitmodules changes git add .gitmodules
+    # 2. Stage the .gitmodules changes - `git add .gitmodules`
     # 3. Delete the relevant section from .git/config.
     git rm --cached bundle/<package_name> # No trailing slash
     rm -rf .git/modules/bundle/<package_name> # No trailing slash

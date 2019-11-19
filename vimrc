@@ -161,6 +161,16 @@ let g:airline#extensions#branch#enabled=0
 " Disables automatic quote/parenthesis/bracket/etc closing
 "let loaded_delimitMate=1
 
+" ack.vim settings
+if executable("ag")
+  let g:ackprg =  "ag --vimgrep"
+endif
+
+" fzf settings
+nmap <leader>p :Files<CR>
+let $FZF_DEFAULT_COMMAND='fd --type f'
+set rtp+=/usr/local/opt/fzf
+
 " Gundo settings
 let g:gundo_preview_bottom=1
 
@@ -253,8 +263,6 @@ nnoremap <leader>h :sp<CR><C-w>j<C-w>=
 nnoremap <leader>v :vs<CR><C-w>l<C-w>=
 " Strip trailing whitespace in the current file
 nnoremap <leader>W :%s/\s\+$//<cr>:let @/=''<CR>
-" Pretty print JSON
-nnoremap <leader>ppj :%!python -m json.tool<CR>
 " Make j/k move by display line, rather than by file line
 nnoremap j gj
 nnoremap k gk
