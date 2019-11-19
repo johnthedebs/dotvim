@@ -158,10 +158,6 @@ let g:airline_left_sep=""
 let g:airline#extensions#hunks#enabled=0
 let g:airline#extensions#branch#enabled=0
 
-" Ctrl-P settings
-let g:ctrlp_switch_buffer=1
-let g:ctrlp_map='<leader>p'
-
 " Disables automatic quote/parenthesis/bracket/etc closing
 "let loaded_delimitMate=1
 
@@ -339,10 +335,6 @@ function s:UpdateNERDTree(...)
         wincmd p
       end
     endif
-  endif
-
-  if exists(":CtrlPClearCache")
-      CtrlPClearCache
   endif
 endfunction
 
