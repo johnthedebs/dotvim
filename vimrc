@@ -1,5 +1,5 @@
 filetype off
-call pathogen#runtime_append_all_bundles()
+execute pathogen#infect()
 call pathogen#helptags()
 " Enable file type detection. Just needed to be off for pathogen
 filetype plugin indent on
