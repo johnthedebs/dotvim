@@ -70,3 +70,6 @@
 [submodule "bundle/vim-multiple-cursors"]
 	path = bundle/vim-multiple-cursors
 	url = https://github.com/terryma/vim-multiple-cursors.git
+[submodule "bundle/coc"]
+	path = bundle/coc
+	url = https://github.com/neoclide/coc.nvim.git
