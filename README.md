@@ -18,6 +18,7 @@ https://github.com/macvim-dev/macvim/releases
 To update all the submodules to their latest versions:
 
     # Update each submodule
+    git submodule foreach git fetch -p
     git submodule foreach git pull
 
     # To add a submodule
