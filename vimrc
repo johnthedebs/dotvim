@@ -1,7 +1,31 @@
-filetype off
-execute pathogen#infect()
-call pathogen#helptags()
-" Enable file type detection. Just needed to be off for pathogen
+call plug#begin("~/.vim/plugged")
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-surround'
+Plug 'scrooloose/nerdtree'
+Plug 'tpope/vim-unimpaired'
+Plug 'scrooloose/nerdcommenter'
+Plug 'sjl/gundo.vim'
+Plug 'kana/vim-arpeggio'
+Plug 'tpope/vim-repeat'
+Plug 'vim-scripts/taglist.vim'
+Plug 'altercation/vim-colors-solarized'
+Plug 'tpope/vim-git'
+Plug 'mattn/gist-vim'
+Plug 'godlygeek/tabular'
+Plug 'Raimondi/delimitMate'
+Plug 'bling/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'tpope/vim-rhubarb'
+Plug 'styled-components/vim-styled-components'
+Plug 'hail2u/vim-css3-syntax'
+Plug 'junegunn/fzf.vim'
+Plug 'mileszs/ack.vim'
+Plug 'terryma/vim-multiple-cursors'
+Plug 'neoclide/coc.nvim'
+Plug 'ervandew/supertab'
+Plug 'sheerun/vim-polyglot'
+call plug#end()
+
 filetype plugin indent on
 
 set nocompatible " Always first
