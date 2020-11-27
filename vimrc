@@ -225,14 +225,6 @@ let NERDTreeChDirMode=2
 " NERDCommenter settings
 let g:NERDCustomDelimiters={ 'htmldjango': { 'left': '{#','right': '#}', 'leftAlt': '<!--', 'rightAlt': '-->' } }
 
-" Disable netrw (it interferes with NERDTree when a
-" directory argument is passed from the command line)
-"let loaded_netrw=1
-"let loaded_netrwPlugin=1
-
-" Easily save a file as root
-cmap w!! w !sudo tee % >/dev/null
-
 " Bubble single lines
 nmap <C-Up> [e
 nmap <C-Down> ]e
@@ -254,8 +246,6 @@ noremap vv V
 nmap Y y$
 " Shortcut to rapidly toggle `set list`
 nmap <leader>l :set list!<CR>
-" Dash integration
-nmap <silent> <leader>d <plug>DashGlobalSearch
 " Get out of insert mode more easily
 inoremap jj <ESC>
 inoremap hh <ESC>
@@ -299,8 +289,6 @@ nnoremap <leader>g :silent !stree<CR>:redraw!<CR>
 nnoremap <leader>G :GundoToggle<CR>
 " Search/Replace the current file
 nnoremap <leader>R :%s//g<left><left>
-" Open in Sublime Text
-nnoremap <leader>S :silent ! subl .<CR>
 " Switch tabs to spaces
 nnoremap <leader>t :set expandtab<CR>:retab<CR>
 " Open new h split and switch to it
@@ -430,85 +418,3 @@ function! SummarizeTabs()
     echohl None
   endtry
 endfunction
-
-
-" Utility functions to create file commands
-function s:CommandCabbr(abbreviation, expansion)
-  execute 'cabbrev ' . a:abbreviation . ' <c-r>=getcmdpos() == 1 && getcmdtype() == ":" ? "' . a:expansion . '" : "' . a:abbreviation . '"<CR>'
-endfunction
-
-function s:FileCommand(name, ...)
-  if exists("a:1")
-    let funcname = a:1
-  else
-    let funcname = a:name
-  endif
-
-  execute 'command -nargs=1 -complete=file ' . a:name . ' :call ' . funcname . '(<f-args>)'
-endfunction
-
-function s:DefineCommand(name, destination)
-  call s:FileCommand(a:destination)
-  call s:CommandCabbr(a:name, a:destination)
-endfunction
-
-
-" Public NERDTree-aware versions of builtin functions
-function ChangeDirectory(dir, ...)
-  execute "cd " . fnameescape(a:dir)
-  let stay = exists("a:1") ? a:1 : 1
-
-  NERDTree
-
-  if !stay
-    wincmd p
-  endif
-endfunction
-
-function Touch(file)
-  execute "!touch " . shellescape(a:file, 1)
-  call s:UpdateNERDTree()
-endfunction
-
-function Remove(file)
-  let current_path = expand("%")
-  let removed_path = fnamemodify(a:file, ":p")
-
-  if (current_path == removed_path) && (getbufvar("%", "&modified"))
-    echo "You are trying to remove the file you are editing. Please close the buffer first."
-  else
-    execute "!rm " . shellescape(a:file, 1)
-  endif
-
-  call s:UpdateNERDTree()
-endfunction
-
-function Mkdir(file)
-  execute "!mkdir " . shellescape(a:file, 1)
-  call s:UpdateNERDTree()
-endfunction
-
-function Edit(file)
- if exists("b:NERDTreeRoot")
-   wincmd p
- endif
-
- execute "e " . fnameescape(a:file)
-
-ruby << RUBY
- destination = File.expand_path(VIM.evaluate(%{system("dirname " . shellescape(a:file, 1))}))
- pwd         = File.expand_path(Dir.pwd)
- home        = pwd == File.expand_path("~")
-
- if home || Regexp.new("^" + Regexp.escape(pwd)) !~ destination
-   VIM.command(%{call ChangeDirectory(fnamemodify(a:file, ":h"), 0)})
- end
-RUBY
-endfunction
-
-" Define the NERDTree-aware aliases
-call s:DefineCommand("cd", "ChangeDirectory")
-call s:DefineCommand("touch", "Touch")
-call s:DefineCommand("rm", "Remove")
-call s:DefineCommand("e", "Edit")
-call s:DefineCommand("mkdir", "Mkdir")
