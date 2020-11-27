@@ -19,11 +19,14 @@ Plug 'tpope/vim-rhubarb'
 Plug 'styled-components/vim-styled-components'
 Plug 'hail2u/vim-css3-syntax'
 Plug 'junegunn/fzf.vim'
-Plug 'mileszs/ack.vim'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'neoclide/coc.nvim'
 Plug 'ervandew/supertab'
 Plug 'sheerun/vim-polyglot'
+Plug 'mattn/emmet-vim'
+Plug 'tpope/vim-eunuch'
+Plug 'morhetz/gruvbox'
+Plug 'dyng/ctrlsf.vim'
 call plug#end()
 
 filetype plugin indent on
@@ -79,7 +82,13 @@ set hidden
 set formatprg=par
 set viminfo='10,\"100,:20,!,%,n~/.vim/info/viminfo
 
-colorscheme monokai
+" Gruvbox config
+let g:gruvbox_vert_split='bg3'
+let g:gruvbox_contrast_dark='hard'
+let g:gruvbox_invert_selection='0'
+
+"colorscheme monokai
+colorscheme gruvbox
 set background=dark
 set mouse=a
 
@@ -188,10 +197,15 @@ let g:SuperTabMappingBackward='<tab>'
 " Disables automatic quote/parenthesis/bracket/etc closing
 "let loaded_delimitMate=1
 
-" ack.vim settings
-if executable("ag")
-  let g:ackprg =  "ag --vimgrep"
-endif
+" ctrlsf.vim settings
+let g:ctrlsf_default_view_mode = 'compact'
+let g:ctrlsf_mapping = {
+  \ "next" : "<D-j>",
+  \ "prev" : "<D-k>",
+\ }
+let g:ctrlsf_auto_focus = {
+  \ "at": "start"
+\ }
 
 " fzf settings
 nmap <leader>p :Files<CR>
@@ -250,8 +264,9 @@ inoremap <F1> <ESC>
 noremap <F1> <ESC>
 inoremap <F2> <F1>
 noremap <F2> <F1>
-" Search in project: Ack with a literal
-nnoremap <leader>/ :Ack! --literal<space>
+" Search in project
+nnoremap <leader>/ :CtrlSF<space>
+nnoremap <D-F> :CtrlSF<space>
 " Avoid needing to use shift for ex mode
 nnoremap ; :
 " Run a command line operation
