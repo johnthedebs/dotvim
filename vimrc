@@ -26,6 +26,8 @@ Plug 'mattn/emmet-vim'
 Plug 'tpope/vim-eunuch'
 Plug 'morhetz/gruvbox'
 Plug 'dyng/ctrlsf.vim'
+Plug '~/.vim/bundle/matchit'
+Plug '~/.vim/bundle/django'
 call plug#end()
 
 filetype plugin indent on
