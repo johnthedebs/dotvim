@@ -161,8 +161,7 @@ if has("autocmd")
 
     " Save file when vim loses focus
     autocmd FocusLost * :wa
-    " Remember where you were the last time you edited the file and return to the same position
-    autocmd BufReadPost * if line("'\"") > 0|if line("'\"") <= line("$")|exe("norm '\"")|else|exe "norm $"|endif|endif
+
     " Clean up the QuickFix window
     autocmd Filetype qf setl nolist
     autocmd Filetype qf setl nowrap
@@ -181,6 +180,10 @@ let g:airline_right_sep=""
 let g:airline_left_sep=""
 let g:airline#extensions#hunks#enabled=0
 let g:airline#extensions#branch#enabled=0
+
+" For some reason supertab mappings were backwards. This fixes them
+let g:SuperTabMappingForward='<s-tab>'
+let g:SuperTabMappingBackward='<tab>'
 
 " Disables automatic quote/parenthesis/bracket/etc closing
 "let loaded_delimitMate=1
@@ -253,8 +256,12 @@ nnoremap <leader>/ :Ack! --literal<space>
 nnoremap ; :
 " Run a command line operation
 nnoremap <leader>; :silent !
-" Make windows take up the same amount of space
+" Make splits take up the same amount of space
 nnoremap <leader>= <C-w>=
+" Make current split a bit bigger
+nnoremap <leader><Up> :vertical resize +15<CR>
+" Make current split a bit smaller
+nnoremap <leader><Down> :vertical resize -15<CR>
 " Turn NERDTree on or off
 nnoremap <leader>n :NERDTreeToggle<CR>
 " Clear search highlights

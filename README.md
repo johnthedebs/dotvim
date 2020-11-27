@@ -3,40 +3,21 @@ Installation
 
 To install this vim configuration to a new machine:
 
-    # Clone the git repository and submodules
-    git clone --recurse-submodules -j8 git://github.com/johnthedebs/dotvim.git ~/.vim
+    # Clone the git repository
+    git clone git://github.com/johnthedebs/dotvim.git ~/.vim
     # Link in the .vimrc file
     ln -s ~/.vim/vimrc ~/.vimrc
     # Link in the .agrc file
     ln -s ~/.vim/agrc ~/.agrc
 
+    # Install dependencies
     brew install ag fd fzf par
+
+    # From within vim, to install or update plugins:
+    :PlugInstall
 
 As for MacVim itself, I recommend you get the latest snapshot from here (go for the .tbz file):
 https://github.com/macvim-dev/macvim/releases
-
-To update all the submodules to their latest versions:
-
-    # Update each submodule
-    git submodule foreach git fetch -p
-    git submodule foreach git pull
-
-    # To add a submodule
-    git submodule add https://<package_url>.git bundle/<package_name>
-
-    # To delete a submodule
-    # 1. Delete the relevant section from the .gitmodules file.
-    # 2. Stage the .gitmodules changes - `git add .gitmodules`
-    # 3. Delete the relevant section from .git/config.
-    git rm --cached bundle/<package_name> # No trailing slash
-    rm -rf .git/modules/bundle/<package_name> # No trailing slash
-    git commit -m "Remove <package_name> submodule"
-    rm -rf bundle/<package_name>
-
-To clone new submodules that have been added:
-
-    git submodule init
-    git submodule update
 
 
 Thanks to
