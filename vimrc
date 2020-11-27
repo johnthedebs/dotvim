@@ -13,8 +13,7 @@ Plug 'tpope/vim-git'
 Plug 'mattn/gist-vim'
 Plug 'godlygeek/tabular'
 Plug 'Raimondi/delimitMate'
-Plug 'bling/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
+Plug 'itchyny/lightline.vim'
 Plug 'tpope/vim-rhubarb'
 Plug 'styled-components/vim-styled-components'
 Plug 'hail2u/vim-css3-syntax'
@@ -180,15 +179,17 @@ if has("autocmd")
     autocmd WinEnter * call s:CloseIfOnlyNerdTreeLeft()
 endif
 
-
-" vim-airline settings
-let g:airline_detect_paste=0
-let g:airline_section_y=""
-let g:airline_section_z="%(%l\ of\ %L\ @\ %p%%,\ col %v%)"
-let g:airline_right_sep=""
-let g:airline_left_sep=""
-let g:airline#extensions#hunks#enabled=0
-let g:airline#extensions#branch#enabled=0
+" lightline settings
+let g:lightline = {
+\ 'active': {
+\   'right': [ [ 'lineprogress' ],
+\              [ 'percent' ],
+\              [ 'filetype' ] ]
+\ },
+\ 'component': {
+\   'lineprogress': "%{line('.') . '/' . line('$') . ':' . col('.')}",
+\ },
+\ }
 
 " For some reason supertab mappings were backwards. This fixes them
 let g:SuperTabMappingForward='<s-tab>'
