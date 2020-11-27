@@ -44,7 +44,7 @@ set shiftwidth=2
 set softtabstop=2
 set shiftround
 set showmatch
-set showmode
+set noshowmode
 set ruler
 set title
 set wildmenu
@@ -208,10 +208,18 @@ let g:ctrlsf_auto_focus = {
   \ "at": "start"
 \ }
 
+" emmet settings
+let g:user_emmet_leader_key=',' 
+
 " fzf settings
 nmap <leader>p :Files<CR>
 let $FZF_DEFAULT_COMMAND='fd --type f'
 set rtp+=/usr/local/opt/fzf
+" Based on gruvbox scheme from: https://github.com/junegunn/fzf/wiki/Color-schemes
+let $FZF_DEFAULT_OPTS='
+\  --color fg:#ebdbb2,bg:#1E2021,hl:#fabd2f,fg+:#ebdbb2,bg+:#3c3836,hl+:#fabd2f
+\  --color info:#83a598,prompt:#F9BD2E,spinner:#fabd2f,pointer:#83a598,marker:#fe8019,header:#665c54
+\'
 
 " Gundo settings
 let g:gundo_preview_bottom=1
@@ -284,7 +292,7 @@ nnoremap <leader>f :silent !open .<CR>
 nnoremap <leader>F :NERDTreeFind<CR>
 " Reveal current file in Finder
 nnoremap <leader>r :silent !open -R %<CR>
-" Open GitX
+" Open SourceTree
 nnoremap <leader>g :silent !stree<CR>:redraw!<CR>
 " Open Gundo
 nnoremap <leader>G :GundoToggle<CR>
