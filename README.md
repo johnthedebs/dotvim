@@ -13,8 +13,12 @@ To install this vim configuration to a new machine:
     # Install dependencies
     brew install ag fd fzf par
 
-    # From within vim, to install or update plugins:
+    # From within vim, to install plugins:
     :PlugInstall
+    # To update plugins:
+    :PlugUpdate
+    # To remove plugins:
+    :PlugClean
 
 As for MacVim itself, I recommend you get the latest snapshot from here (go for the .tbz file):
 https://github.com/macvim-dev/macvim/releases
