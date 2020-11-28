@@ -76,20 +76,31 @@ set noequalalways
 set clipboard=unnamed
 set nofoldenable
 set autoread
-set statusline=%f\ %m%r\ [%Y]%=%(\ %l,%v\ @\ %p%%\ of\ %L\ %)
 set laststatus=2
 set t_Co=256
 set hidden
 set formatprg=par
 set viminfo='10,\"100,:20,!,%,n~/.vim/info/viminfo
 
+
+"colorscheme molokai
+"" Based on molokai scheme from: https://github.com/junegunn/fzf/wiki/Color-schemes
+"let $FZF_DEFAULT_OPTS='
+"\  --color fg:252,bg:233,hl:67,fg+:252,bg+:235,hl+:81
+"\  --color info:144,prompt:#F9BD2E,spinner:135,pointer:135,marker:118
+"\'
+
 " Gruvbox config
 let g:gruvbox_vert_split='bg3'
 let g:gruvbox_contrast_dark='hard'
 let g:gruvbox_invert_selection='0'
-
-"colorscheme monokai
 colorscheme gruvbox
+" Based on gruvbox scheme from: https://github.com/junegunn/fzf/wiki/Color-schemes
+let $FZF_DEFAULT_OPTS='
+\  --color fg:#ebdbb2,bg:#1E2021,hl:#fabd2f,fg+:#ebdbb2,bg+:#3c3836,hl+:#fabd2f
+\  --color info:#83a598,prompt:#F9BD2E,spinner:#fabd2f,pointer:#83a598,marker:#fe8019,header:#665c54
+\'
+
 set background=dark
 set mouse=a
 
@@ -155,19 +166,13 @@ elseif isdirectory(argv(0))
 endif
 
 if has("autocmd")
-    " Use soft 4-space tabs by default for everything
-    "autocmd BufEnter *.py,*.html,*.rb,*.sls,*.js,*.css,*.md,*.txt,*.coffee,*.sass set ts=4 sts=4 sw=4 expandtab
+    " Use soft tabs for most things, and 2-space or 4-space depending on
+    " filetype
     autocmd BufEnter *.rb,*.js,*.css,*.sass,*.tf set ts=2 sts=2 sw=2 expandtab
-    autocmd BufEnter *.py,*.html,*.md,*.coffee,*.txt set ts=4 sts=4 sw=4 expandtab
+    autocmd BufEnter *.py,*.html,*.md,*.txt set ts=4 sts=4 sw=4 expandtab
     autocmd BufEnter,BufRead,BufNewFile,FileType make setlocal noexpandtab
-    autocmd FileType coffee set colorcolumn=79
     autocmd FileType python set colorcolumn=79
     autocmd FileType html set ft=htmldjango
-
-    " Add json syntax highlighting
-    autocmd BufNewFile,BufRead *.json set ft=javascript
-    " Add hamlc syntax highlighting
-    autocmd BufNewFile,BufRead *.hamlc set ft=haml
 
     " Save file when vim loses focus
     autocmd FocusLost * :wa
@@ -217,11 +222,6 @@ let g:user_emmet_leader_key=','
 nmap <leader>p :Files<CR>
 let $FZF_DEFAULT_COMMAND='fd --type f'
 set rtp+=/usr/local/opt/fzf
-" Based on gruvbox scheme from: https://github.com/junegunn/fzf/wiki/Color-schemes
-let $FZF_DEFAULT_OPTS='
-\  --color fg:#ebdbb2,bg:#1E2021,hl:#fabd2f,fg+:#ebdbb2,bg+:#3c3836,hl+:#fabd2f
-\  --color info:#83a598,prompt:#F9BD2E,spinner:#fabd2f,pointer:#83a598,marker:#fe8019,header:#665c54
-\'
 
 " Gundo settings
 let g:gundo_preview_bottom=1
