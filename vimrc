@@ -322,7 +322,7 @@ nnoremap <leader>W :%s/\s\+$//<cr>:let @/=''<CR>
 " Sort lines
 nnoremap <leader>s vip:!sort<cr>
 vnoremap <leader>s :!sort<cr>
-" Make j/k move by display line, rather than by file line sdlfkjal sdkfjla ksdjfl kajsldfk alsdkf laksdjflkajsdlf kajsldkfj alskd jflkajsdlf kaj
+" Make j/k move by display line, rather than by file line
 nnoremap j gj
 nnoremap k gk
 
