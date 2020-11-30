@@ -166,6 +166,12 @@ if has("autocmd")
     autocmd BufEnter,BufRead,BufNewFile,FileType make setlocal noexpandtab
     autocmd FileType python set colorcolumn=80
     autocmd FileType html set ft=htmldjango
+
+    " Keep search matches in the middle of the window. For some reason,
+    " these re-mappings don't work if set in the standard way
+    autocmd VimEnter * nnoremap n nzz
+    autocmd VimEnter * nnoremap N Nzz
+
     " Save file when vim loses focus
     autocmd FocusLost * :wa
     " Equalize splits on resize
@@ -212,14 +218,18 @@ let g:SuperTabMappingBackward='<tab>'
 
 " ctrlsf.vim settings
 let g:ctrlsf_default_view_mode = 'compact'
+let g:ctrlsf_auto_close = {
+\   "normal" : 0,
+\   "compact": 0,
+\ }
 let g:ctrlsf_mapping = {
-  \ "next"   : "<D-j>",
-  \ "prev"   : "<D-k>",
-  \ "split"  : "",
-  \ "vsplit" : "<C-O>",
+\   "next"   : "n",
+\   "prev"   : "N",
+\   "split"  : "",
+\   "vsplit" : "<C-v>",
 \ }
 let g:ctrlsf_auto_focus = {
-  \ "at": "start"
+\   "at": "start"
 \ }
 
 " emmet settings
@@ -325,6 +335,9 @@ vnoremap <leader>s :!sort<cr>
 " Make j/k move by display line, rather than by file line
 nnoremap j gj
 nnoremap k gk
+" Keep cursor in the middle of the window when jumping around
+nnoremap <c-o> <c-o>zz
+nnoremap <c-i> <c-i>zz
 
 nmap <leader>a= :Tabularize /=<CR>
 vmap <leader>a= :Tabularize /=<CR>
