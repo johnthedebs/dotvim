@@ -1,0 +1,6 @@
+root = true
+
+[*]
+
+[*.{js,rb,css,sass,tf}]
+indent_size = 2

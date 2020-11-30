@@ -1,4 +1,7 @@
 call plug#begin("~/.vim/plugged")
+Plug 'markonm/traces.vim'
+Plug 'editorconfig/editorconfig-vim'
+Plug 'lfv89/vim-interestingwords'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'scrooloose/nerdtree'
@@ -41,9 +44,9 @@ set ignorecase
 set smartcase
 set smarttab
 set expandtab
-set tabstop=2
-set shiftwidth=2
-set softtabstop=2
+set tabstop=4
+set shiftwidth=4
+set softtabstop=4
 set shiftround
 set showmatch
 set noshowmode
@@ -51,7 +54,14 @@ set ruler
 set title
 set wildmenu
 set wildmode=list:longest
-set wildignore+=~*,*.pyc,*.o,*.obj,*.rbc,*.tfstate,*.tfstate.backup,.git,.svn,.hg,.DS_Store,__pycache__,.sassc,.scssc.sass-cache,node_modules,bower_components,tmp,__pycache__,dist,.meteor,vendor,dist-dev
+set wildignore+=.git,.svn,.hg
+set wildignore+=~*,*.o,*.obj,.DS_Store
+set wildignore+=.pyc,__pycache__
+set wildignore+=node_modules
+set wildignore+=tmp,vendor,dist,dist-dev
+set wildignore+=.tfstate,*.tfstate.backup
+set wildignore+=.sassc,.scssc,.sass-cache
+set wildignore+=.meteor
 set nolist
 set listchars=tab:▸\ ,eol:¬,trail:·
 set showbreak=↪
@@ -83,13 +93,6 @@ set formatprg=par
 set viminfo='10,\"100,:20,!,%,n~/.vim/info/viminfo
 
 
-"colorscheme molokai
-"" Based on molokai scheme from: https://github.com/junegunn/fzf/wiki/Color-schemes
-"let $FZF_DEFAULT_OPTS='
-"\  --color fg:252,bg:233,hl:67,fg+:252,bg+:235,hl+:81
-"\  --color info:144,prompt:#F9BD2E,spinner:135,pointer:135,marker:118
-"\'
-
 " Gruvbox config
 let g:gruvbox_vert_split='bg3'
 let g:gruvbox_contrast_dark='hard'
@@ -103,10 +106,17 @@ let $FZF_DEFAULT_OPTS='
 
 set background=dark
 set mouse=a
+set backupdir=~/.vim/backup
+set directory=~/.vim/backup
+
 
 nohlsearch
 syntax on
+cabbrev h tab help
+cabbrev help tab help
 
+" Highlight VCS conflict markers
+match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
 
 " Set the leader to something easier than \
 let mapleader=" "
@@ -151,32 +161,14 @@ if has("persistent_undo")
     set undodir=~/.vim/undo
 endif
 
-set backupdir=~/.vim/backup
-set directory=~/.vim/backup
-
-if argc() == 0
-    " If $WORKDIR is defined, start NERDTree there.
-    if strlen($WORKDIR) > 0
-        cd $WORKDIR
-        " Switch to a different project
-        nnoremap <leader>sp :cd $WORKDIR/
-    endif
-elseif isdirectory(argv(0))
-    exec "cd " . argv(0)
-endif
-
 if has("autocmd")
-    " Use soft tabs for most things, and 2-space or 4-space depending on
-    " filetype
-    autocmd BufEnter *.rb,*.js,*.css,*.sass,*.tf set ts=2 sts=2 sw=2 expandtab
-    autocmd BufEnter *.py,*.html,*.md,*.txt set ts=4 sts=4 sw=4 expandtab
     autocmd BufEnter,BufRead,BufNewFile,FileType make setlocal noexpandtab
-    autocmd FileType python set colorcolumn=79
+    autocmd FileType python set colorcolumn=80
     autocmd FileType html set ft=htmldjango
-
     " Save file when vim loses focus
     autocmd FocusLost * :wa
-
+    " Equalize splits on resize
+    autocmd VimResized * exe "normal! \<C-w>="
     " Clean up the QuickFix window
     autocmd Filetype qf setl nolist
     autocmd Filetype qf setl nowrap
@@ -261,17 +253,16 @@ vmap <C-Down> ]egv
 map <D-/> <plug>NERDCommenterToggle
 map <leader>- <plug>NERDCommenterToggle
 
-cabbrev h tab help
 " Use `Q` to repeat macros instead of entering Ex-mode
 nmap Q @@
 " Fix `vv`
 noremap vv V
 " Fix `V`
-"noremap V <ESC>v$h
+noremap V <ESC>v$h
 " Fix `Y`
 nmap Y y$
-" Shortcut to rapidly toggle `set list`
-nmap <leader>l :set list!<CR>
+" Shortcut to rapidly toggle line numbers and white space
+nmap <leader>l :setlocal number!<CR>:set list!<CR>
 " Get out of insert mode more easily
 inoremap jj <ESC>
 inoremap hh <ESC>
@@ -294,7 +285,7 @@ nnoremap <leader><Up> :vertical resize +15<CR>
 " Make current split a bit smaller
 nnoremap <leader><Down> :vertical resize -15<CR>
 " Turn NERDTree on or off
-nnoremap <leader>n :NERDTreeToggle<CR>
+nnoremap <silent> <leader>n :NERDTreeToggle<CR>:NERDTreeRefreshRoot<CR>
 " Clear search highlights
 nnoremap <leader><space> :noh<CR>
 " Quick scratch access
@@ -314,7 +305,7 @@ nnoremap <leader>g :silent !stree<CR>:redraw!<CR>
 " Open Gundo
 nnoremap <leader>G :GundoToggle<CR>
 " Search/Replace the current file
-nnoremap <leader>R :%s//g<left><left>
+nnoremap <leader>R :%s/
 " Switch tabs to spaces
 nnoremap <leader>t :set expandtab<CR>:retab<CR>
 " Open new h split and switch to it
@@ -345,6 +336,27 @@ map <C-k> <C-w>k
 map <C-l> <C-w>l
 
 command! -nargs=* Wrap set wrap linebreak nolist
+
+
+if argc() == 0
+    " If $WORKDIR is defined, start NERDTree there.
+    if strlen($WORKDIR) > 0
+        cd $WORKDIR
+        " Switch to a different project
+        nnoremap <leader>sp :cd $WORKDIR/
+    endif
+elseif isdirectory(argv(0))
+    exec "cd " . argv(0)
+endif
+
+" Return to last line on each opened file
+augroup line_return
+  au!
+  au BufReadPost *
+    \ if line("'\"") > 0 && line("'\"") <= line("$") |
+    \   execute 'normal! g`"' |
+    \ endif
+augroup END
 
 
 " Close all open buffers on entering a window if the only
@@ -385,6 +397,7 @@ function s:CdIfDirectory(directory)
     wincmd p
   endif
 endfunction
+
 
 " NERDTree utility function
 function s:UpdateNERDTree(...)
