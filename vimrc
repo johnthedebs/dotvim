@@ -189,12 +189,24 @@ endif
 " lightline settings
 let g:lightline = {
 \ 'active': {
+\   'left': [ [ 'mode' ],
+\             [ 'readonly', 'relativepath', 'modified' ],
+\   ],
 \   'right': [ [ 'lineprogress' ],
 \              [ 'percent' ],
-\              [ 'filetype' ] ]
+\              [ 'filetype' ],
+\   ],
+\ },
+\ 'inactive': {
+\   'left': [ [ 'relativepath' ]
+\    ],
+\   'right': [ [ 'lineinfo' ],
+\            [ 'percent' ]
+\   ],
 \ },
 \ 'component': {
 \   'lineprogress': "%{line('.') . '/' . line('$') . ':' . col('.')}",
+\   'percent': '%p%%',
 \ },
 \ }
 
@@ -208,8 +220,10 @@ let g:SuperTabMappingBackward='<tab>'
 " ctrlsf.vim settings
 let g:ctrlsf_default_view_mode = 'compact'
 let g:ctrlsf_mapping = {
-  \ "next" : "<D-j>",
-  \ "prev" : "<D-k>",
+  \ "next"   : "<D-j>",
+  \ "prev"   : "<D-k>",
+  \ "split"  : "",
+  \ "vsplit" : "<C-O>",
 \ }
 let g:ctrlsf_auto_focus = {
   \ "at": "start"
@@ -247,6 +261,7 @@ vmap <C-Down> ]egv
 map <D-/> <plug>NERDCommenterToggle
 map <leader>- <plug>NERDCommenterToggle
 
+cabbrev h tab help
 " Use `Q` to repeat macros instead of entering Ex-mode
 nmap Q @@
 " Fix `vv`
