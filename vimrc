@@ -11,7 +11,6 @@ Plug 'sjl/gundo.vim'
 Plug 'kana/vim-arpeggio'
 Plug 'tpope/vim-repeat'
 Plug 'vim-scripts/taglist.vim'
-Plug 'altercation/vim-colors-solarized'
 Plug 'tpope/vim-git'
 Plug 'mattn/gist-vim'
 Plug 'godlygeek/tabular'
@@ -29,9 +28,10 @@ Plug 'mattn/emmet-vim'
 Plug 'tpope/vim-eunuch'
 Plug 'morhetz/gruvbox'
 Plug 'dyng/ctrlsf.vim'
-Plug '~/.vim/bundle/matchit'
 Plug '~/.vim/bundle/django'
 call plug#end()
+
+runtime macros/matchit.vim
 
 filetype plugin indent on
 
@@ -75,6 +75,7 @@ set incsearch
 set hlsearch
 set gdefault
 set nowrap
+set linebreak
 set paste
 set backspace=indent,eol,start
 set cursorline
@@ -238,6 +239,7 @@ let python_highlight_all=1
 " NERDTree settings
 let NERDTreeIgnore=['\.pyc$', '\.rbc$', '\~$', 'node_modules$', '__pycache__']
 let NERDTreeChDirMode=2
+let NERDTreeAutoDeleteBuffer=1
 
 " NERDCommenter settings
 let g:NERDCustomDelimiters={ 'htmldjango': { 'left': '{#','right': '#}', 'leftAlt': '<!--', 'rightAlt': '-->' } }
@@ -252,6 +254,9 @@ vmap <C-Down> ]egv
 " Toggle comments
 map <D-/> <plug>NERDCommenterToggle
 map <leader>- <plug>NERDCommenterToggle
+
+" Make jumping to matches easier
+map <tab> %
 
 " Use `Q` to repeat macros instead of entering Ex-mode
 nmap Q @@
@@ -296,7 +301,7 @@ nnoremap <leader>ev <C-w><C-v><C-l>:e $MYVIMRC<CR>
 nnoremap <leader>rv :source $MYVIMRC<CR>
 " Open current working directory in Finder
 nnoremap <leader>f :silent !open .<CR>
-" Find the current file in the NERDTree
+" Find the current file in NERDTree
 nnoremap <leader>F :NERDTreeFind<CR>
 " Reveal current file in Finder
 nnoremap <leader>r :silent !open -R %<CR>
@@ -305,7 +310,7 @@ nnoremap <leader>g :silent !stree<CR>:redraw!<CR>
 " Open Gundo
 nnoremap <leader>G :GundoToggle<CR>
 " Search/Replace the current file
-nnoremap <leader>R :%s/
+nnoremap <leader>R :%s//<left>
 " Switch tabs to spaces
 nnoremap <leader>t :set expandtab<CR>:retab<CR>
 " Open new h split and switch to it
@@ -314,7 +319,10 @@ nnoremap <leader>h :sp<CR><C-w>j<C-w>=
 nnoremap <leader>v :vs<CR><C-w>l<C-w>=
 " Strip trailing whitespace in the current file
 nnoremap <leader>W :%s/\s\+$//<cr>:let @/=''<CR>
-" Make j/k move by display line, rather than by file line
+" Sort lines
+nnoremap <leader>s vip:!sort<cr>
+vnoremap <leader>s :!sort<cr>
+" Make j/k move by display line, rather than by file line sdlfkjal sdkfjla ksdjfl kajsldfk alsdkf laksdjflkajsdlf kajsldkfj alskd jflkajsdlf kaj
 nnoremap j gj
 nnoremap k gk
 
@@ -335,8 +343,6 @@ map <C-j> <C-w>j
 map <C-k> <C-w>k
 map <C-l> <C-w>l
 
-command! -nargs=* Wrap set wrap linebreak nolist
-
 
 if argc() == 0
     " If $WORKDIR is defined, start NERDTree there.
@@ -348,6 +354,25 @@ if argc() == 0
 elseif isdirectory(argv(0))
     exec "cd " . argv(0)
 endif
+
+
+function! s:ExecuteInShell(command) " {{{
+    let command = join(map(split(a:command), 'expand(v:val)'))
+    let winnr = bufwinnr('^' . command . '$')
+    silent! execute  winnr < 0 ? 'botright vnew ' . fnameescape(command) : winnr . 'wincmd w'
+    setlocal buftype=nowrite bufhidden=wipe nobuflisted noswapfile nowrap nonumber
+    echo 'Execute ' . command . '...'
+    silent! execute 'silent %!'. command
+    silent! redraw
+    silent! execute 'au BufUnload <buffer> execute bufwinnr(' . bufnr('#') . ') . ''wincmd w'''
+    silent! execute 'nnoremap <silent> <buffer> <LocalLeader>r :call <SID>ExecuteInShell(''' . command . ''')<CR>:AnsiEsc<CR>'
+    silent! execute 'nnoremap <silent> <buffer> q :q<CR>'
+    silent! execute 'AnsiEsc'
+    echo 'Shell command ' . command . ' executed.'
+endfunction " }}}
+command! -complete=shellcmd -nargs=+ Shell call s:ExecuteInShell(<q-args>)
+nnoremap <leader>! :Shell<space>
+
 
 " Return to last line on each opened file
 augroup line_return
