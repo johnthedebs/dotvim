@@ -24,6 +24,9 @@ To install this vim configuration to a new machine:
     # To remove plugins:
     :PlugClean
 
+    # For snippet support in Coc
+    :CocInstall coc-snippets
+
 As for MacVim itself, I recommend you get the latest snapshot from here (go for the .tbz file):
 https://github.com/macvim-dev/macvim/releases
 

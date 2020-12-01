@@ -1,5 +1,10 @@
+if has("gui_running")
+    :python3 import os
+endif
+
 call plug#begin("~/.vim/plugged")
 Plug 'psliwka/vim-smoothie'
+Plug 'sirver/UltiSnips', has('gui_running') ? {} : { 'on': [] }
 Plug 'markonm/traces.vim'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'lfv89/vim-interestingwords'
@@ -258,6 +263,10 @@ let Tlist_Enable_Fold_Column=1
 let Tlist_WinWidth=40
 let Tlist_Compact_Format=1
 
+" UltiSnips settings
+let g:UltiSnipsExpandTrigger="<C-j>"
+
+
 " Bubble single lines
 nmap <C-Up> [e
 nmap <C-Down> ]e
@@ -320,6 +329,8 @@ nnoremap <silent> <leader>n :NERDTreeToggle<CR>:NERDTreeRefreshRoot<CR>
 nnoremap <leader><space> :noh<CR>
 " Quick scratch access
 nnoremap <leader><tab> :Sscratch<CR>
+" Edit UltiSnips
+nnoremap <leader>es :UltiSnipsEdit<CR>
 " Edit ~/.vimrc
 nnoremap <leader>ev <C-w><C-v><C-l>:e $MYVIMRC<CR>
 " Source (reload) ~/.vimrc

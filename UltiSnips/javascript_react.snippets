@@ -1,0 +1,66 @@
+# Styled components
+snippet rsc "react styled component" b
+const ${1:StyledComponent} = styled.div\`
+	${2}
+\`
+endsnippet
+
+
+# Functional components
+snippet rfc "react functional component" b
+const ${1:functionalComponent} = (${2}) => {
+	return (
+		<div>
+			${3:Body}
+		</div>
+	)
+}
+endsnippet
+
+# Class component
+snippet rcc "react class component" b
+class ${1:ClassComponent} extends Component {
+	render() {
+		return (
+			<div>
+				${2:Body}
+			</div>
+		)
+	}
+}
+endsnippet
+
+# React Hooks
+snippet useS "useState Hook" b
+const [${1}, set`!p snip.rv=t[1].title()`] = useState(${3:"${4}"})
+endsnippet
+
+snippet useE "useEffect Hook" b
+useEffect(() => {
+	${1:${0}}
+}${2})
+endsnippet
+
+snippet useC "useContext Hook" b
+const ${1:context} = useContext(${2})
+endsnippet
+
+snippet useRe "useReducer Hook" b
+const [${3:state}, ${4:dispatch}] = useReducer(${5:reducer}, ${2:initial_value})
+endsnippet
+
+snippet useCB "useCallback(fn, inputs)" b
+const ${1:callback} = useCallback((${2})) => ${3:{
+	${4}
+}}, [${5}])
+endsnippet
+
+snippet useM "useMemo(fn, inputs)" b
+const ${1:memorized} = useMemo(() => ${2:{
+	${3}
+}}, [${4}])
+endsnippet
+
+snippet useR "useRef(defaultValue)" b
+const ${1:ref} = useRef(${2:null})
+endsnippet
