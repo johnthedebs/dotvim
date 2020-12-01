@@ -11,9 +11,11 @@ To install this vim configuration to a new machine:
     ln -s ~/.vim/agrc ~/.agrc
     # Link in the .editorconfig file
     ln -s ~/.vim/editorconfig ~/.editorconfig
+    # Link in the .ctags file
+    ln -s ~/.vim/ctags ~/.ctags
 
     # Install dependencies
-    brew install ag fd fzf par
+    brew install ag bat ctags fd fzf par python@3.8
 
     # From within vim, to install plugins:
     :PlugInstall

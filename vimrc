@@ -1,4 +1,5 @@
 call plug#begin("~/.vim/plugged")
+Plug 'psliwka/vim-smoothie'
 Plug 'markonm/traces.vim'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'lfv89/vim-interestingwords'
@@ -26,7 +27,7 @@ Plug 'ervandew/supertab'
 Plug 'sheerun/vim-polyglot'
 Plug 'mattn/emmet-vim'
 Plug 'tpope/vim-eunuch'
-Plug 'morhetz/gruvbox'
+Plug 'gruvbox-community/gruvbox'
 Plug 'dyng/ctrlsf.vim'
 Plug '~/.vim/bundle/django'
 call plug#end()
@@ -99,6 +100,7 @@ let g:gruvbox_vert_split='bg3'
 let g:gruvbox_contrast_dark='hard'
 let g:gruvbox_invert_selection='0'
 colorscheme gruvbox
+let $BAT_THEME="gruvbox"
 " Based on gruvbox scheme from: https://github.com/junegunn/fzf/wiki/Color-schemes
 let $FZF_DEFAULT_OPTS='
 \  --color fg:#ebdbb2,bg:#1E2021,hl:#fabd2f,fg+:#ebdbb2,bg+:#3c3836,hl+:#fabd2f
@@ -127,13 +129,13 @@ if !has("python") || version < 703
 endif
 
 if has("gui_running")
-    set columns=90
+    set columns=110
+    set lines=999
     set fuoptions=maxhorz,maxvert " Proper fullscreen mode in MacVim
     set guioptions-=T " Hide menu icons by default in MacVim
     set guioptions-=L " Disable left scroll bar
     set guioptions-=r " Disable right scroll bar
     set guifont=Inconsolata:h16
-    set lines=999
     highlight SpellBad term=underline gui=undercurl guisp=Orange
 
     " Command-][ to increase/decrease indentation
@@ -233,7 +235,7 @@ let g:ctrlsf_auto_focus = {
 \ }
 
 " emmet settings
-let g:user_emmet_leader_key=',' 
+let g:user_emmet_leader_key=','
 
 " fzf settings
 nmap <leader>p :Files<CR>
@@ -253,6 +255,15 @@ let NERDTreeAutoDeleteBuffer=1
 
 " NERDCommenter settings
 let g:NERDCustomDelimiters={ 'htmldjango': { 'left': '{#','right': '#}', 'leftAlt': '<!--', 'rightAlt': '-->' } }
+
+" Taglist settings
+let Tlist_GainFocus_On_ToggleOpen=1
+let Tlist_Exit_OnlyWindow=1
+let Tlist_Show_One_File=1
+let Tlist_Use_Right_Window=1
+let Tlist_Enable_Fold_Column=1
+let Tlist_WinWidth=40
+let Tlist_Compact_Format=1
 
 " Bubble single lines
 nmap <C-Up> [e
@@ -293,6 +304,17 @@ nnoremap <D-F> :CtrlSF<space>
 nnoremap ; :
 " Run a command line operation
 nnoremap <leader>; :silent !
+" fzf bindings
+nnoremap <leader>C :Commits<CR>
+nnoremap <leader>H :Helptags<CR>
+nnoremap <leader>S :Snippets<CR>
+"nnoremap <leader>T :Tags<CR>
+nnoremap <leader>bc :BCommits<CR>
+nnoremap <leader>bt :BTags<CR>
+" Toggle taglist
+nnoremap <leader>t :TlistToggle<CR>
+" Recompile ctags
+nnoremap <leader>c :silent !ctags<CR>
 " Make splits take up the same amount of space
 nnoremap <leader>= <C-w>=
 " Make current split a bit bigger
@@ -322,7 +344,7 @@ nnoremap <leader>G :GundoToggle<CR>
 " Search/Replace the current file
 nnoremap <leader>R :%s//<left>
 " Switch tabs to spaces
-nnoremap <leader>t :set expandtab<CR>:retab<CR>
+nnoremap <leader>T :set expandtab<CR>:retab<CR>
 " Open new h split and switch to it
 nnoremap <leader>h :sp<CR><C-w>j<C-w>=
 " Open new v split and switch to it

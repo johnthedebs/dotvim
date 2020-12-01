@@ -1,0 +1,13 @@
+--recurse=yes
+--exclude=.git
+--exclude=*.js
+--exclude=vendor/*
+--exclude=node_modules/*
+--exclude=db/*
+--exclude=log/*
+--exclude=\*.min.\*
+--exclude=\*.swp
+--exclude=\*.bak
+--exclude=\*.pyc
+--exclude=\*.cache
+--exclude=\*.pdb
