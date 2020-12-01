@@ -1,6 +1,7 @@
 *.swo
 *.swp
 
+__pycache__
 yankring_history*
 .DS_Store
 .netrwhist

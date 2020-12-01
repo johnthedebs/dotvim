@@ -93,20 +93,6 @@ set t_Co=256
 set hidden
 set formatprg=par
 set viminfo='10,\"100,:20,!,%,n~/.vim/info/viminfo
-
-
-" Gruvbox config
-let g:gruvbox_vert_split='bg3'
-let g:gruvbox_contrast_dark='hard'
-let g:gruvbox_invert_selection='0'
-colorscheme gruvbox
-let $BAT_THEME="gruvbox"
-" Based on gruvbox scheme from: https://github.com/junegunn/fzf/wiki/Color-schemes
-let $FZF_DEFAULT_OPTS='
-\  --color fg:#ebdbb2,bg:#1E2021,hl:#fabd2f,fg+:#ebdbb2,bg+:#3c3836,hl+:#fabd2f
-\  --color info:#83a598,prompt:#F9BD2E,spinner:#fabd2f,pointer:#83a598,marker:#fe8019,header:#665c54
-\'
-
 set background=dark
 set mouse=a
 set backupdir=~/.vim/backup
@@ -187,6 +173,7 @@ if has("autocmd")
     autocmd WinEnter * call s:CloseIfOnlyNerdTreeLeft()
 endif
 
+
 " lightline settings
 let g:lightline = {
 \ 'active': {
@@ -238,12 +225,18 @@ let g:ctrlsf_auto_focus = {
 let g:user_emmet_leader_key=','
 
 " fzf settings
-nmap <leader>p :Files<CR>
 let $FZF_DEFAULT_COMMAND='fd --type f'
 set rtp+=/usr/local/opt/fzf
 
 " Gundo settings
 let g:gundo_preview_bottom=1
+
+" Gruvbox config
+let g:gruvbox_vert_split='bg3'
+let g:gruvbox_contrast_dark='hard'
+let g:gruvbox_invert_selection='0'
+colorscheme gruvbox
+let $BAT_THEME="gruvbox"
 
 " Complete Python syntax highlighting
 let python_highlight_all=1
@@ -341,6 +334,8 @@ nnoremap <leader>r :silent !open -R %<CR>
 nnoremap <leader>g :silent !stree<CR>:redraw!<CR>
 " Open Gundo
 nnoremap <leader>G :GundoToggle<CR>
+" Open fzf for files
+nnoremap <leader>p :Files<CR>
 " Search/Replace the current file
 nnoremap <leader>R :%s//<left>
 " Switch tabs to spaces
