@@ -1,7 +1,3 @@
-if has("gui_running")
-    :python3 import os
-endif
-
 call plug#begin("~/.vim/plugged")
 Plug 'Raimondi/delimitMate'
 Plug 'Yggdroot/indentLine'
@@ -76,7 +72,6 @@ set hlsearch
 set gdefault
 set nowrap
 set linebreak
-set paste
 set backspace=indent,eol,start
 set cursorline
 set textwidth=130
@@ -92,7 +87,6 @@ set t_Co=256
 set hidden
 set formatprg=par
 set viminfo='10,\"100,:20,!,%,n~/.vim/info/viminfo
-set background=dark
 set mouse=a
 set backupdir=~/.vim/backup
 set directory=~/.vim/backup
@@ -102,16 +96,17 @@ if has("persistent_undo")
     set undodir=~/.vim/undo
 endif
 
+syntax enable
 nohlsearch
-syntax on
-cabbrev h tab help
-cabbrev help tab help
 
 " Highlight VCS conflict markers
 match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
 
 
 if has("gui_running")
+    cabbrev h tab help
+    cabbrev help tab help
+
     set columns=110
     set lines=999
     set fuoptions=maxhorz,maxvert " Proper fullscreen mode in MacVim
@@ -134,7 +129,8 @@ if has("gui_running")
     map <D-0> :tablast<CR>
 endif
 
-if has("autocmd")
+augroup Misc
+    autocmd!
     autocmd FileType python set colorcolumn=80
     autocmd FileType html set ft=htmldjango
     " Keep search matches in the middle of the window. For some reason,
@@ -149,15 +145,11 @@ if has("autocmd")
     autocmd VimEnter * call s:CdIfDirectory(expand("<amatch>"))
     autocmd FocusGained * call s:UpdateNERDTree()
     autocmd WinEnter * call s:CloseIfOnlyNerdTreeLeft()
-endif
-
-" Return to last line on each opened file
-augroup line_return
-  au!
-  au BufReadPost *
-    \ if line("'\"") > 0 && line("'\"") <= line("$") |
-    \   execute 'normal! g`"' |
-    \ endif
+    " Return to last line on each opened file
+    autocmd BufReadPost *
+        \ if line("'\"") > 0 && line("'\"") <= line("$") |
+        \   execute 'normal! g`"' |
+        \ endif
 augroup END
 
 
@@ -254,10 +246,8 @@ let g:UltiSnipsExpandTrigger="<C-j>"
 " Toggle comments
 map <D-/> <plug>NERDCommenterToggle
 map <leader>- <plug>NERDCommenterToggle
-
 " Make jumping to matches easier
 map <tab> %
-
 " Use `Q` to repeat macros instead of entering Ex-mode
 nmap Q @@
 " Fix `vv`
@@ -303,7 +293,7 @@ nnoremap <leader><Down> :vertical resize -15<CR>
 " Turn NERDTree on or off
 nnoremap <silent> <leader>n :NERDTreeToggle<CR>:NERDTreeRefreshRoot<CR>
 " Clear search highlights
-nnoremap <leader><space> :noh<CR>
+nnoremap <leader><space> :nohlsearch<CR>
 " Quick scratch access
 nnoremap <leader><tab> :Sscratch<CR>
 " Edit UltiSnips
@@ -352,7 +342,7 @@ noremap <C-h> <C-w>h
 noremap <C-j> <C-w>j
 noremap <C-k> <C-w>k
 noremap <C-l> <C-w>l
-" Move windows
+" Move windows (alt + hjkl)
 noremap ˙ <C-w>H
 noremap ∆ <C-w>J
 noremap ˚ <C-w>K
