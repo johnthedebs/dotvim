@@ -13,7 +13,6 @@ Plug 'gruvbox-community/gruvbox'
 Plug 'hail2u/vim-css3-syntax'
 Plug 'itchyny/lightline.vim'
 Plug 'junegunn/fzf.vim'
-Plug 'kana/vim-arpeggio'
 Plug 'lfv89/vim-interestingwords'
 Plug 'markonm/traces.vim'
 Plug 'mattn/emmet-vim'
@@ -23,17 +22,15 @@ Plug 'psliwka/vim-smoothie'
 Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree'
 Plug 'sheerun/vim-polyglot'
+Plug 'simnalamburt/vim-mundo'
 Plug 'sirver/UltiSnips', has('gui_running') ? {} : { 'on': [] }
-Plug 'sjl/gundo.vim'
 Plug 'styled-components/vim-styled-components'
 Plug 'terryma/vim-multiple-cursors'
-Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-git'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-rhubarb'
 Plug 'tpope/vim-surround'
-Plug 'tpope/vim-unimpaired'
 Plug 'vim-scripts/taglist.vim'
 Plug '~/.vim/bundle/django'
 call plug#end()
@@ -66,7 +63,6 @@ set wildignore+=tmp,vendor,dist,dist-dev
 set wildignore+=.tfstate,*.tfstate.backup
 set wildignore+=.sassc,.scssc,.sass-cache
 set wildignore+=.meteor
-set nolist
 set listchars=tab:▸\ ,eol:¬,trail:·
 set showbreak=↪
 set fileformats=unix,dos,mac
@@ -86,8 +82,8 @@ set cursorline
 set textwidth=130
 set formatoptions=qrn1
 set visualbell
-set binary noeol
-set noequalalways
+set binary
+set noeol
 set clipboard=unnamed
 set nofoldenable
 set autoread
@@ -149,9 +145,6 @@ if has("autocmd")
     autocmd FocusLost * :wa
     " Equalize splits on resize
     autocmd VimResized * exe "normal! \<C-w>="
-    " Clean up the QuickFix window
-    autocmd Filetype qf setl nolist
-    autocmd Filetype qf setl nowrap
     " Project Tree behavior
     autocmd VimEnter * call s:CdIfDirectory(expand("<amatch>"))
     autocmd FocusGained * call s:UpdateNERDTree()
@@ -193,12 +186,6 @@ let g:user_emmet_leader_key=','
 " fzf settings
 let $FZF_DEFAULT_COMMAND='fd --type f'
 set rtp+=/usr/local/opt/fzf
-
-" Gundo settings
-let g:gundo_preview_bottom=1
-if !has("python") || version < 703
-    let g:gundo_disable=1
-endif
 
 " gruvbox settings
 let g:gruvbox_contrast_dark='hard'
@@ -294,6 +281,7 @@ nnoremap <leader>/ :CtrlSF<space>
 nnoremap <D-F> :CtrlSF<space>
 " Avoid needing to use shift for ex mode
 nnoremap ; :
+vnoremap ; :
 " Run a command line operation
 nnoremap <leader>; :silent !
 " fzf bindings
@@ -323,7 +311,7 @@ nnoremap <leader>es :UltiSnipsEdit<CR>
 " Reload snippets
 nnoremap <leader>rs :call UltiSnips#RefreshSnippets()<CR>
 " Edit ~/.vimrc
-nnoremap <leader>ev <C-w><C-v><C-l><C-w>=:e $MYVIMRC<CR>
+nnoremap <leader>ev <C-w><C-v><C-l>:e $MYVIMRC<CR>
 " Source (reload) ~/.vimrc
 nnoremap <leader>rv :source $MYVIMRC<CR>
 " Find the current file in NERDTree
@@ -332,10 +320,10 @@ nnoremap <leader>f :NERDTreeFind<CR>
 nnoremap <leader>F :silent !open .<CR>
 " Open SourceTree
 nnoremap <leader>g :silent !stree<CR>:redraw!<CR>
-" Open Gundo
-nnoremap <leader>G :GundoToggle<CR>
 " Toggle line indent markers
 nnoremap <leader>i :IndentLinesToggle<CR>
+" Open Mundo
+nnoremap <leader>m :MundoToggle<CR>
 " Open fzf for files
 nnoremap <leader>p :Files<CR>
 " Search/Replace the current file
@@ -345,9 +333,9 @@ nnoremap <leader>R :silent !open -R %<CR>
 " Switch tabs to spaces
 nnoremap <leader>T :set expandtab<CR>:retab<CR>
 " Open new h split and switch to it
-nnoremap <leader>h :sp<CR><C-w>j<C-w>=
+nnoremap <leader>h :sp<CR><C-w>j
 " Open new v split and switch to it
-nnoremap <leader>v :vs<CR><C-w>l<C-w>=
+nnoremap <leader>v :vs<CR><C-w>l
 " Strip trailing whitespace in the current file
 nnoremap <leader>W :%s/\s\+$//<cr>:let @/=''<CR>
 " Sort lines
