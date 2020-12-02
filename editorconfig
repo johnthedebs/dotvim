@@ -2,7 +2,7 @@ root = true
 
 [*]
 
-[*.{js,rb,css,sass,tf}]
+[*.{js,json,rb,css,sass,tf}]
 indent_size = 2
 
 [*.snippets]
