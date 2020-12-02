@@ -4,3 +4,9 @@ root = true
 
 [*.{js,rb,css,sass,tf}]
 indent_size = 2
+
+[*.snippets]
+indent_style = tab
+
+[Makefile]
+indent_style = tab

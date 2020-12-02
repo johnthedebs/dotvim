@@ -3,37 +3,38 @@ if has("gui_running")
 endif
 
 call plug#begin("~/.vim/plugged")
-Plug 'psliwka/vim-smoothie'
-Plug 'sirver/UltiSnips', has('gui_running') ? {} : { 'on': [] }
-Plug 'markonm/traces.vim'
-Plug 'editorconfig/editorconfig-vim'
-Plug 'lfv89/vim-interestingwords'
-Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-surround'
-Plug 'scrooloose/nerdtree'
-Plug 'tpope/vim-unimpaired'
-Plug 'scrooloose/nerdcommenter'
-Plug 'sjl/gundo.vim'
-Plug 'kana/vim-arpeggio'
-Plug 'tpope/vim-repeat'
-Plug 'vim-scripts/taglist.vim'
-Plug 'tpope/vim-git'
-Plug 'mattn/gist-vim'
-Plug 'godlygeek/tabular'
 Plug 'Raimondi/delimitMate'
-Plug 'itchyny/lightline.vim'
-Plug 'tpope/vim-rhubarb'
-Plug 'styled-components/vim-styled-components'
-Plug 'hail2u/vim-css3-syntax'
-Plug 'junegunn/fzf.vim'
-Plug 'terryma/vim-multiple-cursors'
-Plug 'neoclide/coc.nvim'
-Plug 'ervandew/supertab'
-Plug 'sheerun/vim-polyglot'
-Plug 'mattn/emmet-vim'
-Plug 'tpope/vim-eunuch'
-Plug 'gruvbox-community/gruvbox'
+Plug 'Yggdroot/indentLine'
 Plug 'dyng/ctrlsf.vim'
+Plug 'editorconfig/editorconfig-vim'
+Plug 'ervandew/supertab'
+Plug 'godlygeek/tabular'
+Plug 'gruvbox-community/gruvbox'
+Plug 'hail2u/vim-css3-syntax'
+Plug 'itchyny/lightline.vim'
+Plug 'junegunn/fzf.vim'
+Plug 'kana/vim-arpeggio'
+Plug 'lfv89/vim-interestingwords'
+Plug 'markonm/traces.vim'
+Plug 'mattn/emmet-vim'
+Plug 'mattn/gist-vim'
+Plug 'neoclide/coc.nvim'
+Plug 'psliwka/vim-smoothie'
+Plug 'scrooloose/nerdcommenter'
+Plug 'scrooloose/nerdtree'
+Plug 'sheerun/vim-polyglot'
+Plug 'sirver/UltiSnips', has('gui_running') ? {} : { 'on': [] }
+Plug 'sjl/gundo.vim'
+Plug 'styled-components/vim-styled-components'
+Plug 'terryma/vim-multiple-cursors'
+Plug 'tpope/vim-eunuch'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-git'
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-rhubarb'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-unimpaired'
+Plug 'vim-scripts/taglist.vim'
 Plug '~/.vim/bundle/django'
 call plug#end()
 
@@ -41,11 +42,9 @@ runtime macros/matchit.vim
 
 filetype plugin indent on
 
-set nocompatible " Always first
 set modelines=0
 set encoding=utf-8
 set autoindent
-set nosmartindent
 set ignorecase
 set smartcase
 set smarttab
@@ -56,7 +55,7 @@ set softtabstop=4
 set shiftround
 set showmatch
 set noshowmode
-set ruler
+"set ruler
 set title
 set wildmenu
 set wildmode=list:longest
@@ -103,6 +102,10 @@ set mouse=a
 set backupdir=~/.vim/backup
 set directory=~/.vim/backup
 
+if has("persistent_undo")
+    set undofile
+    set undodir=~/.vim/undo
+endif
 
 nohlsearch
 syntax on
@@ -111,13 +114,6 @@ cabbrev help tab help
 
 " Highlight VCS conflict markers
 match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
-
-" Set the leader to something easier than \
-let mapleader=" "
-
-if !has("python") || version < 703
-    let g:gundo_disable=1
-endif
 
 if has("gui_running")
     set columns=110
@@ -129,15 +125,7 @@ if has("gui_running")
     set guifont=Inconsolata:h16
     highlight SpellBad term=underline gui=undercurl guisp=Orange
 
-    " Command-][ to increase/decrease indentation
-    vnoremap <D-]> >gv
-    vnoremap <D-[> <gv
-    nnoremap <D-]> v>gv<ESC>
-    nnoremap <D-[> v<gv<ESC>
-
     " Switch tabs
-    map <D-S-]> gt
-    map <D-S-[> gT
     map <D-1> 1gt
     map <D-2> 2gt
     map <D-3> 3gt
@@ -150,21 +138,13 @@ if has("gui_running")
     map <D-0> :tablast<CR>
 endif
 
-if has("persistent_undo")
-    set undofile
-    set undodir=~/.vim/undo
-endif
-
 if has("autocmd")
-    autocmd BufEnter,BufRead,BufNewFile,FileType make setlocal noexpandtab
     autocmd FileType python set colorcolumn=80
     autocmd FileType html set ft=htmldjango
-
     " Keep search matches in the middle of the window. For some reason,
     " these re-mappings don't work if set in the standard way
     autocmd VimEnter * nnoremap n nzz
     autocmd VimEnter * nnoremap N Nzz
-
     " Save file when vim loses focus
     autocmd FocusLost * :wa
     " Equalize splits on resize
@@ -172,12 +152,24 @@ if has("autocmd")
     " Clean up the QuickFix window
     autocmd Filetype qf setl nolist
     autocmd Filetype qf setl nowrap
-    " Project Tree
+    " Project Tree behavior
     autocmd VimEnter * call s:CdIfDirectory(expand("<amatch>"))
     autocmd FocusGained * call s:UpdateNERDTree()
     autocmd WinEnter * call s:CloseIfOnlyNerdTreeLeft()
 endif
 
+" Return to last line on each opened file
+augroup line_return
+  au!
+  au BufReadPost *
+    \ if line("'\"") > 0 && line("'\"") <= line("$") |
+    \   execute 'normal! g`"' |
+    \ endif
+augroup END
+
+
+" Set the leader to something easier than \
+let mapleader=" "
 
 " lightline settings
 let g:lightline = {
@@ -203,12 +195,10 @@ let g:lightline = {
 \ },
 \ }
 
+" supertab settings
 " For some reason supertab mappings were backwards. This fixes them
 let g:SuperTabMappingForward='<s-tab>'
 let g:SuperTabMappingBackward='<tab>'
-
-" Disables automatic quote/parenthesis/bracket/etc closing
-"let loaded_delimitMate=1
 
 " ctrlsf.vim settings
 let g:ctrlsf_default_view_mode = 'compact'
@@ -235,44 +225,44 @@ set rtp+=/usr/local/opt/fzf
 
 " Gundo settings
 let g:gundo_preview_bottom=1
+if !has("python") || version < 703
+    let g:gundo_disable=1
+endif
 
-" Gruvbox config
-let g:gruvbox_vert_split='bg3'
+" Gruvbox settings
 let g:gruvbox_contrast_dark='hard'
 let g:gruvbox_invert_selection='0'
+let g:gruvbox_vert_split='bg3'
 colorscheme gruvbox
 let $BAT_THEME="gruvbox"
 
 " Complete Python syntax highlighting
 let python_highlight_all=1
 
+" IndentLines settings
+let g:indentLine_char_list = ['|', '¦', '┆', '┊']
+let g:indentLine_enabled=0
+
 " NERDTree settings
-let NERDTreeIgnore=['\.pyc$', '\.rbc$', '\~$', 'node_modules$', '__pycache__']
-let NERDTreeChDirMode=2
 let NERDTreeAutoDeleteBuffer=1
+let NERDTreeChDirMode=2
+let NERDTreeIgnore=['\.pyc$', '\.rbc$', '\~$', 'node_modules$', '__pycache__']
 
 " NERDCommenter settings
 let g:NERDCustomDelimiters={ 'htmldjango': { 'left': '{#','right': '#}', 'leftAlt': '<!--', 'rightAlt': '-->' } }
 
 " Taglist settings
-let Tlist_GainFocus_On_ToggleOpen=1
+let Tlist_Compact_Format=1
+let Tlist_Enable_Fold_Column=1
 let Tlist_Exit_OnlyWindow=1
+let Tlist_GainFocus_On_ToggleOpen=1
 let Tlist_Show_One_File=1
 let Tlist_Use_Right_Window=1
-let Tlist_Enable_Fold_Column=1
 let Tlist_WinWidth=40
-let Tlist_Compact_Format=1
 
 " UltiSnips settings
 let g:UltiSnipsExpandTrigger="<C-j>"
 
-
-" Bubble single lines
-nmap <C-Up> [e
-nmap <C-Down> ]e
-" Bubble multiple lines
-vmap <C-Up> [egv
-vmap <C-Down> ]egv
 
 " Toggle comments
 map <D-/> <plug>NERDCommenterToggle
@@ -310,13 +300,12 @@ nnoremap <leader>; :silent !
 nnoremap <leader>C :Commits<CR>
 nnoremap <leader>H :Helptags<CR>
 nnoremap <leader>S :Snippets<CR>
-"nnoremap <leader>T :Tags<CR>
+nnoremap <leader>T :BTags<CR>
 nnoremap <leader>bc :BCommits<CR>
-nnoremap <leader>bt :BTags<CR>
 " Toggle taglist
 nnoremap <leader>t :TlistToggle<CR>
 " Recompile ctags
-nnoremap <leader>c :silent !ctags<CR>
+nnoremap <silent> <leader>c :silent !ctags<CR>
 " Make splits take up the same amount of space
 nnoremap <leader>= <C-w>=
 " Make current split a bit bigger
@@ -331,24 +320,28 @@ nnoremap <leader><space> :noh<CR>
 nnoremap <leader><tab> :Sscratch<CR>
 " Edit UltiSnips
 nnoremap <leader>es :UltiSnipsEdit<CR>
+" Reload snippets
+nnoremap <leader>rs :call UltiSnips#RefreshSnippets()<CR>
 " Edit ~/.vimrc
-nnoremap <leader>ev <C-w><C-v><C-l>:e $MYVIMRC<CR>
+nnoremap <leader>ev <C-w><C-v><C-l><C-w>=:e $MYVIMRC<CR>
 " Source (reload) ~/.vimrc
 nnoremap <leader>rv :source $MYVIMRC<CR>
-" Open current working directory in Finder
-nnoremap <leader>f :silent !open .<CR>
 " Find the current file in NERDTree
-nnoremap <leader>F :NERDTreeFind<CR>
-" Reveal current file in Finder
-nnoremap <leader>r :silent !open -R %<CR>
+nnoremap <leader>f :NERDTreeFind<CR>
+" Open current working directory in Finder
+nnoremap <leader>F :silent !open .<CR>
 " Open SourceTree
 nnoremap <leader>g :silent !stree<CR>:redraw!<CR>
 " Open Gundo
 nnoremap <leader>G :GundoToggle<CR>
+" Toggle line indent markers
+nnoremap <leader>i :IndentLinesToggle<CR>
 " Open fzf for files
 nnoremap <leader>p :Files<CR>
 " Search/Replace the current file
-nnoremap <leader>R :%s//<left>
+nnoremap <leader>r :%s//<left>
+" Reveal current file in Finder
+nnoremap <leader>R :silent !open -R %<CR>
 " Switch tabs to spaces
 nnoremap <leader>T :set expandtab<CR>:retab<CR>
 " Open new h split and switch to it
@@ -366,7 +359,17 @@ nnoremap k gk
 " Keep cursor in the middle of the window when jumping around
 nnoremap <c-o> <c-o>zz
 nnoremap <c-i> <c-i>zz
-
+" Switch windows
+noremap <C-h> <C-w>h
+noremap <C-j> <C-w>j
+noremap <C-k> <C-w>k
+noremap <C-l> <C-w>l
+" Move windows
+noremap ˙ <C-w>H
+noremap ∆ <C-w>J
+noremap ˚ <C-w>K
+noremap ¬ <C-w>L
+" Align on special characers
 nmap <leader>a= :Tabularize /=<CR>
 vmap <leader>a= :Tabularize /=<CR>
 nmap <leader>a; :Tabularize /:<CR>
@@ -378,25 +381,11 @@ vmap <leader>ai :Tabularize /import<CR>
 nmap <leader>af :Tabularize /from<CR>
 vmap <leader>af :Tabularize /from<CR>
 
-" Switch windows
-map <C-h> <C-w>h
-map <C-j> <C-w>j
-map <C-k> <C-w>k
-map <C-l> <C-w>l
 
+" Run a cli operation and put output in a new split
+nnoremap <leader>! :Shell<space>
 
-if argc() == 0
-    " If $WORKDIR is defined, start NERDTree there.
-    if strlen($WORKDIR) > 0
-        cd $WORKDIR
-        " Switch to a different project
-        nnoremap <leader>sp :cd $WORKDIR/
-    endif
-elseif isdirectory(argv(0))
-    exec "cd " . argv(0)
-endif
-
-
+command! -complete=shellcmd -nargs=+ Shell call s:ExecuteInShell(<q-args>)
 function! s:ExecuteInShell(command) " {{{
     let command = join(map(split(a:command), 'expand(v:val)'))
     let winnr = bufwinnr('^' . command . '$')
@@ -411,18 +400,59 @@ function! s:ExecuteInShell(command) " {{{
     silent! execute 'AnsiEsc'
     echo 'Shell command ' . command . ' executed.'
 endfunction " }}}
-command! -complete=shellcmd -nargs=+ Shell call s:ExecuteInShell(<q-args>)
-nnoremap <leader>! :Shell<space>
 
 
-" Return to last line on each opened file
-augroup line_return
-  au!
-  au BufReadPost *
-    \ if line("'\"") > 0 && line("'\"") <= line("$") |
-    \   execute 'normal! g`"' |
-    \ endif
-augroup END
+" Show syntax highlighting groups for word under cursor
+nmap <C-S-P> :call <SID>SynStack()<CR>
+
+function! <SID>SynStack()
+  if !exists("*synstack")
+    return
+  endif
+  echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
+endfunc
+
+
+" Set tabstop, softtabstop and shiftwidth to the same value
+command! -nargs=* Stab call Stab()
+function! Stab()
+  let l:tabstop = 1 * input('set tabstop = softtabstop = shiftwidth = ')
+  if l:tabstop > 0
+    let &l:sts = l:tabstop
+    let &l:ts = l:tabstop
+    let &l:sw = l:tabstop
+  endif
+  call SummarizeTabs()
+endfunction
+
+function! SummarizeTabs()
+  try
+    echohl ModeMsg
+    echon 'tabstop='.&l:ts
+    echon ' shiftwidth='.&l:sw
+    echon ' softtabstop='.&l:sts
+    if &l:et
+      echon ' expandtab'
+    else
+      echon ' noexpandtab'
+    endif
+  finally
+    echohl None
+  endtry
+endfunction
+
+
+" NERDTree on-start behavior
+if argc() == 0
+    " If $WORKDIR is defined, start NERDTree there.
+    if strlen($WORKDIR) > 0
+        cd $WORKDIR
+        " Switch to a different project
+        nnoremap <leader>sp :cd $WORKDIR/
+    endif
+elseif isdirectory(argv(0))
+    exec "cd " . argv(0)
+endif
 
 
 " Close all open buffers on entering a window if the only
@@ -483,43 +513,4 @@ function s:UpdateNERDTree(...)
       end
     endif
   endif
-endfunction
-
-
-" Show syntax highlighting groups for word under cursor
-nmap <C-S-P> :call <SID>SynStack()<CR>
-function! <SID>SynStack()
-  if !exists("*synstack")
-    return
-  endif
-  echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
-endfunc
-
-
-" Set tabstop, softtabstop and shiftwidth to the same value
-command! -nargs=* Stab call Stab()
-function! Stab()
-  let l:tabstop = 1 * input('set tabstop = softtabstop = shiftwidth = ')
-  if l:tabstop > 0
-    let &l:sts = l:tabstop
-    let &l:ts = l:tabstop
-    let &l:sw = l:tabstop
-  endif
-  call SummarizeTabs()
-endfunction
-
-function! SummarizeTabs()
-  try
-    echohl ModeMsg
-    echon 'tabstop='.&l:ts
-    echon ' shiftwidth='.&l:sw
-    echon ' softtabstop='.&l:sts
-    if &l:et
-      echon ' expandtab'
-    else
-      echon ' noexpandtab'
-    endif
-  finally
-    echohl None
-  endtry
 endfunction
