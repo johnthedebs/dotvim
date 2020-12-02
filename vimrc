@@ -55,7 +55,6 @@ set softtabstop=4
 set shiftround
 set showmatch
 set noshowmode
-"set ruler
 set title
 set wildmenu
 set wildmode=list:longest
@@ -115,6 +114,7 @@ cabbrev help tab help
 " Highlight VCS conflict markers
 match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
 
+
 if has("gui_running")
     set columns=110
     set lines=999
@@ -171,35 +171,6 @@ augroup END
 " Set the leader to something easier than \
 let mapleader=" "
 
-" lightline settings
-let g:lightline = {
-\ 'active': {
-\   'left': [ [ 'mode' ],
-\             [ 'readonly', 'relativepath', 'modified' ],
-\   ],
-\   'right': [ [ 'lineprogress' ],
-\              [ 'percent' ],
-\              [ 'filetype' ],
-\   ],
-\ },
-\ 'inactive': {
-\   'left': [ [ 'relativepath' ]
-\    ],
-\   'right': [ [ 'lineinfo' ],
-\            [ 'percent' ]
-\   ],
-\ },
-\ 'component': {
-\   'lineprogress': "%{line('.') . '/' . line('$') . ':' . col('.')}",
-\   'percent': '%p%%',
-\ },
-\ }
-
-" supertab settings
-" For some reason supertab mappings were backwards. This fixes them
-let g:SuperTabMappingForward='<s-tab>'
-let g:SuperTabMappingBackward='<tab>'
-
 " ctrlsf.vim settings
 let g:ctrlsf_default_view_mode = 'compact'
 let g:ctrlsf_auto_close = {
@@ -229,29 +200,58 @@ if !has("python") || version < 703
     let g:gundo_disable=1
 endif
 
-" Gruvbox settings
+" gruvbox settings
 let g:gruvbox_contrast_dark='hard'
 let g:gruvbox_invert_selection='0'
 let g:gruvbox_vert_split='bg3'
 colorscheme gruvbox
 let $BAT_THEME="gruvbox"
 
-" Complete Python syntax highlighting
-let python_highlight_all=1
-
-" IndentLines settings
+" indentLine settings
 let g:indentLine_char_list = ['|', '¦', '┆', '┊']
 let g:indentLine_enabled=0
+
+" lightline settings
+let g:lightline = {
+\ 'active': {
+\   'left': [ [ 'mode' ],
+\             [ 'readonly', 'relativepath', 'modified' ],
+\   ],
+\   'right': [ [ 'lineprogress' ],
+\              [ 'percent' ],
+\              [ 'filetype' ],
+\   ],
+\ },
+\ 'inactive': {
+\   'left': [ [ 'relativepath' ]
+\    ],
+\   'right': [ [ 'lineinfo' ],
+\            [ 'percent' ]
+\   ],
+\ },
+\ 'component': {
+\   'lineprogress': "%{line('.') . '/' . line('$') . ':' . col('.')}",
+\   'percent': '%p%%',
+\ },
+\ }
+
+" Python syntax settings
+let python_highlight_all=1
+
+" NERDCommenter settings
+let g:NERDCustomDelimiters={ 'htmldjango': { 'left': '{#','right': '#}', 'leftAlt': '<!--', 'rightAlt': '-->' } }
 
 " NERDTree settings
 let NERDTreeAutoDeleteBuffer=1
 let NERDTreeChDirMode=2
 let NERDTreeIgnore=['\.pyc$', '\.rbc$', '\~$', 'node_modules$', '__pycache__']
 
-" NERDCommenter settings
-let g:NERDCustomDelimiters={ 'htmldjango': { 'left': '{#','right': '#}', 'leftAlt': '<!--', 'rightAlt': '-->' } }
+" supertab settings
+" For some reason supertab mappings were backwards. This fixes them
+let g:SuperTabMappingForward='<s-tab>'
+let g:SuperTabMappingBackward='<tab>'
 
-" Taglist settings
+" taglist settings
 let Tlist_Compact_Format=1
 let Tlist_Enable_Fold_Column=1
 let Tlist_Exit_OnlyWindow=1
