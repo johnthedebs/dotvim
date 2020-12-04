@@ -1,3 +1,8 @@
+set pythonthreedll=/usr/local/Frameworks/Python.framework/Versions/Current/Python
+if has("gui_running")
+    :python3 import os
+endif
+
 call plug#begin("~/.vim/plugged")
 Plug 'Raimondi/delimitMate'
 Plug 'Yggdroot/indentLine'
@@ -27,7 +32,6 @@ Plug 'tpope/vim-git'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-rhubarb'
 Plug 'tpope/vim-surround'
-Plug 'vim-scripts/taglist.vim'
 Plug '~/.vim/bundle/django'
 call plug#end()
 
@@ -180,11 +184,26 @@ let $FZF_DEFAULT_COMMAND='fd --type f'
 set rtp+=/usr/local/opt/fzf
 
 " gruvbox settings
+let $BAT_THEME="gruvbox"
 let g:gruvbox_contrast_dark='hard'
 let g:gruvbox_invert_selection='0'
 let g:gruvbox_vert_split='bg3'
 colorscheme gruvbox
-let $BAT_THEME="gruvbox"
+let g:fzf_colors = {
+\   'fg':      ['fg', 'GruvboxFg'],
+\   'bg':      ['fg', 'GruvboxBg0'],
+\   'hl':      ['fg', 'GruvboxYellow'],
+\   'fg+':     ['fg', 'GruvboxFg1'],
+\   'bg+':     ['fg', 'GruvboxBg1'],
+\   'hl+':     ['fg', 'GruvboxYellow'],
+\   'info':    ['fg', 'GruvboxBlue'],
+\   'prompt':  ['fg', 'GruvboxYellow'],
+\   'border':  ['fg', 'GruvboxBg1'],
+\   'pointer': ['fg', 'GruvboxYellow'],
+\   'marker':  ['fg', 'GruvboxOrange'],
+\   'spinner': ['fg', 'GruvboxYellow'],
+\   'header':  ['fg', 'GruvboxBg1']
+\ }
 
 " indentLine settings
 let g:indentLine_char_list = ['|', '¦', '┆', '┊']
@@ -230,15 +249,6 @@ let NERDTreeIgnore=['\.pyc$', '\.rbc$', '\~$', 'node_modules$', '__pycache__']
 let g:SuperTabMappingForward='<s-tab>'
 let g:SuperTabMappingBackward='<tab>'
 
-" taglist settings
-let Tlist_Compact_Format=1
-let Tlist_Enable_Fold_Column=1
-let Tlist_Exit_OnlyWindow=1
-let Tlist_GainFocus_On_ToggleOpen=1
-let Tlist_Show_One_File=1
-let Tlist_Use_Right_Window=1
-let Tlist_WinWidth=40
-
 " UltiSnips settings
 let g:UltiSnipsExpandTrigger="<C-j>"
 
@@ -267,23 +277,25 @@ noremap <F1> <ESC>
 inoremap <F2> <F1>
 noremap <F2> <F1>
 " Search in project
-nnoremap <leader>/ :CtrlSF<space>
-nnoremap <D-F> :CtrlSF<space>
+nnoremap <leader>/ :CtrlSF<space>""<left>
+nnoremap <D-F> :CtrlSF<space>""<left>
 " Avoid needing to use shift for ex mode
 nnoremap ; :
 vnoremap ; :
 " Run a command line operation
 nnoremap <leader>; :silent !
+" Search/Replace the current file
+nnoremap <leader>? :%s//<left>
 " fzf bindings
 nnoremap <leader>C :Commits<CR>
 nnoremap <leader>H :Helptags<CR>
 nnoremap <leader>S :Snippets<CR>
-nnoremap <leader>T :BTags<CR>
+nnoremap <leader>t :BTags<CR>
 nnoremap <leader>bc :BCommits<CR>
-" Toggle taglist
-nnoremap <leader>t :TlistToggle<CR>
 " Recompile ctags
-nnoremap <silent> <leader>c :silent !ctags<CR>
+nnoremap <leader>ct :silent !ctags<CR>
+" Re-apply syntax highlighting
+nnoremap <leader>ch <Esc>:syntax sync fromstart<CR>
 " Make splits take up the same amount of space
 nnoremap <leader>= <C-w>=
 " Make current split a bit bigger
@@ -316,8 +328,6 @@ nnoremap <leader>i :IndentLinesToggle<CR>
 nnoremap <leader>m :MundoToggle<CR>
 " Open fzf for files
 nnoremap <leader>p :Files<CR>
-" Search/Replace the current file
-nnoremap <leader>r :%s//<left>
 " Reveal current file in Finder
 nnoremap <leader>R :silent !open -R %<CR>
 " Switch tabs to spaces

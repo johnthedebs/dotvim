@@ -4,6 +4,8 @@ root = true
 
 [*.{js,json,rb,css,sass,tf}]
 indent_size = 2
+indent_style = space
+charset = utf-8
 
 [*.snippets]
 indent_style = tab
