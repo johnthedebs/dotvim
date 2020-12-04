@@ -1,0 +1,12 @@
+{
+    "emmet.includeLanguages": {
+        "javascript": "javascriptreact",
+        "htmldjango": "html"
+    },
+		"python.formatting.provider": "black",
+		"python.formatting.blackPath": "/usr/local/bin/black",
+		"python.analysis.diagnosticSeverityOverrides": {
+			"reportMissingImports": false
+		},
+		"python.linting.enabled": false
+}

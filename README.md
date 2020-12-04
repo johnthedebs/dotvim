@@ -15,7 +15,7 @@ To install this vim configuration to a new machine:
     ln -s ~/.vim/ctags ~/.ctags
 
     # Install dependencies
-    brew install bat ctags fd fzf par python@3.8 ripgrep
+    brew install bat black ctags fd fzf node@14 par python@3.9 ripgrep
 
     # From within vim, to install plugins:
     :PlugInstall
@@ -24,8 +24,11 @@ To install this vim configuration to a new machine:
     # To remove plugins:
     :PlugClean
 
-    # For snippet support in Coc
-    :CocInstall coc-snippets
+    # To update Coc extensions
+    :CocUpdate
+    # To remove one, delete from vimrc then:
+    :CocUninstall <extension>
+
 
 As for MacVim itself, I recommend you get the latest snapshot from here (go for the .tbz file):
 https://github.com/macvim-dev/macvim/releases

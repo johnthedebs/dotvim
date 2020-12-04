@@ -6,6 +6,7 @@ endif
 call plug#begin("~/.vim/plugged")
 Plug 'Raimondi/delimitMate'
 Plug 'Yggdroot/indentLine'
+Plug 'antoinemadec/coc-fzf'
 Plug 'dyng/ctrlsf.vim'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'ervandew/supertab'
@@ -159,6 +160,21 @@ augroup END
 
 " Set the leader to something easier than \
 let mapleader=" "
+
+" coc settings
+let g:coc_global_extensions = [
+\   'coc-tailwindcss',
+\   'coc-snippets',
+\   'coc-tsserver',
+\   'coc-yaml',
+\   'coc-css',
+\   'coc-emmet',
+\   'coc-html',
+\   'coc-svg',
+\ ]
+"\   'coc-pyright',
+"\   'coc-eslint',
+"\   'coc-git',
 
 " ctrlsf.vim settings
 let g:ctrlsf_default_view_mode = 'compact'
