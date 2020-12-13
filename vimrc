@@ -4,6 +4,7 @@ if has("gui_running")
 endif
 
 call plug#begin("~/.vim/plugged")
+Plug 'AndrewRadev/splitjoin.vim'
 Plug 'Raimondi/delimitMate'
 Plug 'Yggdroot/indentLine'
 Plug 'antoinemadec/coc-fzf'
@@ -298,6 +299,8 @@ nnoremap <D-F> :CtrlSF<space>""<left>
 " Avoid needing to use shift for ex mode
 nnoremap ; :
 vnoremap ; :
+" Select text that was just pasted
+nnoremap gp `[v`] 
 " Run a command line operation
 nnoremap <leader>; :silent !
 " Search/Replace the current file
