@@ -30,6 +30,16 @@ class ${1:ClassComponent} extends Component {
 }
 endsnippet
 
+# MobX toJS import
+snippet toJSimport "toJS import" b
+import {toJS} from "mobx"
+endsnippet
+
+# MobX toJS log
+snippet toJSlog "toJS console log" b
+console.log(toJS(${1}))
+endsnippet
+
 # React Hooks
 snippet useS "useState Hook" b
 const [${1}, set`!p snip.rv=t[1].title()`] = useState(${3:"${4}"})
