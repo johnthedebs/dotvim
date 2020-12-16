@@ -30,7 +30,7 @@ To install this vim configuration to a new machine:
     :CocUninstall <extension>
 
 
-As for MacVim itself, I recommend you get the latest snapshot from here (go for the .tbz file):
+As for MacVim itself, I recommend you get the latest release here:
 https://github.com/macvim-dev/macvim/releases
 
 

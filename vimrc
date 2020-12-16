@@ -1,8 +1,3 @@
-set pythonthreedll=/usr/local/Frameworks/Python.framework/Versions/Current/Python
-if has("gui_running")
-    :python3 import os
-endif
-
 call plug#begin("~/.vim/plugged")
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'Raimondi/delimitMate'
@@ -58,7 +53,7 @@ set title
 set wildmenu
 set wildmode=list:longest
 set wildignore+=.git,.svn,.hg
-set wildignore+=~*,*.o,*.obj,.DS_Store
+set wildignore+=tags,~*,*.o,*.obj,.DS_Store
 set wildignore+=.pyc,__pycache__
 set wildignore+=node_modules
 set wildignore+=tmp,vendor,dist,dist-dev
@@ -172,6 +167,8 @@ let g:coc_global_extensions = [
 \   'coc-emmet',
 \   'coc-html',
 \   'coc-svg',
+\   'coc-react-refactor',
+\   'coc-styled-components',
 \ ]
 "\   'coc-pyright',
 "\   'coc-eslint',
@@ -205,6 +202,7 @@ let $BAT_THEME="gruvbox"
 let g:gruvbox_contrast_dark='hard'
 let g:gruvbox_invert_selection='0'
 let g:gruvbox_vert_split='bg3'
+let g:gruvbox_hls_cursor='aqua'
 colorscheme gruvbox
 let g:fzf_colors = {
 \   'fg':      ['fg', 'GruvboxFg'],
