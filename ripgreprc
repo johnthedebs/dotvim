@@ -1,8 +1,4 @@
---color=always
---column
 --hidden
---line-number
---no-heading
---smart-case
 --glob=!.tfstate
 --glob=!.tfstate.backup
+--glob=!package-lock.json

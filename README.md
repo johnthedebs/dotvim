@@ -7,8 +7,6 @@ To install this vim configuration to a new machine:
     git clone git://github.com/johnthedebs/dotvim.git ~/.vim
     # Link in the .vimrc file
     ln -s ~/.vim/vimrc ~/.vimrc
-    # Link in the .ripgreprc file
-    ln -s ~/.vim/ripgreprc ~/.ripgreprc
     # Link in the .editorconfig file
     ln -s ~/.vim/editorconfig ~/.editorconfig
     # Link in the .ctags file
