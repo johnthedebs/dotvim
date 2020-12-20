@@ -221,6 +221,10 @@ let g:fzf_colors = {
 let g:indentLine_char_list = ['|', '¦', '┆', '┊']
 let g:indentLine_enabled=0
 
+" interestingwords settings
+let g:interestingWordsGUIColors = ['#83a598', '#d3869b', '#8ec07c', '#fabd2f', '#fb4934', '#b8bb26', '#ebdbb2', '#fe8019']
+let g:interestingWordsTermColors = ['109', '175', '108', '214', '167', '142', '223', '208']
+
 " lightline settings
 let g:lightline = {
 \ 'active': {
