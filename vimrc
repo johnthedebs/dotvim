@@ -135,14 +135,12 @@ augroup Misc
     " Equalize splits on resize
     autocmd VimResized * wincmd =
     " Project Tree behavior
-    autocmd VimEnter * call s:CdIfDirectory(expand("<amatch>"))
-    autocmd WinEnter * call s:CloseIfOnlyNerdTreeLeft()
     autocmd FocusGained * NERDTreeRefreshRoot
-    " Start NERDTree when Vim starts with a directory argument.
+    autocmd WinEnter * call s:CloseIfOnlyNerdTreeLeft()
+    " Start NERDTree in directory when Vim starts with a directory argument
     autocmd StdinReadPre * let s:std_in=1
     autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists('s:std_in') |
-        \ execute 'NERDTree' argv()[0] | wincmd p | enew | execute 'cd '.argv()[0] | 
-        \ elseif argc() == 0 | if strlen($WORKDIR) > 0 | execute 'NERDTree' $WORKDIR | cd $WORKDIR | endif | endif
+        \ execute 'NERDTree' argv()[0] | wincmd p | enew | execute 'cd '.argv()[0] | endif
     " Return to last line on each opened file
     autocmd BufReadPost *
         \ if line("'\"") > 0 && line("'\"") <= line("$") |
@@ -191,16 +189,8 @@ let g:ctrlsf_auto_focus = {
 let g:user_emmet_leader_key=','
 
 " fzf settings
-let $FZF_DEFAULT_COMMAND='fd --type f'
 set rtp+=/usr/local/opt/fzf
-
-" gruvbox settings
-let $BAT_THEME="gruvbox"
-let g:gruvbox_contrast_dark='hard'
-let g:gruvbox_invert_selection='0'
-let g:gruvbox_vert_split='bg3'
-let g:gruvbox_hls_cursor='aqua'
-colorscheme gruvbox
+let $FZF_DEFAULT_COMMAND='fd --type f'
 let g:fzf_colors = {
 \   'fg':      ['fg', 'GruvboxFg'],
 \   'bg':      ['fg', 'GruvboxBg0'],
@@ -214,8 +204,16 @@ let g:fzf_colors = {
 \   'pointer': ['fg', 'GruvboxYellow'],
 \   'marker':  ['fg', 'GruvboxOrange'],
 \   'spinner': ['fg', 'GruvboxYellow'],
-\   'header':  ['fg', 'GruvboxBg1']
+\   'header':  ['fg', 'GruvboxBg1'],
 \ }
+
+" gruvbox settings
+let $BAT_THEME="gruvbox"
+let g:gruvbox_contrast_dark='hard'
+let g:gruvbox_invert_selection='0'
+let g:gruvbox_vert_split='bg3'
+let g:gruvbox_hls_cursor='aqua'
+colorscheme gruvbox
 
 " indentLine settings
 let g:indentLine_char_list = ['|', '¦', '┆', '┊']
@@ -427,31 +425,4 @@ function s:CloseIfOnlyNerdTreeLeft()
      endif
    endif
  endif
-endfunction
-
-
-" If the parameter is a directory, cd into it
-function s:CdIfDirectory(directory)
-  let explicitDirectory = isdirectory(a:directory)
-  let directory = explicitDirectory || empty(a:directory)
-
-  if explicitDirectory
-    exe "cd " . fnameescape(a:directory)
-  endif
-
-  " Allows reading from stdin
-  " ex: git diff | mvim -R -
-  if strlen(a:directory) == 0
-    return
-  endif
-
-  if directory
-    NERDTree
-    wincmd p
-    bd
-  endif
-
-  if explicitDirectory
-    wincmd p
-  endif
 endfunction
