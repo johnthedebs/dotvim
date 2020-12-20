@@ -52,14 +52,6 @@ set noshowmode
 set title
 set wildmenu
 set wildmode=list:longest
-set wildignore+=.git,.svn,.hg
-set wildignore+=tags,~*,*.o,*.obj,.DS_Store
-set wildignore+=.pyc,__pycache__
-set wildignore+=node_modules
-set wildignore+=tmp,vendor,dist,dist-dev
-set wildignore+=.tfstate,*.tfstate.backup
-set wildignore+=.sassc,.scssc,.sass-cache
-set wildignore+=.meteor
 set listchars=tab:▸\ ,eol:¬,trail:·
 set showbreak=↪
 set fileformats=unix,dos,mac

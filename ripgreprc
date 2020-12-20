@@ -1,4 +1,7 @@
 --hidden
---glob=!.tfstate
---glob=!.tfstate.backup
+--glob=!.git
+--glob=!.meteor
+--glob=!vendor
 --glob=!package-lock.json
+--glob=!*.tfstate
+--glob=!*.tfstate*.backup

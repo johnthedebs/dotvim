@@ -11,3 +11,6 @@
 --exclude=\*.pyc
 --exclude=\*.cache
 --exclude=\*.pdb
+--exclude=package-lock.json
+--exclude=.tfstate
+--exclude=.tfstate.backup
