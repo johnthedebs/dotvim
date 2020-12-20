@@ -16,9 +16,9 @@ Plug 'markonm/traces.vim'
 Plug 'mattn/emmet-vim'
 Plug 'mattn/gist-vim'
 Plug 'neoclide/coc.nvim'
+Plug 'preservim/nerdcommenter'
+Plug 'preservim/nerdtree'
 Plug 'psliwka/vim-smoothie'
-Plug 'scrooloose/nerdcommenter'
-Plug 'scrooloose/nerdtree'
 Plug 'sheerun/vim-polyglot'
 Plug 'simnalamburt/vim-mundo'
 Plug 'sirver/UltiSnips', has('gui_running') ? {} : { 'on': [] }
@@ -133,11 +133,16 @@ augroup Misc
     " Save file when vim loses focus
     autocmd FocusLost * :wa
     " Equalize splits on resize
-    autocmd VimResized * exe "normal! \<C-w>="
+    autocmd VimResized * wincmd =
     " Project Tree behavior
     autocmd VimEnter * call s:CdIfDirectory(expand("<amatch>"))
-    autocmd FocusGained * call s:UpdateNERDTree()
     autocmd WinEnter * call s:CloseIfOnlyNerdTreeLeft()
+    autocmd FocusGained * NERDTreeRefreshRoot
+    " Start NERDTree when Vim starts with a directory argument.
+    autocmd StdinReadPre * let s:std_in=1
+    autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists('s:std_in') |
+        \ execute 'NERDTree' argv()[0] | wincmd p | enew | execute 'cd '.argv()[0] | 
+        \ elseif argc() == 0 | if strlen($WORKDIR) > 0 | execute 'NERDTree' $WORKDIR | cd $WORKDIR | endif | endif
     " Return to last line on each opened file
     autocmd BufReadPost *
         \ if line("'\"") > 0 && line("'\"") <= line("$") |
@@ -164,7 +169,6 @@ let g:coc_global_extensions = [
 \ ]
 "\   'coc-pyright',
 "\   'coc-eslint',
-"\   'coc-git',
 
 " ctrlsf.vim settings
 let $RIPGREP_CONFIG_PATH=$HOME.'/.vim/ripgreprc'
@@ -250,7 +254,7 @@ let g:NERDCustomDelimiters={ 'htmldjango': { 'left': '{#','right': '#}', 'leftAl
 " NERDTree settings
 let NERDTreeAutoDeleteBuffer=1
 let NERDTreeChDirMode=2
-let NERDTreeIgnore=['\.pyc$', '\.rbc$', '\~$', 'node_modules$', '__pycache__']
+let NERDTreeIgnore=['\.pyc$', '\.rbc$', '\~$', 'node_modules$', '__pycache__', '.DS_Store']
 
 " supertab settings
 " For some reason supertab mappings were backwards. This fixes them
@@ -264,10 +268,8 @@ let g:UltiSnipsExpandTrigger="<C-j>"
 " Toggle comments
 map <D-/> <plug>NERDCommenterToggle
 map <leader>- <plug>NERDCommenterToggle
-" Make jumping to matches easier
-map <tab> %
 " Use `Q` to repeat macros instead of entering Ex-mode
-nmap Q @@
+nmap Q @q
 " Fix `vv`
 noremap vv V
 " Fix `V`
@@ -411,48 +413,6 @@ function! <SID>SynStack()
 endfunc
 
 
-" Set tabstop, softtabstop and shiftwidth to the same value
-command! -nargs=* Stab call Stab()
-function! Stab()
-  let l:tabstop = 1 * input('set tabstop = softtabstop = shiftwidth = ')
-  if l:tabstop > 0
-    let &l:sts = l:tabstop
-    let &l:ts = l:tabstop
-    let &l:sw = l:tabstop
-  endif
-  call SummarizeTabs()
-endfunction
-
-function! SummarizeTabs()
-  try
-    echohl ModeMsg
-    echon 'tabstop='.&l:ts
-    echon ' shiftwidth='.&l:sw
-    echon ' softtabstop='.&l:sts
-    if &l:et
-      echon ' expandtab'
-    else
-      echon ' noexpandtab'
-    endif
-  finally
-    echohl None
-  endtry
-endfunction
-
-
-" NERDTree on-start behavior
-if argc() == 0
-    " If $WORKDIR is defined, start NERDTree there.
-    if strlen($WORKDIR) > 0
-        cd $WORKDIR
-        " Switch to a different project
-        nnoremap <leader>sp :cd $WORKDIR/
-    endif
-elseif isdirectory(argv(0))
-    exec "cd " . argv(0)
-endif
-
-
 " Close all open buffers on entering a window if the only
 " buffer that's left is the NERDTree buffer
 function s:CloseIfOnlyNerdTreeLeft()
@@ -489,26 +449,5 @@ function s:CdIfDirectory(directory)
 
   if explicitDirectory
     wincmd p
-  endif
-endfunction
-
-
-" NERDTree utility function
-function s:UpdateNERDTree(...)
-  let stay = 0
-
-  if exists("a:1")
-    let stay = a:1
-  end
-
-  if exists("t:NERDTreeBufName")
-    let nr = bufwinnr(t:NERDTreeBufName)
-    if nr != -1
-      exe nr . "wincmd w"
-      exe substitute(mapcheck("R"), "<CR>", "", "")
-      if !stay
-        wincmd p
-      end
-    endif
   endif
 endfunction
