@@ -134,18 +134,21 @@ augroup Misc
     autocmd FocusLost * :wa
     " Equalize splits on resize
     autocmd VimResized * wincmd =
-    " Project Tree behavior
-    autocmd FocusGained * NERDTreeRefreshRoot
-    autocmd WinEnter * call s:CloseIfOnlyNerdTreeLeft()
-    " Start NERDTree in directory when Vim starts with a directory argument
-    autocmd StdinReadPre * let s:std_in=1
-    autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists('s:std_in') |
-        \ execute 'NERDTree' argv()[0] | wincmd p | enew | execute 'cd '.argv()[0] | endif
     " Return to last line on each opened file
     autocmd BufReadPost *
         \ if line("'\"") > 0 && line("'\"") <= line("$") |
         \   execute 'normal! g`"' |
         \ endif
+    " Refresh NERDTree when window is focused
+    autocmd FocusGained * NERDTreeRefreshRoot
+    " Close NERDTree if it's the only pane left
+    autocmd WinEnter * if exists("t:NERDTreeBufName") |
+        \ if bufwinnr(t:NERDTreeBufName) != -1 | if winnr("$") == 1 |
+        \ q | endif | endif | endif
+    " Start NERDTree in directory when Vim starts with a directory argument
+    autocmd StdinReadPre * let s:std_in=1
+    autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists('s:std_in') |
+        \ execute 'cd '.argv()[0] | endif
 augroup END
 
 
@@ -247,9 +250,6 @@ let g:lightline = {
 \ },
 \ }
 
-" Python syntax settings
-let python_highlight_all=1
-
 " NERDCommenter settings
 let g:NERDCustomDelimiters={ 'htmldjango': { 'left': '{#','right': '#}', 'leftAlt': '<!--', 'rightAlt': '-->' } }
 
@@ -257,6 +257,9 @@ let g:NERDCustomDelimiters={ 'htmldjango': { 'left': '{#','right': '#}', 'leftAl
 let NERDTreeAutoDeleteBuffer=1
 let NERDTreeChDirMode=2
 let NERDTreeIgnore=['\.pyc$', '\.rbc$', '\~$', 'node_modules$', '__pycache__', '.DS_Store']
+
+" python syntax settings
+let python_highlight_all=1
 
 " supertab settings
 " For some reason supertab mappings were backwards. This fixes them
@@ -413,16 +416,3 @@ function! <SID>SynStack()
   endif
   echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
 endfunc
-
-
-" Close all open buffers on entering a window if the only
-" buffer that's left is the NERDTree buffer
-function s:CloseIfOnlyNerdTreeLeft()
- if exists("t:NERDTreeBufName")
-   if bufwinnr(t:NERDTreeBufName) != -1
-     if winnr("$") == 1
-       q
-     endif
-   endif
- endif
-endfunction
