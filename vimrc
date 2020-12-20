@@ -368,11 +368,11 @@ noremap ˙ <C-w>H
 noremap ∆ <C-w>J
 noremap ˚ <C-w>K
 noremap ¬ <C-w>L
-" Align on special characers
-nmap <leader>a= :Tabularize /=<CR>
-vmap <leader>a= :Tabularize /=<CR>
-nmap <leader>a; :Tabularize /:<CR>
-vmap <leader>a; :Tabularize /:<CR>
+" Align on special characers (only first occurrence for '=' and ':')
+nmap <leader>a= :Tabularize /^[^=]*\zs=/l1l1<CR>
+vmap <leader>a= :Tabularize /^[^=]*\zs=/l1l1<CR>
+nmap <leader>a; :Tabularize /^[^:]*\zs:/l1l1<CR>
+vmap <leader>a; :Tabularize /^[^:]*\zs:/l1l1<CR>
 nmap <leader>a, :Tabularize /,<CR>
 vmap <leader>a, :Tabularize /,<CR>
 nmap <leader>ai :Tabularize /import<CR>
