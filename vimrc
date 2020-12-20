@@ -35,6 +35,7 @@ call plug#end()
 runtime macros/matchit.vim
 
 filetype plugin indent on
+syntax enable
 
 set modelines=0
 set encoding=utf-8
@@ -83,9 +84,6 @@ set viminfo='10,\"100,:20,!,%,n~/.vim/info/viminfo
 set mouse=a
 set backupdir=~/.vim/backup
 set directory=~/.vim/backup
-
-syntax enable
-nohlsearch
 
 
 if has("persistent_undo")
@@ -155,19 +153,19 @@ let mapleader=" "
 
 " coc settings
 let g:coc_global_extensions = [
-\   'coc-tailwindcss',
-\   'coc-snippets',
-\   'coc-tsserver',
-\   'coc-yaml',
 \   'coc-css',
 \   'coc-emmet',
 \   'coc-html',
-\   'coc-svg',
 \   'coc-react-refactor',
+\   'coc-snippets',
 \   'coc-styled-components',
+\   'coc-svg',
+\   'coc-tailwindcss',
+\   'coc-tsserver',
+\   'coc-yaml',
 \ ]
-"\   'coc-pyright',
 "\   'coc-eslint',
+"\   'coc-pyright',
 
 " ctrlsf.vim settings
 let $RIPGREP_CONFIG_PATH=$HOME.'/.vim/ripgreprc'
@@ -254,7 +252,7 @@ let g:NERDCustomDelimiters={ 'htmldjango': { 'left': '{#','right': '#}', 'leftAl
 " NERDTree settings
 let NERDTreeAutoDeleteBuffer=1
 let NERDTreeChDirMode=2
-let NERDTreeIgnore=['\.pyc$', '\.rbc$', '\~$', 'node_modules$', '__pycache__', '.DS_Store']
+let NERDTreeIgnore=['\.pyc$', '\.rbc$', '\~$', 'node_modules$', '__pycache__', '.DS_Store', 'plugged']
 
 " python syntax settings
 let python_highlight_all=1
@@ -265,7 +263,7 @@ let g:SuperTabMappingForward='<s-tab>'
 let g:SuperTabMappingBackward='<tab>'
 
 " UltiSnips settings
-let g:UltiSnipsExpandTrigger="<C-j>"
+let g:UltiSnipsExpandTrigger='<C-j>'
 
 
 " Toggle comments
