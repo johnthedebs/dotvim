@@ -123,7 +123,8 @@ augroup Misc
     autocmd!
     autocmd FileType python set colorcolumn=80
     autocmd FileType html set ft=htmldjango
-    " Keep search matches in the middle of the window. For some reason,
+    " Keep search matches in the middle of the window. For some reason
+    " (NOTE: conflicting with n/N mappings from interestingwords probably)
     " these re-mappings don't work if set in the standard way
     autocmd VimEnter * nnoremap n nzz
     autocmd VimEnter * nnoremap N Nzz
@@ -280,9 +281,6 @@ noremap V <ESC>v$h
 nmap Y y$
 " Shortcut to rapidly toggle line numbers and white space
 nmap <leader>l :setlocal number!<CR>:set list!<CR>
-" Get out of insert mode more easily
-inoremap jj <ESC>
-inoremap hh <ESC>
 " Remap F1 to do what ESC does, and F2 to do what F1 does
 inoremap <F1> <ESC>
 noremap <F1> <ESC>
@@ -290,7 +288,6 @@ inoremap <F2> <F1>
 noremap <F2> <F1>
 " Search in project
 nnoremap <leader>/ :CtrlSF<space>""<left>
-nnoremap <D-F> :CtrlSF<space>""<left>
 " Avoid needing to use shift for ex mode
 nnoremap ; :
 vnoremap ; :
