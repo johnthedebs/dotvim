@@ -84,17 +84,14 @@ set mouse=a
 set backupdir=~/.vim/backup
 set directory=~/.vim/backup
 
+syntax enable
+nohlsearch
+
+
 if has("persistent_undo")
     set undofile
     set undodir=~/.vim/undo
 endif
-
-syntax enable
-nohlsearch
-
-" Highlight VCS conflict markers
-match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
-
 
 if has("gui_running")
     cabbrev h tab help
@@ -389,7 +386,6 @@ vmap <leader>af :Tabularize /from<CR>
 
 " Run a cli operation and put output in a new split
 nnoremap <leader>! :Shell<space>
-
 command! -complete=shellcmd -nargs=+ Shell call s:ExecuteInShell(<q-args>)
 function! s:ExecuteInShell(command) " {{{
     let command = join(map(split(a:command), 'expand(v:val)'))
@@ -409,7 +405,6 @@ endfunction " }}}
 
 " Show syntax highlighting groups for word under cursor
 nmap <C-S-P> :call <SID>SynStack()<CR>
-
 function! <SID>SynStack()
   if !exists("*synstack")
     return
