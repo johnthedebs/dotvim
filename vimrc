@@ -190,6 +190,16 @@ let g:user_emmet_leader_key=','
 " fzf settings
 set rtp+=/usr/local/opt/fzf
 let $FZF_DEFAULT_COMMAND='fd --type f'
+
+" gruvbox settings
+let $BAT_THEME="gruvbox"
+" Need to be before gruvbox is loaded
+let g:gruvbox_contrast_dark='hard'
+let g:gruvbox_invert_selection='0'
+let g:gruvbox_vert_split='bg3'
+let g:gruvbox_hls_cursor='aqua'
+colorscheme gruvbox
+" Needs to be after gruvbox is loaded
 let g:fzf_colors = {
 \   'fg':      ['fg', 'GruvboxFg'],
 \   'bg':      ['fg', 'GruvboxBg0'],
@@ -205,14 +215,6 @@ let g:fzf_colors = {
 \   'spinner': ['fg', 'GruvboxYellow'],
 \   'header':  ['fg', 'GruvboxBg1'],
 \ }
-
-" gruvbox settings
-let $BAT_THEME="gruvbox"
-let g:gruvbox_contrast_dark='hard'
-let g:gruvbox_invert_selection='0'
-let g:gruvbox_vert_split='bg3'
-let g:gruvbox_hls_cursor='aqua'
-colorscheme gruvbox
 
 " indentLine settings
 let g:indentLine_char_list = ['|', '¦', '┆', '┊']
