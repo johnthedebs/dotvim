@@ -1,5 +1,4 @@
 call plug#begin("~/.vim/plugged")
-Plug 'AndrewRadev/splitjoin.vim'
 Plug 'Raimondi/delimitMate'
 Plug 'Yggdroot/indentLine'
 Plug 'antoinemadec/coc-fzf'
