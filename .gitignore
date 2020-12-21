@@ -9,6 +9,6 @@ yankring_history*
 .VimballRecord
 
 plugged
-undo/%*
-info/viminfo
+persist/undo/%*
+persist/viminfo
 sessions/*

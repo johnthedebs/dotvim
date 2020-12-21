@@ -58,7 +58,7 @@ set fileformats=unix,dos,mac
 set scrolloff=1
 set sidescrolloff=3
 set sidescroll=1
-set history=1000
+set history=300
 set linespace=0
 set incsearch
 set hlsearch
@@ -79,15 +79,15 @@ set laststatus=2
 set t_Co=256
 set hidden
 set formatprg=par
-set viminfo='10,\"100,:20,!,%,n~/.vim/info/viminfo
 set mouse=a
-set backupdir=~/.vim/backup
-set directory=~/.vim/backup
+set viminfo='10,\"100,:50,n~/.vim/persist/viminfo
+set backupdir=~/.vim/persist/backup//
+set directory=~/.vim/persist/backup//
 
 
 if has("persistent_undo")
     set undofile
-    set undodir=~/.vim/undo
+    set undodir=~/.vim/persist/undo
 endif
 
 if has("gui_running")
