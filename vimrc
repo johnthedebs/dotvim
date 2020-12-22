@@ -126,7 +126,7 @@ augroup Misc
     autocmd VimEnter * nnoremap n nzz
     autocmd VimEnter * nnoremap N Nzz
     " Save file when vim loses focus
-    autocmd FocusLost * :wa
+    autocmd FocusLost * silent! :wa
     " Equalize splits on resize
     autocmd VimResized * wincmd =
     " Return to last line on each opened file
@@ -135,7 +135,7 @@ augroup Misc
         \   execute 'normal! g`"' |
         \ endif
     " Refresh NERDTree when window is focused
-    autocmd FocusGained * NERDTreeRefreshRoot
+    autocmd FocusGained * silent! NERDTreeRefreshRoot
     " Close NERDTree if it's the only pane left
     autocmd WinEnter * if exists("t:NERDTreeBufName") |
         \ if bufwinnr(t:NERDTreeBufName) != -1 | if winnr("$") == 1 |
@@ -313,7 +313,7 @@ nnoremap <leader><Up> :vertical resize +15<CR>
 " Make current split a bit smaller
 nnoremap <leader><Down> :vertical resize -15<CR>
 " Turn NERDTree on or off
-nnoremap <silent> <leader>n :NERDTreeToggle<CR>:NERDTreeRefreshRoot<CR>
+nnoremap <silent> <leader>n :NERDTreeToggle<CR>:silent! NERDTreeRefreshRoot<CR>
 " Clear search highlights
 nnoremap <leader><space> :nohlsearch<CR>
 " Quick scratch access
