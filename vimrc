@@ -125,6 +125,8 @@ augroup Misc
     " these re-mappings don't work if set in the standard way
     autocmd VimEnter * nnoremap n nzz
     autocmd VimEnter * nnoremap N Nzz
+    " Reload snippets after editing snippets
+    autocmd BufWritePost snippets call UltiSnips#RefreshSnippets()
     " Save file when vim loses focus
     autocmd FocusLost * silent! :wa
     " Equalize splits on resize
@@ -282,7 +284,7 @@ noremap V <ESC>v$h
 " Fix `Y`
 nmap Y y$
 " Shortcut to rapidly toggle line numbers and white space
-nmap <leader>l :setlocal number!<CR>:set list!<CR>
+nmap <leader>l :setlocal number!<CR>:set list!<CR>:IndentLinesToggle<CR>
 " Remap F1 to do what ESC does, and F2 to do what F1 does
 inoremap <F1> <ESC>
 noremap <F1> <ESC>
@@ -322,9 +324,7 @@ nnoremap <leader><space> :call gruvbox#hls_hide()<CR>:nohlsearch<CR>
 " Quick scratch access
 nnoremap <leader><tab> :Sscratch<CR>
 " Edit UltiSnips
-nnoremap <leader>es :UltiSnipsEdit<CR>
-" Reload snippets
-nnoremap <leader>rs :call UltiSnips#RefreshSnippets()<CR>
+nnoremap <leader>es <C-w><C-v><C-l>:UltiSnipsEdit<CR>
 " Edit ~/.vimrc
 nnoremap <leader>ev <C-w><C-v><C-l>:e $MYVIMRC<CR>
 " Source (reload) ~/.vimrc
@@ -335,8 +335,6 @@ nnoremap <leader>f :NERDTreeFind<CR>
 nnoremap <leader>F :silent !open .<CR>
 " Open SourceTree
 nnoremap <leader>g :silent !stree<CR>:redraw!<CR>
-" Toggle line indent markers
-nnoremap <leader>i :IndentLinesToggle<CR>
 " Open Mundo
 nnoremap <leader>m :MundoToggle<CR>
 " Open fzf for files
