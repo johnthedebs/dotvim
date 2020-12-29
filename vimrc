@@ -191,6 +191,11 @@ let g:ctrlsf_auto_focus = {
 \   "at": "start"
 \ }
 
+" delimiteMate settings
+let delimitMate_expand_space = 1
+let delimitMate_expand_cr = 1
+let delimitMate_expand_inside_quotes = 1
+
 " emmet settings
 let g:user_emmet_leader_key=','
 
@@ -284,6 +289,7 @@ let g:SuperTabMappingBackward='<tab>'
 
 " UltiSnips settings
 let g:UltiSnipsExpandTrigger='<C-j>'
+let g:UltiSnipsEditSplit='vertical'
 
 " terminal color settings
 let g:terminal_ansi_colors = repeat([0], 16)
@@ -343,7 +349,7 @@ nnoremap <leader>? :%s//<left>
 nnoremap <leader>C :Commits<CR>
 nnoremap <leader>H :Helptags<CR>
 nnoremap <leader>S :Snippets<CR>
-nnoremap <leader>t :BTags<CR>
+nnoremap <leader>T :BTags<CR>
 nnoremap <leader>bc :BCommits<CR>
 " Recompile ctags
 nnoremap <leader>ct :silent !ctags<CR>
@@ -362,7 +368,7 @@ nnoremap <leader><space> :call gruvbox#hls_hide()<CR>:nohlsearch<CR>
 " Quick scratch access
 nnoremap <leader><tab> :Sscratch<CR>
 " Edit UltiSnips
-nnoremap <leader>es <C-w><C-v><C-l>:UltiSnipsEdit<CR>
+nnoremap <leader>es :UltiSnipsEdit<CR>
 " Edit ~/.vimrc
 nnoremap <leader>ev <C-w><C-v><C-l>:e $MYVIMRC<CR>
 " Source (reload) ~/.vimrc
@@ -380,7 +386,7 @@ nnoremap <leader>p :Files<CR>
 " Reveal current file in Finder
 nnoremap <leader>R :silent !open -R %<CR>
 " Switch tabs to spaces
-nnoremap <leader>T :set expandtab<CR>:retab<CR>
+nnoremap <leader>rt :set expandtab<CR>:retab<CR>
 " Open new h split and switch to it
 nnoremap <leader>h :sp<CR><C-w>j
 " Open new v split and switch to it
