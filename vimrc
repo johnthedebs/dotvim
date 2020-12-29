@@ -30,6 +30,7 @@ Plug 'tpope/vim-git'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-rhubarb'
 Plug 'tpope/vim-surround'
+Plug 'voldikss/vim-floaterm'
 Plug 'wellle/targets.vim'
 Plug '~/.vim/bundle/django'
 call plug#end()
@@ -86,6 +87,7 @@ set mouse=a
 set viminfo='10,\"100,:50,n~/.vim/persist/viminfo
 set backupdir=~/.vim/persist/backup//
 set directory=~/.vim/persist/backup//
+set termguicolors
 
 
 if has("persistent_undo")
@@ -123,6 +125,7 @@ augroup Misc
     autocmd!
     autocmd FileType python set colorcolumn=80
     autocmd FileType html set ft=htmldjango
+    autocmd FileType floaterm set winfixheight
     " Keep search matches in the middle of the window. For some reason
     " (NOTE: conflicting with n/N mappings from interestingwords probably)
     " these re-mappings don't work if set in the standard way
@@ -190,6 +193,14 @@ let g:ctrlsf_auto_focus = {
 
 " emmet settings
 let g:user_emmet_leader_key=','
+
+" floaterm settings
+let g:floaterm_autoclose=1
+let g:floaterm_keymap_toggle='<C-t>t'
+let g:floaterm_keymap_new='<C-t>n'
+let g:floaterm_keymap_kill='<C-t>k'
+let g:floaterm_height=15
+let g:floaterm_wintype='normal'
 
 " fzf settings
 set rtp+=/usr/local/opt/fzf
@@ -273,6 +284,30 @@ let g:SuperTabMappingBackward='<tab>'
 
 " UltiSnips settings
 let g:UltiSnipsExpandTrigger='<C-j>'
+
+" terminal color settings
+let g:terminal_ansi_colors = repeat([0], 16)
+let g:terminal_ansi_colors[0] = "#2e2e2e" " black
+let g:terminal_ansi_colors[8] = "#555555" " black bright
+let g:terminal_ansi_colors[1] = "#f36559" " red
+let g:terminal_ansi_colors[9] = "#f36559" " red bright
+let g:terminal_ansi_colors[2] = "#90c364" " green
+let g:terminal_ansi_colors[10] = "#a2bb64" " green bright
+let g:terminal_ansi_colors[3] = "#f9ca60" " yellow
+let g:terminal_ansi_colors[11] = "#f9ca60" " yellow bright
+let g:terminal_ansi_colors[4] = "#2a93cb" " blue
+let g:terminal_ansi_colors[12] = "#2a93cb" " blue bright
+let g:terminal_ansi_colors[5] = "#ab7aef" " magenta
+let g:terminal_ansi_colors[13] = "#ab7aef" " magenta bright
+let g:terminal_ansi_colors[6] = "#54dbed" " cyan
+let g:terminal_ansi_colors[14] = "#54dbed" " cyan bright
+let g:terminal_ansi_colors[7] = "#feffff" " white
+let g:terminal_ansi_colors[15] = "#feffff" " white bright
+augroup TermColors
+    autocmd!
+    highlight NormalNC guifg=#FFFBF6 guibg=#252731 ctermfg=white ctermbg=black
+    autocmd FileType floaterm set wincolor=NormalNC
+augroup END
 
 
 " Toggle comments
@@ -366,6 +401,17 @@ noremap <C-h> <C-w>h
 noremap <C-j> <C-w>j
 noremap <C-k> <C-w>k
 noremap <C-l> <C-w>l
+
+tnoremap <C-j> <C-w>j
+tnoremap <C-k> <C-w>k
+tnoremap <C-b> <C-\><C-n>
+nnoremap <C-t><C-t> <C-w>:FloatermToggle<CR>
+tnoremap <C-t><C-t> <C-w>:FloatermToggle<CR>
+tnoremap <C-l> <C-w>:FloatermNext<CR>
+tnoremap <C-h> <C-w>:FloatermPrev<CR>
+tnoremap <D-r> clear<CR>
+tnoremap <D-w> <C-w>:FloatermKill<CR>
+
 " Move windows (alt + hjkl)
 noremap ˙ <C-w>H
 noremap ∆ <C-w>J
@@ -382,6 +428,41 @@ nmap <leader>ai :Tabularize /import<CR>
 vmap <leader>ai :Tabularize /import<CR>
 nmap <leader>af :Tabularize /from<CR>
 vmap <leader>af :Tabularize /from<CR>
+
+
+let s:term_pos = {} " { bufnr: [winheight, n visible lines] }
+function! EnterTerminalNormalMode()
+    if &buftype != 'terminal' || mode('') != 't'
+        return 0
+    endif
+    call feedkeys("\<LeftMouse>\<c-w>N", "x")
+    let s:term_pos[bufnr()] = [winheight(winnr()), line('$') - line('w0')]
+    call feedkeys("\<ScrollWheelUp>")
+endfunction
+function! ExitTerminalNormalModeIfBottom()
+    if &buftype != 'terminal' || !(mode('') == 'n' || mode('') == 'v') 
+        return 0
+    endif
+    let term_pos = s:term_pos[bufnr()]
+    let vis_lines = line('$') - line('w0')
+    let vis_empty = winheight(winnr()) - vis_lines
+    " if size has only expanded, match visible lines on entry
+    if term_pos[1] <= winheight(winnr())
+        let req_vis = min([winheight(winnr()), term_pos[1]])
+        if vis_lines <= req_vis | call feedkeys("i", "x") | endif
+    " if size has shrunk, match visible empty lines on entry
+    else
+        let req_vis_empty = term_pos[0] - term_pos[1]
+        let req_vis_empty = min([winheight(winnr()), req_vis_empty])
+        if vis_empty >= req_vis_empty | call feedkeys("i", "x") | endif
+    endif
+endfunction
+" scrolling up enters normal mode in terminal window, scrolling back to 
+" the cursor's location upon entry resumes terminal mode. only limitation 
+" is that terminal window must have focus before you can scroll to 
+" enter normal mode
+tnoremap <silent> <ScrollWheelUp> <c-w>:call EnterTerminalNormalMode()<CR>
+nnoremap <silent> <ScrollWheelDown> <ScrollWheelDown>:call ExitTerminalNormalModeIfBottom()<CR>
 
 
 " Run a cli operation and put output in a new split
