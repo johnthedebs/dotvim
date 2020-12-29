@@ -15,19 +15,22 @@ Plug 'markonm/traces.vim'
 Plug 'mattn/emmet-vim'
 Plug 'mattn/gist-vim'
 Plug 'mg979/vim-visual-multi'
+Plug 'michaeljsmith/vim-indent-object'
 Plug 'neoclide/coc.nvim'
 Plug 'preservim/nerdcommenter'
 Plug 'preservim/nerdtree'
 Plug 'psliwka/vim-smoothie'
+Plug 'rhysd/clever-f.vim'
 Plug 'sheerun/vim-polyglot'
 Plug 'simnalamburt/vim-mundo'
 Plug 'sirver/UltiSnips', has('gui_running') ? {} : { 'on': [] }
-Plug 'styled-components/vim-styled-components'
+Plug 'styled-components/vim-styled-components', { 'branch': 'develop' }
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-git'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-rhubarb'
 Plug 'tpope/vim-surround'
+Plug 'wellle/targets.vim'
 Plug '~/.vim/bundle/django'
 call plug#end()
 
