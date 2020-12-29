@@ -7,7 +7,7 @@ charset = utf-8
 [*.{py,html}]
 indent_size = 4
 
-[*.{js,json,rb,css,sass,tf}]
+[*.{js,jsx,ts,tsx,json,rb,css,sass,tf}]
 indent_size = 2
 
 [*.snippets]

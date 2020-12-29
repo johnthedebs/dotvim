@@ -5,11 +5,8 @@ To install this vim configuration to a new machine:
 
     # Clone the git repository
     git clone git://github.com/johnthedebs/dotvim.git ~/.vim
-    # Link in the .vimrc file
-    ln -s ~/.vim/vimrc ~/.vimrc
-    # Link in the .editorconfig file
+    # Link the .editorconfig and .ctags files
     ln -s ~/.vim/editorconfig ~/.editorconfig
-    # Link in the .ctags file
     ln -s ~/.vim/ctags ~/.ctags
 
     # Install dependencies
@@ -28,7 +25,7 @@ To install this vim configuration to a new machine:
     :CocUninstall <extension>
 
 
-As for MacVim itself, I recommend you get the latest release here:
+I recommend getting the latest release of MacVim here:
 https://github.com/macvim-dev/macvim/releases
 
 
