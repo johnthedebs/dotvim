@@ -331,7 +331,7 @@ noremap V <ESC>v$h
 " Fix `Y`
 nmap Y y$
 " Shortcut to rapidly toggle line numbers and white space
-nmap <leader>l :setlocal number!<CR>:set list!<CR>:IndentLinesToggle<CR>
+nmap <silent> <leader>l :setlocal number!<CR>:set list!<CR>:IndentLinesToggle<CR>
 " Remap F1 to do what ESC does, and F2 to do what F1 does
 inoremap <F1> <ESC>
 noremap <F1> <ESC>
@@ -386,6 +386,8 @@ nnoremap <leader>g :silent !stree<CR>:redraw!<CR>
 nnoremap <leader>m :MundoToggle<CR>
 " Open fzf for files
 nnoremap <leader>p :Files<CR>
+" Open fzf for lines of code
+nnoremap <leader>P :Rg<CR>
 " Reveal current file in Finder
 nnoremap <leader>R :silent !open -R %<CR>
 " Switch tabs to spaces
