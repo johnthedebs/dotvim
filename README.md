@@ -43,3 +43,4 @@ Thanks to
 * Steve Losh – http://stevelosh.com/blog/2010/09/coming-home-to-vim/
 * Jim Dennis – http://stackoverflow.com/questions/1218390/what-is-your-most-productive-shortcut-with-vim/1220118#1220118
 * Alex Hunt - https://medium.com/@huntie/10-essential-vim-plugins-for-2018-39957190b7a9
+* r/vim - https://www.reddit.com/r/vim/

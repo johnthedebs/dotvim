@@ -3,6 +3,13 @@
         "javascript": "javascriptreact",
         "htmldjango": "html"
     },
+    "tailwindCSS.emmetCompletions": true,
+    "tailwindCSS.headwind.classRegex": {
+        "javascript": "(?:\\b(?:className|tw)\\s*=\\s*[\\\"\\']([_a-zA-Z0-9\\s\\-\\:\\/]+)[\\\"\\'])|(?:\\btw\\s*`([_a-zA-Z0-9\\s\\-\\:\\/]*)`)",
+        "javascriptreact": "(?:\\b(?:className|tw)\\s*=\\s*[\\\"\\']([_a-zA-Z0-9\\s\\-\\:\\/]+)[\\\"\\'])|(?:\\btw\\s*`([_a-zA-Z0-9\\s\\-\\:\\/]*)`)",
+        "typescript": "(?:\\b(?:className|tw)\\s*=\\s*[\\\"\\']([_a-zA-Z0-9\\s\\-\\:\\/]+)[\\\"\\'])|(?:\\btw\\s*`([_a-zA-Z0-9\\s\\-\\:\\/]*)`)",
+        "typescriptreact": "(?:\\b(?:className|tw)\\s*=\\s*[\\\"\\']([_a-zA-Z0-9\\s\\-\\:\\/]+)[\\\"\\'])|(?:\\btw\\s*`([_a-zA-Z0-9\\s\\-\\:\\/]*)`)"
+    },
     "javascript.showUnused": false,
     "python.formatting.provider": "black",
     "python.formatting.blackPath": "/usr/local/bin/black"
