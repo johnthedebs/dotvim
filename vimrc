@@ -10,6 +10,7 @@ Plug 'gruvbox-community/gruvbox'
 Plug 'hail2u/vim-css3-syntax'
 Plug 'itchyny/lightline.vim'
 Plug 'junegunn/fzf.vim'
+Plug 'justinmk/vim-sneak'
 Plug 'lfv89/vim-interestingwords'
 Plug 'markonm/traces.vim'
 Plug 'mattn/emmet-vim'
@@ -280,6 +281,9 @@ let NERDTreeIgnore=['\.pyc$', '\.rbc$', '\~$', 'node_modules$', '__pycache__', '
 
 " python syntax settings
 let python_highlight_all=1
+
+" sneak.vim settings
+let g:sneak#label = 1
 
 " supertab settings
 " For some reason supertab mappings were backwards. This fixes them
