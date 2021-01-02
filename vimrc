@@ -343,12 +343,13 @@ nnoremap <leader>/ :CtrlSF<space>""<left>
 nnoremap ; :
 vnoremap ; :
 " Select text that was just pasted
-nnoremap gp `[v`] 
+nnoremap gp `[v`]
 " Run a command line operation
 nnoremap <leader>; :silent !
 " Search/Replace the current file
 nnoremap <leader>? :%s//<left>
 " fzf bindings
+nnoremap <leader>B :Buffers<CR>
 nnoremap <leader>C :Commits<CR>
 nnoremap <leader>H :Helptags<CR>
 nnoremap <leader>S :Snippets<CR>
@@ -439,6 +440,8 @@ nmap <leader>ai :Tabularize /import<CR>
 vmap <leader>ai :Tabularize /import<CR>
 nmap <leader>af :Tabularize /from<CR>
 vmap <leader>af :Tabularize /from<CR>
+nmap <leader>a# :Tabularize /#<CR>
+vmap <leader>a# :Tabularize /#<CR>
 
 
 let s:term_pos = {} " { bufnr: [winheight, n visible lines] }
@@ -451,7 +454,7 @@ function! EnterTerminalNormalMode()
     call feedkeys("\<ScrollWheelUp>")
 endfunction
 function! ExitTerminalNormalModeIfBottom()
-    if &buftype != 'terminal' || !(mode('') == 'n' || mode('') == 'v') 
+    if &buftype != 'terminal' || !(mode('') == 'n' || mode('') == 'v')
         return 0
     endif
     let term_pos = s:term_pos[bufnr()]
@@ -468,9 +471,9 @@ function! ExitTerminalNormalModeIfBottom()
         if vis_empty >= req_vis_empty | call feedkeys("i", "x") | endif
     endif
 endfunction
-" scrolling up enters normal mode in terminal window, scrolling back to 
-" the cursor's location upon entry resumes terminal mode. only limitation 
-" is that terminal window must have focus before you can scroll to 
+" scrolling up enters normal mode in terminal window, scrolling back to
+" the cursor's location upon entry resumes terminal mode. only limitation
+" is that terminal window must have focus before you can scroll to
 " enter normal mode
 tnoremap <silent> <ScrollWheelUp> <c-w>:call EnterTerminalNormalMode()<CR>
 nnoremap <silent> <ScrollWheelDown> <ScrollWheelDown>:call ExitTerminalNormalModeIfBottom()<CR>
