@@ -5,9 +5,5 @@
     },
     "javascript.showUnused": false,
     "python.formatting.provider": "black",
-    "python.formatting.blackPath": "/usr/local/bin/black",
-    "python.analysis.diagnosticSeverityOverrides": {
-      "reportMissingImports": false
-    },
-    "python.linting.enabled": false
+    "python.formatting.blackPath": "/usr/local/bin/black"
 }

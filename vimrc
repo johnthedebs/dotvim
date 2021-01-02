@@ -163,7 +163,7 @@ let g:coc_global_extensions = [
 \   'coc-css',
 \   'coc-emmet',
 \   'coc-html',
-\   'coc-react-refactor',
+\   'coc-pyright',
 \   'coc-snippets',
 \   'coc-styled-components',
 \   'coc-svg',
@@ -172,7 +172,6 @@ let g:coc_global_extensions = [
 \   'coc-yaml',
 \ ]
 "\   'coc-eslint',
-"\   'coc-pyright',
 
 " ctrlsf.vim settings
 let $RIPGREP_CONFIG_PATH=$HOME.'/.vim/ripgreprc'
