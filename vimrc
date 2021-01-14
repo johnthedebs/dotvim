@@ -220,27 +220,27 @@ let g:gruvbox_vert_split='bg3'
 let g:gruvbox_hls_cursor='aqua'
 colorscheme gruvbox
 " Needs to be after gruvbox is loaded
-let g:fzf_colors = {
-\   'fg':      ['fg', 'GruvboxFg'],
-\   'bg':      ['fg', 'GruvboxBg0'],
-\   'hl':      ['fg', 'GruvboxYellow'],
-\   'fg+':     ['fg', 'GruvboxFg1'],
-\   'bg+':     ['fg', 'GruvboxBg1'],
-\   'hl+':     ['fg', 'GruvboxYellow'],
-\   'info':    ['fg', 'GruvboxBlue'],
-\   'prompt':  ['fg', 'GruvboxYellow'],
-\   'border':  ['fg', 'GruvboxBg1'],
-\   'pointer': ['fg', 'GruvboxYellow'],
-\   'marker':  ['fg', 'GruvboxOrange'],
-\   'spinner': ['fg', 'GruvboxYellow'],
-\   'header':  ['fg', 'GruvboxBg1'],
+let g:fzf_colors = { 
+\   'fg':      ['fg', 'Normal'],
+\   'bg':      ['bg', 'Normal'],
+\   'hl':      ['fg', 'Comment'],
+\   'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+\   'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+\   'hl+':     ['fg', 'Statement'],
+\   'info':    ['fg', 'PreProc'],
+\   'border':  ['fg', 'GruvboxBlue'],
+\   'prompt':  ['fg', 'Conditional'],
+\   'pointer': ['fg', 'Exception'],
+\   'marker':  ['fg', 'Keyword'],
+\   'spinner': ['fg', 'Label'],
+\   'header':  ['fg', 'Comment']
 \ }
 
 nnoremap * :call gruvbox#hls_show()<CR>*
 nnoremap / :call gruvbox#hls_show()<CR>/
 
 " indentLine settings
-let g:indentLine_char_list = ['|', '¦', '┆', '┊']
+let g:indentLine_char_list = ['|', '¦']
 let g:indentLine_enabled=0
 
 " interestingwords settings
@@ -337,6 +337,15 @@ inoremap <F1> <ESC>
 noremap <F1> <ESC>
 inoremap <F2> <F1>
 noremap <F2> <F1>
+" Maintain Visual Mode after shifting > and <
+vmap < <gv
+vmap > >gv
+" Normal mode indent with one keypress
+nmap > >>
+nmap < <<
+" Move visual blocks up/down
+vnoremap J :m '>+1<CR>gv=gv
+vnoremap K :m '<-2<CR>gv=gv
 " Search in project
 nnoremap <leader>/ :CtrlSF<space>""<left>
 " Avoid needing to use shift for ex mode
