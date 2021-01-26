@@ -12,6 +12,7 @@ Plug 'itchyny/lightline.vim'
 Plug 'junegunn/fzf.vim'
 Plug 'justinmk/vim-sneak'
 Plug 'lfv89/vim-interestingwords'
+Plug 'liuchengxu/vim-which-key'
 Plug 'markonm/traces.vim'
 Plug 'mattn/emmet-vim'
 Plug 'mattn/gist-vim'
@@ -294,6 +295,81 @@ let g:SuperTabMappingBackward='<tab>'
 " UltiSnips settings
 let g:UltiSnipsExpandTrigger='<C-j>'
 let g:UltiSnipsEditSplit='vertical'
+
+" which-key settings
+nnoremap <silent> <leader> :WhichKey '<Space>'<CR>
+set timeoutlen=500
+
+let g:which_key_map = {
+\ 'name'    : 'root',
+\ '<space>' : 'clear search highlight',
+\ '/'       : 'search project',
+\ '?'       : 'search/replace in buffer',
+\ '-'       : 'toggle commented',
+\ '='       : 'equalize split sizes',
+\ ';'       : 'run cli command',
+\ '!'       : 'run cli command, output in split',
+\ '<Up>'    : 'increase split size',
+\ '<Down>'  : 'decrease split size',
+\ 'B'       : 'fzf Buffers',
+\ 'C'       : 'fzf Commits',
+\ 'f'       : 'reveal current File in nerdtree',
+\ 'F'       : 'open cwd in Finder',
+\ 'g'       : 'open Git gui',
+\ 'I'       : 'open icons directories',
+\ 'k'       : 'mark interesting word',
+\ 'K'       : 'clear interesting words',
+\ 'l'       : 'toggle Line #s and whitespace',
+\ 'm'       : 'toggle Mundo',
+\ 'n'       : 'toggle Nerdtree',
+\ 'p'       : 'fzf Project files',
+\ 'P'       : 'fzf Project code',
+\ 'h'       : 'Horizontal split',
+\ 'H'       : 'fzf Help tags',
+\ 'R'       : 'Reveal current file in finder',
+\ 'S'       : 'fzf Snippets',
+\ 'T'       : 'fzf Tags in buffer',
+\ 'v'       : 'Vertical split',
+\ 'W'       : 'strip trailing Whitespace',
+\ 's'       : 'Sort lines',
+\ }
+
+let g:which_key_map['a'] = {
+\ 'name' : '+align',
+\ '#'    : 'align #',
+\ ','    : 'align ,',
+\ ';'    : 'align first :',
+\ '='    : 'align first =',
+\ 'f'    : 'align "from"',
+\ 'i'    : 'align "import"',
+\ }
+
+let g:which_key_map['c'] = {
+\ 'name' : '+code-actions',
+\ 'a'    : 'apply codeAction to selected region',
+\ 'c'    : 'coc commands',
+\ 'd'    : 'coc diagnostics',
+\ 'f'    : 'format selected code',
+\ 'h'    : 'reapply code highlighting',
+\ 'l'    : 'coc list',
+\ 'o'    : 'coc outline',
+\ 't'    : 'recompile ctags',
+\ }
+
+let g:which_key_map['e'] = {
+\ 'name' : '+edit',
+\ 's'    : 'edit snippets',
+\ 'v'    : 'edit vimrc',
+\ }
+
+let g:which_key_map['r'] = {
+\ 'name' : '+rename/retab/reload',
+\ 'n'    : 'rename symbol',
+\ 't'    : 'retab file w/ spaces',
+\ 'v'    : 'reload vimrc',
+\ }
+
+call which_key#register('<Space>', "g:which_key_map")
 
 " terminal color settings
 let g:terminal_ansi_colors = repeat([0], 16)

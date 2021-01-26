@@ -1,6 +1,12 @@
 set updatetime=300
 set shortmess+=c
-set signcolumn=number
+
+if has("patch-8.1.1564")
+  " Recently vim can merge signcolumn and number column into one
+  set signcolumn=number
+else
+  set signcolumn=yes
+endif
 
 " Use `[g` and `]g` to navigate diagnostics
 " Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
@@ -33,6 +39,11 @@ nmap <leader>rn <Plug>(coc-rename)
 xmap <leader>cf  <Plug>(coc-format-selected)
 nmap <leader>cf  <Plug>(coc-format-selected)
 
+" Applying codeAction to the selected region.
+" Example: `<leader>aap` for current paragraph
+xmap <leader>ca  <Plug>(coc-codeaction-selected)
+nmap <leader>ca  <Plug>(coc-codeaction-selected)
+
 augroup mygroup
   autocmd!
   " Setup formatexpr specified filetype(s).
@@ -40,11 +51,6 @@ augroup mygroup
   " Update signature help on jump placeholder.
   autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
 augroup end
-
-" Applying codeAction to the selected region.
-" Example: `<leader>aap` for current paragraph
-"xmap <leader>a  <Plug>(coc-codeaction-selected)
-"nmap <leader>a  <Plug>(coc-codeaction-selected)
 
 " Remap keys for applying codeAction to the current buffer.
 "nmap <leader>ac  <Plug>(coc-codeaction)
@@ -76,7 +82,7 @@ command! -nargs=0 OR :call CocAction('runCommand', 'editor.action.organizeImport
 "nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
 
 " coc-fzf mappings
-nnoremap <silent> <leader>d  :<C-u>CocFzfList diagnostics --current-buf<CR>
-nnoremap <silent> <leader>o  :<C-u>CocFzfList outline<CR>
+nnoremap <silent> <leader>cd  :<C-u>CocFzfList diagnostics --current-buf<CR>
+nnoremap <silent> <leader>co  :<C-u>CocFzfList outline<CR>
 nnoremap <silent> <leader>cl :<C-u>CocFzfList<CR>
-nnoremap <silent> <leader>co  :<C-u>CocFzfList commands<CR>
+nnoremap <silent> <leader>cc  :<C-u>CocFzfList commands<CR>
