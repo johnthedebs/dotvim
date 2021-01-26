@@ -145,6 +145,7 @@ augroup Misc
         \ endif
     " Refresh NERDTree when window is focused
     autocmd FocusGained * silent! NERDTreeRefreshRoot
+    autocmd BufEnter * if (winnr("$") == 1 && &filetype == "ctrlsf") | q | endif
     " Close NERDTree if it's the only pane left
     autocmd WinEnter * if exists("t:NERDTreeBufName") |
         \ if bufwinnr(t:NERDTreeBufName) != -1 | if winnr("$") == 1 |
@@ -228,7 +229,7 @@ let g:fzf_colors = {
 \   'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
 \   'hl+':     ['fg', 'Statement'],
 \   'info':    ['fg', 'PreProc'],
-\   'border':  ['fg', 'GruvboxBlue'],
+\   'border':  ['fg', 'Identifier'],
 \   'prompt':  ['fg', 'Conditional'],
 \   'pointer': ['fg', 'Exception'],
 \   'marker':  ['fg', 'Keyword'],
@@ -331,15 +332,12 @@ noremap V <ESC>v$h
 " Fix `Y`
 nmap Y y$
 " Shortcut to rapidly toggle line numbers and white space
-nmap <silent> <leader>l :setlocal number!<CR>:set list!<CR>:IndentLinesToggle<CR>
+nmap <silent> <leader>l :setlocal number!<CR>:set list!<CR>:set cursorcolumn!<CR>:IndentLinesToggle<CR>
 " Remap F1 to do what ESC does, and F2 to do what F1 does
 inoremap <F1> <ESC>
 noremap <F1> <ESC>
 inoremap <F2> <F1>
 noremap <F2> <F1>
-" Maintain Visual Mode after shifting > and <
-vmap < <gv
-vmap > >gv
 " Normal mode indent with one keypress
 nmap > >>
 nmap < <<
