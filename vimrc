@@ -18,7 +18,7 @@ Plug 'mattn/emmet-vim'
 Plug 'mattn/gist-vim'
 Plug 'mg979/vim-visual-multi'
 Plug 'michaeljsmith/vim-indent-object'
-Plug 'neoclide/coc.nvim'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'preservim/nerdcommenter'
 Plug 'preservim/nerdtree'
 Plug 'psliwka/vim-smoothie'
@@ -126,6 +126,7 @@ endif
 augroup Misc
     autocmd!
     autocmd FileType python set colorcolumn=80
+    autocmd FileType python setlocal foldmethod=indent
     autocmd FileType html set ft=htmldjango
     autocmd FileType floaterm set winfixheight
     " Keep search matches in the middle of the window. For some reason
@@ -214,7 +215,7 @@ set rtp+=/usr/local/opt/fzf
 let $FZF_DEFAULT_COMMAND='fd --type f'
 
 " gruvbox settings
-let $BAT_THEME="gruvbox"
+let $BAT_THEME="gruvbox-dark"
 " Need to be before gruvbox is loaded
 let g:gruvbox_contrast_dark='hard'
 let g:gruvbox_invert_selection='0'
@@ -274,6 +275,7 @@ let g:lightline = {
 \ }
 
 " NERDCommenter settings
+let g:NERDCreateDefaultMappings = 0
 let g:NERDCustomDelimiters={ 'htmldjango': { 'left': '{#','right': '#}', 'leftAlt': '<!--', 'rightAlt': '-->' } }
 
 " NERDTree settings
@@ -408,7 +410,7 @@ noremap V <ESC>v$h
 " Fix `Y`
 nmap Y y$
 " Shortcut to rapidly toggle line numbers and white space
-nmap <silent> <leader>l :setlocal number!<CR>:set list!<CR>:set cursorcolumn!<CR>:IndentLinesToggle<CR>
+nmap <silent> <leader>l :setlocal number!<CR>:setlocal list!<CR>:setlocal cursorcolumn!<CR>:IndentLinesToggle<CR>
 " Remap F1 to do what ESC does, and F2 to do what F1 does
 inoremap <F1> <ESC>
 noremap <F1> <ESC>
@@ -466,6 +468,8 @@ nnoremap <leader>f :NERDTreeFind<CR>
 nnoremap <leader>F :silent !open .<CR>
 " Open SourceTree
 nnoremap <leader>g :silent !stree<CR>:redraw!<CR>
+" Open project icons and fontawesome SVG directory
+nnoremap <leader>I :silent !open ./app/public/icons<CR>:silent !open '/Users/johndebs/Documents/Design Stuff/fontawesome-free-5.13.0-web/svgs/'<CR>
 " Open Mundo
 nnoremap <leader>m :MundoToggle<CR>
 " Open fzf for files
