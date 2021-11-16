@@ -90,6 +90,7 @@ set viminfo='10,\"100,:50,n~/.vim/persist/viminfo
 set backupdir=~/.vim/persist/backup//
 set directory=~/.vim/persist/backup//
 set termguicolors
+set background=dark
 
 
 if has("persistent_undo")
