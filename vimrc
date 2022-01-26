@@ -175,6 +175,7 @@ let g:coc_global_extensions = [
 \   'coc-tailwindcss',
 \   'coc-tsserver',
 \   'coc-yaml',
+\   'coc-phpls',
 \ ]
 "\   'coc-eslint',
 
@@ -654,6 +655,7 @@ vnoremap J :m '>+1<CR>gv=gv
 vnoremap K :m '<-2<CR>gv=gv
 " Search in project
 nnoremap <leader>/ :CtrlSF<space>""<left>
+vnoremap <leader>/ <ESC>:CtrlSF<space>""<left>
 " Avoid needing to use shift for ex mode
 nnoremap ; :
 vnoremap ; :
@@ -673,7 +675,7 @@ nnoremap <leader>bc :BCommits<CR>
 " Recompile ctags
 nnoremap <leader>ct :silent !ctags<CR>
 " Re-apply syntax highlighting
-nnoremap <leader>ch <Esc>:syntax sync fromstart<CR>
+nnoremap <leader>ch <ESC>:syntax sync fromstart<CR>
 " Make splits take up the same amount of space
 nnoremap <leader>= <C-w>=
 " Make current split a bit bigger
@@ -719,9 +721,11 @@ nnoremap <leader>W :%s/\s\+$//<cr>:let @/=''<CR>
 " Sort lines
 nnoremap <leader>s vip:!sort<cr>
 vnoremap <leader>s :!sort<cr>
-" Make j/k move by display line, rather than by file line
+" Make j/k/0/$ move by display line, rather than by file line
 nnoremap j gj
 nnoremap k gk
+"nnoremap 0 g0
+"nnoremap $ g$
 " Keep cursor in the middle of the window when jumping around
 nnoremap <c-o> <c-o>zz
 nnoremap <c-i> <c-i>zz

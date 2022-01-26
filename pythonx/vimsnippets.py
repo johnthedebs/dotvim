@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """Helper methods used in UltiSnips snippets."""
 
 import string, vim, re
