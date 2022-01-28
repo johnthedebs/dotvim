@@ -11,6 +11,7 @@ To install this vim configuration to a new machine:
 
     # Install dependencies
     brew install bat black ctags fd fzf node@14 par python@3.9 ripgrep
+    brew link node@14
 
     # From within vim, to install plugins:
     :PlugInstall
@@ -24,6 +25,9 @@ To install this vim configuration to a new machine:
     # To remove one, delete from vimrc then:
     :CocUninstall <extension>
 
+
+For tailwindcss w/ full twin.macro support:
+https://github.com/iamcco/coc-tailwindcss/issues/34#issuecomment-703253001
 
 I recommend getting the latest release of MacVim here:
 https://github.com/macvim-dev/macvim/releases

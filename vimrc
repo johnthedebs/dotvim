@@ -718,6 +718,10 @@ nnoremap <leader>P :Rg<CR>
 nnoremap <leader>R :silent !open -R %<CR>
 " Switch tabs to spaces
 nnoremap <leader>rt :set expandtab<CR>:retab<CR>
+" Reformat current line as json
+nnoremap <leader>j :.!python -m json.tool<CR>
+" Reformat selected text as json
+vnoremap <leader>j :'<,'>!python -m json.tool<CR>
 " Open new h split and switch to it
 nnoremap <leader>h :sp<CR><C-w>j
 " Open new v split and switch to it
