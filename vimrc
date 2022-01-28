@@ -108,7 +108,8 @@ if has("gui_running")
     set guioptions-=T " Hide menu icons by default in MacVim
     set guioptions-=L " Disable left scroll bar
     set guioptions-=r " Disable right scroll bar
-    set guifont=Inconsolata:h16
+    "set guifont=Inconsolata:h16
+    set guifont=JetBrains\ Mono:h15
     highlight SpellBad term=underline gui=undercurl guisp=Orange
 
     " Switch tabs
@@ -178,6 +179,7 @@ let g:coc_global_extensions = [
 \   'coc-phpls',
 \ ]
 "\   'coc-eslint',
+"https://github.com/rodrigore/coc-tailwind-intellisense
 
 " ctrlsf.vim settings
 let $RIPGREP_CONFIG_PATH=$HOME.'/.vim/ripgreprc'
@@ -676,6 +678,10 @@ nnoremap <leader>bc :BCommits<CR>
 nnoremap <leader>ct :silent !ctags<CR>
 " Re-apply syntax highlighting
 nnoremap <leader>ch <ESC>:syntax sync fromstart<CR>
+" Change to Molokai colorscheme
+nnoremap <leader>cm :colorscheme molokai<CR>
+" Change to gruvbox colorscheme
+nnoremap <leader>cg :colorscheme gruvbox<CR>
 " Make splits take up the same amount of space
 nnoremap <leader>= <C-w>=
 " Make current split a bit bigger
