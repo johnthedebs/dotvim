@@ -109,7 +109,7 @@ if has("gui_running")
     set guioptions-=L " Disable left scroll bar
     set guioptions-=r " Disable right scroll bar
     "set guifont=Inconsolata:h16
-    set guifont=JetBrains\ Mono:h15
+    set guifont=JetBrains\ Mono:h14
     highlight SpellBad term=underline gui=undercurl guisp=Orange
 
     " Switch tabs
@@ -631,6 +631,13 @@ augroup TermColors
 augroup END
 
 
+command! -bang -nargs=? -complete=dir Search
+    \ call fzf#vim#grep('rg --column --line-number --no-heading --color=always --smart-case -- '.shellescape(<q-args>),
+    \ <bang>0,
+    \ fzf#vim#with_preview({'options': ['--preview-window=down,50%', '--layout=reverse', '--info=inline']}),
+    \ <bang>0)
+
+
 " Toggle comments
 map <D-/> <plug>NERDCommenterToggle
 map <leader>- <plug>NERDCommenterToggle
@@ -656,8 +663,10 @@ nmap < <<
 vnoremap J :m '>+1<CR>gv=gv
 vnoremap K :m '<-2<CR>gv=gv
 " Search in project
-nnoremap <leader>/ :CtrlSF<space>""<left>
-vnoremap <leader>/ <ESC>:CtrlSF<space>""<left>
+nnoremap <leader><leader>/ :CtrlSF<space>""<left>
+vnoremap <leader><leader>/ <ESC>:CtrlSF<space>""<left>
+nnoremap <leader>/ :Search<space>
+vnoremap <leader>/ :Search<space>
 " Avoid needing to use shift for ex mode
 nnoremap ; :
 vnoremap ; :
