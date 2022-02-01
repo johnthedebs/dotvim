@@ -304,7 +304,7 @@ let g:UltiSnipsEditSplit='vertical'
 
 " which-key settings
 nnoremap <silent> <leader> :WhichKey '<Space>'<CR>
-set timeoutlen=500
+set timeoutlen=350
 
 let g:which_key_map = {
 \ 'name'    : 'root',
@@ -323,6 +323,7 @@ let g:which_key_map = {
 \ 'F'       : 'open cwd in Finder',
 \ 'g'       : 'open Git gui',
 \ 'I'       : 'open icons directories',
+\ 'j'       : 'sort line(s) json',
 \ 'k'       : 'mark interesting word',
 \ 'K'       : 'clear interesting words',
 \ 'l'       : 'toggle Line #s and whitespace',
@@ -333,7 +334,6 @@ let g:which_key_map = {
 \ 'h'       : 'Horizontal split',
 \ 'H'       : 'fzf Help tags',
 \ 'R'       : 'Reveal current file in finder',
-\ 'S'       : 'fzf Snippets',
 \ 'T'       : 'fzf Tags in buffer',
 \ 'v'       : 'Vertical split',
 \ 'W'       : 'strip trailing Whitespace',
@@ -373,6 +373,13 @@ let g:which_key_map['r'] = {
 \ 'n'    : 'rename symbol',
 \ 't'    : 'retab file w/ spaces',
 \ 'v'    : 'reload vimrc',
+\ }
+
+let g:which_key_map['s'] = {
+\ 'name' : '+sort/snippts/symbols',
+\ 'o'    : 'sort lines',
+\ 'n'    : 'fzf snippets',
+\ 'y'    : 'coc symbols',
 \ }
 
 call which_key#register('<Space>', "g:which_key_map")
@@ -452,7 +459,8 @@ nnoremap <leader>? :%s//<left>
 nnoremap <leader>B :Buffers<CR>
 nnoremap <leader>C :Commits<CR>
 nnoremap <leader>H :Helptags<CR>
-nnoremap <leader>S :Snippets<CR>
+nnoremap <leader>sy :CocList symbols<CR>
+nnoremap <leader>sn :CocFzfList snippets<CR>
 nnoremap <leader>T :BTags<CR>
 nnoremap <leader>bc :BCommits<CR>
 " Recompile ctags
@@ -510,8 +518,8 @@ nnoremap <leader>v :vs<CR><C-w>l
 " Strip trailing whitespace in the current file
 nnoremap <leader>W :%s/\s\+$//<cr>:let @/=''<CR>
 " Sort lines
-nnoremap <leader>s vip:!sort<cr>
-vnoremap <leader>s :!sort<cr>
+nnoremap <leader>so vip:!sort<cr>
+vnoremap <leader>so :!sort<cr>
 " Make j/k/0/$ move by display line, rather than by file line
 nnoremap j gj
 nnoremap k gk
