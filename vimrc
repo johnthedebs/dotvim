@@ -353,6 +353,7 @@ let g:which_key_map['a'] = {
 let g:which_key_map['c'] = {
 \ 'name' : '+code-actions',
 \ 'a'    : 'apply codeAction to selected region',
+\ 'b'    : 'format current project with black',
 \ 'c'    : 'coc commands',
 \ 'd'    : 'coc diagnostics',
 \ 'f'    : 'format selected code',
@@ -471,6 +472,8 @@ nnoremap <leader>ch <ESC>:syntax sync fromstart<CR>
 nnoremap <leader>cm :colorscheme molokai<CR>
 " Change to gruvbox colorscheme
 nnoremap <leader>cg :colorscheme gruvbox<CR>
+" Format project with black
+nnoremap <leader>cb :!black .<CR>
 " Make splits take up the same amount of space
 nnoremap <leader>= <C-w>=
 " Make current split a bit bigger
