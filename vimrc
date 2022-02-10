@@ -24,6 +24,7 @@ Plug 'preservim/nerdtree'
 Plug 'psliwka/vim-smoothie'
 Plug 'rhysd/clever-f.vim'
 Plug 'sheerun/vim-polyglot'
+Plug 'shumphrey/fugitive-gitlab.vim'
 Plug 'simnalamburt/vim-mundo'
 Plug 'sirver/UltiSnips', has('gui_running') ? {} : { 'on': [] }
 Plug 'styled-components/vim-styled-components', { 'branch': 'develop' }
@@ -217,6 +218,9 @@ let g:floaterm_wintype='normal'
 " fzf settings
 set rtp+=/usr/local/opt/fzf
 let $FZF_DEFAULT_COMMAND='fd --type f'
+
+" fugitive-gitlab settings
+let g:fugitive_gitlab_domains = {'ssh://gitlab.service.seatgeek.mgmt': 'https://gitlab.seatgeekadmin.com'}
 
 " gruvbox settings
 let $BAT_THEME="gruvbox-dark"
@@ -429,6 +433,8 @@ noremap vv V
 noremap V <ESC>v$h
 " Fix `Y`
 nmap Y y$
+nnoremap gb :Gbrowse<CR>
+vnoremap gb :Gbrowse<CR>
 " Shortcut to rapidly toggle line numbers and white space
 nmap <silent> <leader>l :setlocal number!<CR>:setlocal list!<CR>:setlocal cursorcolumn!<CR>:IndentLinesToggle<CR>
 " Remap F1 to do what ESC does, and F2 to do what F1 does
