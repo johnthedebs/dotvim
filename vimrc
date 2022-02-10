@@ -215,7 +215,7 @@ let g:floaterm_keymap_toggle='<C-t>t'
 let g:floaterm_keymap_new='<C-t>n'
 let g:floaterm_keymap_kill='<C-t>k'
 let g:floaterm_height=15
-let g:floaterm_wintype='normal'
+let g:floaterm_wintype='split'
 
 " fzf settings
 set rtp+=/usr/local/opt/fzf
@@ -474,7 +474,7 @@ nnoremap <leader>cm :colorscheme molokai<CR>
 " Change to gruvbox colorscheme
 nnoremap <leader>cg :colorscheme gruvbox<CR>
 " Format project with black
-nnoremap <leader>cb :!black .<CR>
+nnoremap <leader>cb :w<cr>:silent !black .<CR>
 " Make splits take up the same amount of space
 nnoremap <leader>= <C-w>=
 " Make current split a bit bigger
