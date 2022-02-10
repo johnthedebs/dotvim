@@ -57,6 +57,8 @@ set shiftround
 set showmatch
 set noshowmode
 set title
+set splitright
+set splitbelow
 set wildmenu
 set wildmode=list:longest
 set listchars=tab:▸\ ,eol:¬,trail:·
@@ -513,10 +515,10 @@ nnoremap <leader>rt :set expandtab<CR>:retab<CR>
 nnoremap <leader>j :.!python -m json.tool<CR>
 " Reformat selected text as json
 vnoremap <leader>j :'<,'>!python -m json.tool<CR>
-" Open new h split and switch to it
-nnoremap <leader>h :sp<CR><C-w>j
-" Open new v split and switch to it
-nnoremap <leader>v :vs<CR><C-w>l
+" Open new h split
+nnoremap <leader>h :sp<CR>
+" Open new v split
+nnoremap <leader>v :vs<CR>
 " Strip trailing whitespace in the current file
 nnoremap <leader>W :%s/\s\+$//<cr>:let @/=''<CR>
 " Sort lines
