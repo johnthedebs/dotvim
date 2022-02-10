@@ -415,13 +415,6 @@ augroup TermColors
 augroup END
 
 
-command! -bang -nargs=? -complete=dir Search
-    \ call fzf#vim#grep('rg --column --line-number --no-heading --color=always --smart-case -- '.shellescape(<q-args>),
-    \ <bang>0,
-    \ fzf#vim#with_preview({'options': ['--preview-window=down,50%', '--layout=reverse', '--info=inline']}),
-    \ <bang>0)
-
-
 " Toggle comments
 map <D-/> <plug>NERDCommenterToggle
 map <leader>- <plug>NERDCommenterToggle
@@ -571,6 +564,25 @@ nmap <leader>af :Tabularize /from<CR>
 vmap <leader>af :Tabularize /from<CR>
 nmap <leader>a# :Tabularize /#<CR>
 vmap <leader>a# :Tabularize /#<CR>
+
+
+" This will use rg for initial search as well as subsequent searches
+function! RipgrepFzf(query, fullscreen)
+  let command_fmt = 'rg --column --line-number --no-heading --color=always --smart-case -F -- %s || true'
+  let initial_command = printf(command_fmt, shellescape(a:query))
+  let reload_command = printf(command_fmt, '{q}')
+  let spec = {'options': ['--phony', '--query', a:query, '--bind', 'change:reload:'.reload_command, '--preview-window=down,50%', '--layout=reverse', '--info=inline']}
+  call fzf#vim#grep(initial_command, 1, fzf#vim#with_preview(spec), a:fullscreen)
+endfunction
+command! -nargs=* -bang Search call RipgrepFzf(<q-args>, <bang>0)
+
+" This will use rg for initial search, and then filter with fzf
+"command! -bang -nargs=? -complete=dir Search
+    "\ call fzf#vim#grep('rg --column --line-number --no-heading --color=always --smart-case -F -- '.shellescape(<q-args>),
+    "\ <bang>0,
+    "\ fzf#vim#with_preview({'options': ['--preview-window=down,50%', '--layout=reverse', '--info=inline']}),
+    "\ <bang>0)
+
 
 
 let s:term_pos = {} " { bufnr: [winheight, n visible lines] }
