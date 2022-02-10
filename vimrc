@@ -329,7 +329,7 @@ let g:which_key_map = {
 \ 'F'       : 'open cwd in Finder',
 \ 'g'       : 'open Git gui',
 \ 'I'       : 'open icons directories',
-\ 'j'       : 'sort line(s) json',
+\ 'j'       : 'sort line(s) Json',
 \ 'k'       : 'mark interesting word',
 \ 'K'       : 'clear interesting words',
 \ 'l'       : 'toggle Line #s and whitespace',
@@ -465,10 +465,10 @@ nnoremap <leader>sy :CocList symbols<CR>
 nnoremap <leader>sn :CocFzfList snippets<CR>
 nnoremap <leader>T :BTags<CR>
 nnoremap <leader>bc :BCommits<CR>
-" Recompile ctags
-nnoremap <leader>ct :silent !ctags<CR>
 " Re-apply syntax highlighting
 nnoremap <leader>ch <ESC>:syntax sync fromstart<CR>
+" Toggle colorscheme between gruvbox and molokai
+nnoremap <leader>ct :call ToggleColors()<CR>
 " Change to Molokai colorscheme
 nnoremap <leader>cm :colorscheme molokai<CR>
 " Change to gruvbox colorscheme
@@ -493,6 +493,8 @@ nnoremap <leader>es :UltiSnipsEdit<CR>
 nnoremap <leader>ev <C-w><C-v><C-l>:e $MYVIMRC<CR>
 " Source (reload) ~/.vimrc
 nnoremap <leader>rv :source $MYVIMRC<CR>
+" Recompile ctags
+nnoremap <leader>rct :silent !ctags<CR>
 " Find the current file in NERDTree
 nnoremap <leader>f :NERDTreeFind<CR>
 " Open current working directory in Finder
@@ -618,8 +620,10 @@ endfunction
 " the cursor's location upon entry resumes terminal mode. only limitation
 " is that terminal window must have focus before you can scroll to
 " enter normal mode
-tnoremap <silent> <ScrollWheelUp> <c-w>:call EnterTerminalNormalMode()<CR>
 nnoremap <silent> <ScrollWheelDown> <ScrollWheelDown>:call ExitTerminalNormalModeIfBottom()<CR>
+" This interferes with scrolling in fzf result windows.
+" TODO: only enable it in floaterm windows
+"tnoremap <silent> <ScrollWheelUp> <c-w>:call EnterTerminalNormalMode()<CR>
 
 
 " Run a cli operation and put output in a new split
@@ -649,3 +653,13 @@ function! <SID>SynStack()
   endif
   echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
 endfunc
+
+
+" toggle colorscheme
+function! ToggleColors()
+    if g:colors_name == "gruvbox"
+        colorscheme molokai
+    elseif g:colors_name == "molokai"
+        colorscheme gruvbox
+    endif
+endfunction
