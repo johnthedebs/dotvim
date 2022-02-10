@@ -202,9 +202,9 @@ let g:ctrlsf_auto_focus = {
 \ }
 
 " delimiteMate settings
-let delimitMate_expand_space = 1
-let delimitMate_expand_cr = 1
-let delimitMate_expand_inside_quotes = 1
+let g:delimitMate_expand_space = 1
+let g:delimitMate_expand_cr = 1
+let g:delimitMate_expand_inside_quotes = 1
 
 " emmet settings
 let g:user_emmet_leader_key=','
@@ -233,7 +233,7 @@ let g:gruvbox_vert_split='bg3'
 let g:gruvbox_hls_cursor='aqua'
 colorscheme gruvbox
 " Needs to be after gruvbox is loaded
-let g:fzf_colors = { 
+let g:fzf_colors = {
 \   'fg':      ['fg', 'Normal'],
 \   'bg':      ['bg', 'Normal'],
 \   'hl':      ['fg', 'Comment'],
@@ -289,12 +289,12 @@ let g:NERDCreateDefaultMappings = 0
 let g:NERDCustomDelimiters={ 'htmldjango': { 'left': '{#','right': '#}', 'leftAlt': '<!--', 'rightAlt': '-->' } }
 
 " NERDTree settings
-let NERDTreeAutoDeleteBuffer=1
-let NERDTreeChDirMode=2
-let NERDTreeIgnore=['\.pyc$', '\.rbc$', '\~$', 'node_modules$', '__pycache__', '.DS_Store', 'plugged']
+let g:NERDTreeAutoDeleteBuffer=1
+let g:NERDTreeChDirMode=2
+let g:NERDTreeIgnore=['\.pyc$', '\.rbc$', '\~$', 'node_modules$', '__pycache__', '.DS_Store', 'plugged']
 
 " python syntax settings
-let python_highlight_all=1
+let g:python_highlight_all=1
 
 " sneak.vim settings
 let g:sneak#label = 1
