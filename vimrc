@@ -428,8 +428,8 @@ noremap vv V
 noremap V <ESC>v$h
 " Fix `Y`
 nmap Y y$
-nnoremap gb :Gbrowse<CR>
-vnoremap gb :Gbrowse<CR>
+nnoremap gb :GBrowse<CR>
+vnoremap gb :GBrowse<CR>
 " Shortcut to rapidly toggle line numbers and white space
 nmap <silent> <leader>l :setlocal number!<CR>:setlocal list!<CR>:setlocal cursorcolumn!<CR>:IndentLinesToggle<CR>
 " Remap F1 to do what ESC does, and F2 to do what F1 does
