@@ -180,6 +180,7 @@ let g:coc_global_extensions = [
 \   'coc-tsserver',
 \   'coc-yaml',
 \   'coc-phpls',
+\   'coc-go',
 \ ]
 "\   'coc-eslint',
 "https://github.com/rodrigore/coc-tailwind-intellisense
@@ -363,10 +364,12 @@ let g:which_key_map['c'] = {
 \ 'c'    : 'coc commands',
 \ 'd'    : 'coc diagnostics',
 \ 'f'    : 'format selected code',
+\ 'g'    : 'colorscheme gruvbox',
 \ 'h'    : 'reapply code highlighting',
 \ 'l'    : 'coc list',
+\ 'm'    : 'colorscheme molokai',
 \ 'o'    : 'coc outline',
-\ 't'    : 'recompile ctags',
+\ 't'    : 'toggle colorscheme',
 \ }
 
 let g:which_key_map['e'] = {
@@ -444,8 +447,8 @@ nmap < <<
 vnoremap J :m '>+1<CR>gv=gv
 vnoremap K :m '<-2<CR>gv=gv
 " Search in project
-nnoremap <leader><leader>/ :CtrlSF<space>""<left>
-vnoremap <leader><leader>/ <ESC>:CtrlSF<space>""<left>
+nnoremap <leader><leader>/ :CtrlSF<space>""<space>-G *<left><left><left><left><left><left>
+vnoremap <leader><leader>/ <ESC>:CtrlSF<space>""<space>-G *<left><left><left><left><left><left>
 nnoremap <leader>/ :Search<space>
 vnoremap <leader>/ :Search<space>
 " Avoid needing to use shift for ex mode

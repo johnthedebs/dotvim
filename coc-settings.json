@@ -12,5 +12,6 @@
     },
     "javascript.showUnused": false,
     "python.formatting.provider": "black",
-    "python.formatting.blackPath": "/usr/local/bin/black"
+    "python.formatting.blackPath": "/usr/local/bin/black",
+    "pyright.disableProgressNotifications": true
 }
