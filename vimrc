@@ -474,9 +474,9 @@ nnoremap <leader>ch <ESC>:syntax sync fromstart<CR>
 " Toggle colorscheme between gruvbox and molokai
 nnoremap <leader>ct :call ToggleColors()<CR>
 " Change to Molokai colorscheme
-nnoremap <leader>cm :colorscheme molokai<CR>
+nnoremap <leader>cm :colorscheme molokai<CR>:let $BAT_THEME="Monokai Extended"<CR>
 " Change to gruvbox colorscheme
-nnoremap <leader>cg :colorscheme gruvbox<CR>
+nnoremap <leader>cg :colorscheme gruvbox<CR>:let $BAT_THEME="gruvbox-dark"<CR>
 " Format project with black
 nnoremap <leader>cb :w<cr>:silent !black .<CR>
 " Make splits take up the same amount of space
@@ -663,7 +663,9 @@ endfunc
 function! ToggleColors()
     if g:colors_name == "gruvbox"
         colorscheme molokai
+        let $BAT_THEME="Monokai Extended"
     elseif g:colors_name == "molokai"
         colorscheme gruvbox
+        let $BAT_THEME="gruvbox-dark"
     endif
 endfunction
