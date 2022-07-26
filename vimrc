@@ -253,6 +253,8 @@ let g:fzf_colors = {
 
 nnoremap * :call gruvbox#hls_show()<CR>*
 nnoremap / :call gruvbox#hls_show()<CR>/
+nnoremap ? :call gruvbox#hls_show()<CR>?
+nnoremap <silent> <ESC> :call gruvbox#hls_hide()<CR><ESC>
 
 " indentLine settings
 let g:indentLine_char_list = ['|', '¦']
@@ -590,7 +592,6 @@ command! -nargs=* -bang Search call RipgrepFzf(<q-args>, <bang>0)
     "\ <bang>0,
     "\ fzf#vim#with_preview({'options': ['--preview-window=down,50%', '--layout=reverse', '--info=inline']}),
     "\ <bang>0)
-
 
 
 let s:term_pos = {} " { bufnr: [winheight, n visible lines] }
