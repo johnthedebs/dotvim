@@ -115,6 +115,8 @@ if has("gui_running")
     set guifont=JetBrains\ Mono:h14
     highlight SpellBad term=underline gui=undercurl guisp=Orange
 
+    map <D-0> :set guifont=JetBrains\ Mono:h14<CR>
+
     " Switch tabs
     map <D-1> 1gt
     map <D-2> 2gt
@@ -125,7 +127,6 @@ if has("gui_running")
     map <D-7> 7gt
     map <D-8> 8gt
     map <D-9> 9gt
-    map <D-0> :tablast<CR>
 endif
 
 augroup Misc
