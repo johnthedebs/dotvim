@@ -4,7 +4,6 @@ Plug 'Yggdroot/indentLine'
 Plug 'antoinemadec/coc-fzf'
 Plug 'dyng/ctrlsf.vim'
 Plug 'editorconfig/editorconfig-vim'
-Plug 'ervandew/supertab'
 Plug 'godlygeek/tabular'
 Plug 'gruvbox-community/gruvbox'
 Plug 'hail2u/vim-css3-syntax'
@@ -302,11 +301,6 @@ let g:python_highlight_all=1
 
 " sneak.vim settings
 let g:sneak#label = 1
-
-" supertab settings
-" For some reason supertab mappings were backwards. This fixes them
-let g:SuperTabMappingForward='<s-tab>'
-let g:SuperTabMappingBackward='<tab>'
 
 " UltiSnips settings
 let g:UltiSnipsExpandTrigger='<C-j>'
