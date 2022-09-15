@@ -172,16 +172,19 @@ let g:coc_global_extensions = [
 \   'coc-css',
 \   'coc-emmet',
 \   'coc-html',
+\   'coc-htmldjango',
 \   'coc-pyright',
 \   'coc-snippets',
 \   'coc-styled-components',
 \   'coc-svg',
 \   'coc-tailwindcss',
+\   'coc-sql',
 \   'coc-tsserver',
 \   'coc-yaml',
 \   'coc-phpls',
 \   'coc-go',
 \ ]
+"\   '@yaegassy/coc-intelephense',
 "\   'coc-eslint',
 "https://github.com/rodrigore/coc-tailwind-intellisense
 
