@@ -112,5 +112,6 @@ command! -nargs=0 OR :call CocAction('runCommand', 'editor.action.organizeImport
 " coc-fzf mappings
 nnoremap <silent> <leader>cd  :<C-u>CocFzfList diagnostics --current-buf<CR>
 nnoremap <silent> <leader>co  :<C-u>CocFzfList outline<CR>
+nnoremap <silent> <leader>cO  :CocOutline<CR>
 nnoremap <silent> <leader>cl :<C-u>CocFzfList<CR>
 nnoremap <silent> <leader>cc  :<C-u>CocFzfList commands<CR>
