@@ -14,5 +14,5 @@
     "python.formatting.provider": "black",
     "python.formatting.blackPath": "/usr/local/bin/black",
     "pyright.disableProgressNotifications": true,
-    "pyright.inlayHints.enable": false
+    "inlayHint.enable": false
 }
