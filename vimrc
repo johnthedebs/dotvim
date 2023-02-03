@@ -506,8 +506,10 @@ nnoremap <leader>F :silent !open .<CR>
 nnoremap <leader>g :silent !stree<CR>:redraw!<CR>
 " Open project icons and fontawesome SVG directory
 nnoremap <leader>I :silent !open ./app/public/icons<CR>:silent !open '/Users/johndebs/Documents/Design Stuff/fontawesome-free-5.13.0-web/svgs/'<CR>
+" Show marks and easily select one to jump to
+nnoremap <leader>m :<C-u>marks<CR>:normal! `
 " Open Mundo
-nnoremap <leader>m :MundoToggle<CR>
+nnoremap <leader>M :MundoToggle<CR>
 " Open fzf for files
 nnoremap <leader>p :Files<CR>
 " Open fzf for lines of code
