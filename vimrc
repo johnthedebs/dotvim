@@ -8,6 +8,7 @@ Plug 'godlygeek/tabular'
 Plug 'gruvbox-community/gruvbox'
 Plug 'hail2u/vim-css3-syntax'
 Plug 'itchyny/lightline.vim'
+Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'justinmk/vim-sneak'
 Plug 'lfv89/vim-interestingwords'
@@ -86,7 +87,7 @@ set autoread
 set laststatus=2
 set t_Co=256
 set hidden
-set formatprg=par
+set formatprg=par\ -w79
 set mouse=a
 set viminfo='10,\"100,:50,n~/.vim/persist/viminfo
 set backupdir=~/.vim/persist/backup//
