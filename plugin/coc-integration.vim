@@ -44,9 +44,13 @@ nmap <silent> [g <Plug>(coc-diagnostic-prev)
 " GoTo code navigation.
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gr <Plug>(coc-references-used)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
 
 " Use K to show documentation in preview window.
 nnoremap <silent> K :call <SID>show_documentation()<CR>
+nnoremap <silent> gh :call <SID>show_documentation()<CR>
+
 function! s:show_documentation()
   if (index(['vim','help'], &filetype) >= 0)
     execute 'tab h '.expand('<cword>')
@@ -109,8 +113,18 @@ command! -nargs=0 OR :call CocAction('runCommand', 'editor.action.organizeImport
 " Do default action for previous item.
 "nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
 
+" List errors
+nnoremap <silent> <leader>cl  :<C-u>CocList locationlist<cr>
+
+" list commands available in tsserver (and others)
+nnoremap <silent> <leader>cc  :<C-u>CocList commands<cr>
+
+" restart when tsserver gets wonky
+nnoremap <silent> <leader>cR  :<C-u>CocRestart<CR>
+
 " coc-fzf mappings
 nnoremap <silent> <leader>cd  :<C-u>CocFzfList diagnostics --current-buf<CR>
+nnoremap <silent> <leader>cD  :<C-u>CocFzfList diagnostics<CR>
 nnoremap <silent> <leader>co  :<C-u>CocFzfList outline<CR>
 nnoremap <silent> <leader>cO  :CocOutline<CR>
 nnoremap <silent> <leader>cl :<C-u>CocFzfList<CR>

@@ -5,3 +5,4 @@
 --glob=!package-lock.json
 --glob=!*.tfstate
 --glob=!*.tfstate*.backup
+--glob=!*nro/static

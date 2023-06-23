@@ -155,10 +155,10 @@ augroup Misc
     autocmd FocusGained * silent! NERDTreeRefreshRoot
     autocmd BufEnter * if (winnr("$") == 1 && &filetype == "ctrlsf") | q | endif
     " Close NERDTree if it's the only pane left
-    autocmd WinEnter * if exists("t:NERDTreeBufName") |
-        \ if bufwinnr(t:NERDTreeBufName) != -1 | if winnr("$") == 1 |
-        \ q | endif | endif | endif
-    " Start NERDTree in directory when Vim starts with a directory argument
+	autocmd BufEnter * if winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
+	" If another buffer tries to replace NERDTree, put it in the other window, and bring back NERDTree.
+	autocmd BufEnter * if bufname('#') =~ 'NERD_tree_\d\+' && bufname('%') !~ 'NERD_tree_\d\+' && winnr('$') > 1 |
+		\ let buf=bufnr() | buffer# | execute "normal! \<C-W>w" | execute 'buffer'.buf | endif
     autocmd StdinReadPre * let s:std_in=1
     autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists('s:std_in') |
         \ execute 'cd '.argv()[0] | endif
@@ -503,8 +503,8 @@ nnoremap <leader>rct :silent !ctags<CR>
 nnoremap <leader>f :NERDTreeFind<CR>
 " Open current working directory in Finder
 nnoremap <leader>F :silent !open .<CR>
-" Open SourceTree
-nnoremap <leader>g :silent !stree<CR>:redraw!<CR>
+" Open git gui
+nnoremap <leader>g :silent !gitx<CR>:redraw!<CR>
 " Open project icons and fontawesome SVG directory
 nnoremap <leader>I :silent !open ./app/public/icons<CR>:silent !open '/Users/johndebs/Documents/Design Stuff/fontawesome-free-5.13.0-web/svgs/'<CR>
 " Show marks and easily select one to jump to
