@@ -96,6 +96,11 @@ set termguicolors
 set background=dark
 
 
+if !exists("g:VIMRC_FIRST_LOAD")
+	let g:VIMRC_FIRST_LOAD = 1
+endif
+
+
 if has("persistent_undo")
     set undofile
     set undodir=~/.vim/persist/undo
@@ -105,7 +110,9 @@ if has("gui_running")
     cabbrev h tab help
     cabbrev help tab help
 
-    set columns=110
+	if VIMRC_FIRST_LOAD
+		set columns=110
+	endif
     set lines=999
     set fuoptions=maxhorz,maxvert " Proper fullscreen mode in MacVim
     set guioptions-=T " Hide menu icons by default in MacVim
@@ -670,3 +677,5 @@ function! ToggleColors()
         let $BAT_THEME="gruvbox-dark"
     endif
 endfunction
+
+let g:VIMRC_FIRST_LOAD = 0
