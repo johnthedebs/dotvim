@@ -352,7 +352,6 @@ let g:which_key_map = {
 \ 'T'       : 'fzf Tags in buffer',
 \ 'v'       : 'Vertical split',
 \ 'W'       : 'strip trailing Whitespace',
-\ 's'       : 'Sort lines',
 \ }
 
 let g:which_key_map['a'] = {
@@ -397,7 +396,7 @@ let g:which_key_map['s'] = {
 \ 'name' : '+sort/snippts/symbols',
 \ 'o'    : 'sort lines',
 \ 'n'    : 'fzf snippets',
-\ 'y'    : 'coc symbols',
+\ 'l'    : 'coc symbols',
 \ }
 
 call which_key#register('<Space>', "g:which_key_map")
@@ -472,7 +471,7 @@ nnoremap <leader>? :%s//<left>
 nnoremap <leader>B :Buffers<CR>
 nnoremap <leader>C :Commits<CR>
 nnoremap <leader>H :Helptags<CR>
-nnoremap <leader>sy :CocList symbols<CR>
+nnoremap <leader>sl :CocList symbols<CR>
 nnoremap <leader>sn :CocFzfList snippets<CR>
 nnoremap <leader>T :BTags<CR>
 nnoremap <leader>bc :BCommits<CR>
