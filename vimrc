@@ -259,11 +259,6 @@ let g:fzf_colors = {
 \   'header':  ['fg', 'Comment']
 \ }
 
-nnoremap * :call gruvbox#hls_show()<CR>*
-nnoremap / :call gruvbox#hls_show()<CR>/
-nnoremap ? :call gruvbox#hls_show()<CR>?
-nnoremap <silent> <ESC> :call gruvbox#hls_hide()<CR><ESC>
-
 " indentLine settings
 let g:indentLine_char_list = ['|', '¦']
 let g:indentLine_enabled=0
@@ -506,8 +501,6 @@ nnoremap <leader><Up> :vertical resize +15<CR>
 nnoremap <leader><Down> :vertical resize -15<CR>
 " Turn NERDTree on or off
 nnoremap <silent> <leader>n :NERDTreeToggle<CR>:silent! NERDTreeRefreshRoot<CR>
-" Clear search highlights
-nnoremap <leader><space> :call gruvbox#hls_hide()<CR>:nohlsearch<CR>
 " Quick scratch access
 nnoremap <leader><tab> :Sscratch<CR>
 " Edit UltiSnips
