@@ -461,10 +461,12 @@ nmap < <<
 vnoremap J :m '>+1<CR>gv=gv
 vnoremap K :m '<-2<CR>gv=gv
 " Search in project
-nnoremap <leader><leader>/ :CtrlSF<space>""<space>-G *<left><left><left><left><left><left>
-vnoremap <leader><leader>/ <ESC>:CtrlSF<space>""<space>-G *<left><left><left><left><left><left>
 nnoremap <leader>/ :Search<space>
 vnoremap <leader>/ :Search<space>
+nnoremap <leader><leader>/ :Search2<space>
+vnoremap <leader><leader>/ :Search2<space>
+nnoremap <leader><leader><leader>/ :CtrlSF<space>""<space>-G *<left><left><left><left><left><left>
+vnoremap <leader><leader><leader>/ <ESC>:CtrlSF<space>""<space>-G *<left><left><left><left><left><left>
 " Avoid needing to use shift for ex mode
 nnoremap ; :
 vnoremap ; :
@@ -600,11 +602,11 @@ endfunction
 command! -nargs=* -bang Search call RipgrepFzf(<q-args>, <bang>0)
 
 " This will use rg for initial search, and then filter with fzf
-"command! -bang -nargs=? -complete=dir Search
-    "\ call fzf#vim#grep('rg --column --line-number --no-heading --color=always --smart-case -F -- '.shellescape(<q-args>),
-    "\ <bang>0,
-    "\ fzf#vim#with_preview({'options': ['--preview-window=down,50%', '--layout=reverse', '--info=inline']}),
-    "\ <bang>0)
+command! -bang -nargs=? -complete=dir Search2
+	\ call fzf#vim#grep('rg --column --line-number --no-heading --color=always --smart-case -F -- '.shellescape(<q-args>),
+	\ <bang>0,
+	\ fzf#vim#with_preview({'options': ['--preview-window=down,50%', '--layout=reverse', '--info=inline']}),
+	\ <bang>0)
 
 
 let s:term_pos = {} " { bufnr: [winheight, n visible lines] }
