@@ -493,7 +493,7 @@ nnoremap <leader>cm :colorscheme molokai<CR>:let $BAT_THEME="Monokai Extended"<C
 " Change to gruvbox colorscheme
 nnoremap <leader>cg :colorscheme gruvbox<CR>:let $BAT_THEME="gruvbox-dark"<CR>
 " Format project with black
-nnoremap <leader>cb :w<cr>:silent !black .<CR>
+nnoremap <leader>cb :w<CR>:!black .<CR>
 " Make splits take up the same amount of space
 nnoremap <leader>= <C-w>=
 " Make current split a bit bigger
