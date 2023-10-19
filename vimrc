@@ -73,6 +73,7 @@ set incsearch
 set hlsearch
 set gdefault
 set nowrap
+set smoothscroll
 set linebreak
 set backspace=indent,eol,start
 set cursorline
