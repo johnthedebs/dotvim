@@ -282,7 +282,7 @@ let g:lightline = {
 \             [ 'readonly', 'relativepath', 'modified' ],
 \   ],
 \   'right': [ [ 'lineprogress' ],
-\              [ 'percent' ],
+\              [ 'dynamic_percent' ],
 \              [ 'dynamic_filetype' ],
 \   ],
 \ },
@@ -299,11 +299,16 @@ let g:lightline = {
 \ },
 \ 'component_function': {
 \   'dynamic_filetype': 'LightlineFiletype',
+\   'dynamic_percent': 'LightlinePercent',
 \ },
 \ }
 
 function! LightlineFiletype()
   return winwidth(0) > 70 ? &filetype : ''
+endfunction
+
+function! LightlinePercent()
+    return winwidth(0) > 50 ? float2nr(100.0 * line('.') / line('$')) . "%" : ''
 endfunction
 
 " NERDCommenter settings
