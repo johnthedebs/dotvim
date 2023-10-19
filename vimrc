@@ -282,21 +282,28 @@ let g:lightline = {
 \   ],
 \   'right': [ [ 'lineprogress' ],
 \              [ 'percent' ],
-\              [ 'filetype' ],
+\              [ 'dynamic_filetype' ],
 \   ],
 \ },
 \ 'inactive': {
-\   'left': [ [ 'relativepath' ]
-\    ],
-\   'right': [ [ 'lineinfo' ],
-\            [ 'percent' ]
+\   'left': [ [ 'relativepath', 'modified' ]
+\   ],
+\   'right': [ [ 'inactive_lineprogress' ]
 \   ],
 \ },
 \ 'component': {
+\   'inactive_lineprogress': "%{line('.') . '/' . line('$')}",
 \   'lineprogress': "%{line('.') . '/' . line('$') . ':' . col('.')}",
 \   'percent': '%p%%',
 \ },
+\ 'component_function': {
+\   'dynamic_filetype': 'LightlineFiletype',
+\ },
 \ }
+
+function! LightlineFiletype()
+  return winwidth(0) > 70 ? &filetype : ''
+endfunction
 
 " NERDCommenter settings
 let g:NERDCreateDefaultMappings = 0
