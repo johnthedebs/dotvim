@@ -239,8 +239,9 @@ let $BAT_THEME="gruvbox-dark"
 " Need to be before gruvbox is loaded
 let g:gruvbox_contrast_dark='hard'
 let g:gruvbox_invert_selection='0'
-let g:gruvbox_vert_split='bg3'
 let g:gruvbox_hls_cursor='aqua'
+let g:gruvbox_vert_split='bg4'
+set fillchars+=vert:\ "Comment to preserve whitespace at eol
 colorscheme gruvbox
 " Needs to be after gruvbox is loaded
 let g:fzf_colors = {
@@ -446,6 +447,9 @@ noremap V <ESC>v$h
 nmap Y y$
 nnoremap gb :GBrowse<CR>
 vnoremap gb :GBrowse<CR>
+" Set a mark for cursor location, yank current word (puts cursor at start of
+" word), return to marked location, then search project for the yanked word
+nnoremap ga mzyiw`z:execute 'Search ' . @"<CR>
 " Shortcut to rapidly toggle line numbers and white space
 nmap <silent> <leader>l :setlocal number!<CR>:setlocal list!<CR>:setlocal cursorcolumn!<CR>:IndentLinesToggle<CR>
 " Remap F1 to do what ESC does, and F2 to do what F1 does
