@@ -1,17 +1,24 @@
 root = true
 
+# Setting anything in this group doesn't play nice with coc/fzf for some
+# reason. Specifically: coc-references opened with fzf will jump the cursor to
+# the top of the file
 [*]
-indent_style = space
-charset = utf-8
 
 [*.{py,html}]
+charset = utf-8
 indent_size = 4
+indent_style = space
 
 [*.{js,jsx,ts,tsx,json,rb,css,sass,tf}]
+charset = utf-8
 indent_size = 2
+indent_style = space
 
 [*.snippets]
+charset = utf-8
 indent_style = tab
 
 [Makefile]
+charset = utf-8
 indent_style = tab

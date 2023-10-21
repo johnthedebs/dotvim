@@ -3,9 +3,7 @@ Plug 'Raimondi/delimitMate'
 Plug 'Yggdroot/indentLine'
 Plug 'antoinemadec/coc-fzf'
 Plug 'dyng/ctrlsf.vim'
-" Disabled bc it causes fzf windows to jump the cursor to the top of the file
-" when using coc-references and the :Search command (in some cases)
-"Plug 'editorconfig/editorconfig-vim'
+Plug 'editorconfig/editorconfig-vim'
 Plug 'godlygeek/tabular'
 Plug 'gruvbox-community/gruvbox'
 Plug 'hail2u/vim-css3-syntax'
