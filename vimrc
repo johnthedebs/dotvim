@@ -23,6 +23,8 @@ Plug 'preservim/nerdcommenter'
 Plug 'preservim/nerdtree'
 Plug 'psliwka/vim-smoothie'
 Plug 'rhysd/clever-f.vim'
+Plug 'sainnhe/everforest'
+Plug 'sainnhe/sonokai'
 Plug 'sheerun/vim-polyglot'
 Plug 'shumphrey/fugitive-gitlab.vim'
 Plug 'simnalamburt/vim-mundo'
@@ -219,6 +221,9 @@ let g:delimitMate_expand_inside_quotes = 1
 " emmet settings
 let g:user_emmet_leader_key=','
 
+" everforest settings
+let g:everforest_background = 'hard'
+
 " floaterm settings
 let g:floaterm_autoclose=1
 let g:floaterm_keymap_toggle='<C-t>t'
@@ -243,8 +248,8 @@ let $BAT_THEME="gruvbox-dark"
 let g:gruvbox_contrast_dark='hard'
 let g:gruvbox_invert_selection='0'
 let g:gruvbox_hls_cursor='aqua'
-let g:gruvbox_vert_split='bg4'
-set fillchars+=vert:\ "Comment to preserve whitespace at eol
+"let g:gruvbox_vert_split='bg4'
+set fillchars=vert:\ "Comment to preserve whitespace at eol
 colorscheme gruvbox
 " Needs to be after gruvbox is loaded
 let g:fzf_colors = {
@@ -264,7 +269,7 @@ let g:fzf_colors = {
 \ }
 
 " indentLine settings
-let g:indentLine_char_list = ['|', '¦']
+let g:indentLine_char_list = ['│', '¦']
 let g:indentLine_enabled=0
 
 " interestingwords settings
@@ -380,12 +385,13 @@ let g:which_key_map['c'] = {
 \ 'b'    : 'format current project with black',
 \ 'c'    : 'coc commands',
 \ 'd'    : 'coc diagnostics',
+\ 'e'    : 'colorscheme everforest',
 \ 'f'    : 'format selected code',
 \ 'g'    : 'colorscheme gruvbox',
 \ 'h'    : 'reapply code highlighting',
 \ 'l'    : 'coc list',
-\ 'm'    : 'colorscheme molokai',
 \ 'o'    : 'coc outline',
+\ 's'    : 'colorscheme sonokai',
 \ 't'    : 'toggle colorscheme',
 \ }
 
@@ -492,12 +498,14 @@ nnoremap <leader>T :BTags<CR>
 nnoremap <leader>bc :BCommits<CR>
 " Re-apply syntax highlighting
 nnoremap <leader>ch <ESC>:syntax sync fromstart<CR>
-" Toggle colorscheme between gruvbox and molokai
+" Toggle through colorscheme
 nnoremap <leader>ct :call ToggleColors()<CR>
-" Change to Molokai colorscheme
-nnoremap <leader>cm :colorscheme molokai<CR>:let $BAT_THEME="Monokai Extended"<CR>
-" Change to gruvbox colorscheme
+" Change to Everforest colorscheme
+nnoremap <leader>ce :colorscheme everforest<CR>:let $BAT_THEME="gruvbox-dark"<CR>
+" Change to Gruvbox colorscheme
 nnoremap <leader>cg :colorscheme gruvbox<CR>:let $BAT_THEME="gruvbox-dark"<CR>
+" Change to Sonokai colorscheme
+nnoremap <leader>cs :colorscheme sonokai<CR>:let $BAT_THEME="Monokai Extended"<CR>
 " Format project with black
 nnoremap <leader>cb :w<CR>:!black .<CR>
 " Make splits take up the same amount of space
@@ -682,11 +690,17 @@ endfunc
 " toggle colorscheme
 function! ToggleColors()
     if g:colors_name == "gruvbox"
-        colorscheme molokai
+        colorscheme sonokai
         let $BAT_THEME="Monokai Extended"
-    elseif g:colors_name == "molokai"
+		set fillchars=vert:\│ 
+    elseif g:colors_name == "sonokai"
+        colorscheme everforest
+        let $BAT_THEME="gruvbox-dark"
+		set fillchars=vert:\│ 
+    elseif g:colors_name == "everforest"
         colorscheme gruvbox
         let $BAT_THEME="gruvbox-dark"
+		set fillchars=vert:\ "Comment to preserve whitespace at eol
     endif
 endfunction
 

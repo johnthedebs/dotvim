@@ -3,6 +3,10 @@
 " Version: 1.0
 " Last Modified: June 3, 2003
 "
+" Modified Oct 20, 2023
+" John Debs
+" Vertical splits instead of horizontal splits
+"
 " Overview
 " --------
 " You can use the scratch plugin to create a temporary scratch buffer to store
@@ -67,7 +71,7 @@ function! s:ScratchBufferOpen(new_win)
     if scr_bufnum == -1
         " open a new scratch buffer
         if split_win
-            exe "new " . g:ScratchBufferName
+            exe "vnew " . g:ScratchBufferName
         else
             exe "edit " . g:ScratchBufferName
         endif
@@ -84,7 +88,7 @@ function! s:ScratchBufferOpen(new_win)
         else
             " Create a new scratch buffer
             if split_win
-                exe "split +buffer" . scr_bufnum
+                exe "vsplit +buffer" . scr_bufnum
             else
                 exe "buffer " . scr_bufnum
             endif
