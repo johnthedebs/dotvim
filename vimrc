@@ -690,17 +690,17 @@ endfunc
 " toggle colorscheme
 function! ToggleColors()
     if g:colors_name == "gruvbox"
-        colorscheme sonokai
-        let $BAT_THEME="Monokai Extended"
-		set fillchars=vert:\│ 
-    elseif g:colors_name == "sonokai"
         colorscheme everforest
         let $BAT_THEME="gruvbox-dark"
-		set fillchars=vert:\│ 
+        set fillchars=vert:\│
     elseif g:colors_name == "everforest"
+        colorscheme sonokai
+        let $BAT_THEME="Monokai Extended"
+        set fillchars=vert:\│
+    elseif g:colors_name == "sonokai"
         colorscheme gruvbox
         let $BAT_THEME="gruvbox-dark"
-		set fillchars=vert:\ "Comment to preserve whitespace at eol
+        set fillchars=vert:\ "Comment to preserve whitespace at eol
     endif
 endfunction
 
