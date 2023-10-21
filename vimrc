@@ -248,7 +248,7 @@ let $BAT_THEME="gruvbox-dark"
 let g:gruvbox_contrast_dark='hard'
 let g:gruvbox_invert_selection='0'
 let g:gruvbox_hls_cursor='aqua'
-"let g:gruvbox_vert_split='bg4'
+let g:gruvbox_vert_split='bg4'
 set fillchars=vert:\ "Comment to preserve whitespace at eol
 colorscheme gruvbox
 " Needs to be after gruvbox is loaded
