@@ -10,7 +10,7 @@ To install this vim configuration to a new machine:
     ln -s ~/.vim/ctags ~/.ctags
 
     # Install dependencies
-    brew install bat black ctags fd fzf node@14 par python@3.9 ripgrep
+    brew install bat black ctags fd fzf node@16 par python@3.11 ripgrep
     brew link node@14
 
     # From within vim, to install plugins:

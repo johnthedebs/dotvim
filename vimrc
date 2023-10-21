@@ -3,7 +3,9 @@ Plug 'Raimondi/delimitMate'
 Plug 'Yggdroot/indentLine'
 Plug 'antoinemadec/coc-fzf'
 Plug 'dyng/ctrlsf.vim'
-Plug 'editorconfig/editorconfig-vim'
+" Disabled bc it causes fzf windows to jump the cursor to the top of the file
+" when using coc-references and the :Search command (in some cases)
+"Plug 'editorconfig/editorconfig-vim'
 Plug 'godlygeek/tabular'
 Plug 'gruvbox-community/gruvbox'
 Plug 'hail2u/vim-css3-syntax'
@@ -163,7 +165,7 @@ augroup Misc
     autocmd FocusGained * silent! NERDTreeRefreshRoot
     autocmd BufEnter * if (winnr("$") == 1 && &filetype == "ctrlsf") | q | endif
     " Close NERDTree if it's the only pane left
-	autocmd BufEnter * if winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
+    autocmd BufEnter * if winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
     autocmd StdinReadPre * let s:std_in=1
     autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists('s:std_in') |
         \ execute 'cd '.argv()[0] | endif
@@ -230,6 +232,9 @@ let g:floaterm_wintype='split'
 " fzf settings
 set rtp+=/usr/local/opt/fzf
 let $FZF_DEFAULT_COMMAND='fd --type f'
+" This prevents coc-references fzf list from moving the cursor position to the
+" top of the file.
+let g:coc_fzf_location_delay = 1
 
 " fugitive-gitlab settings
 let g:fugitive_gitlab_domains = {'ssh://gitlab.service.seatgeek.mgmt': 'https://gitlab.seatgeekadmin.com'}
