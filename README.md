@@ -11,7 +11,7 @@ To install this vim configuration to a new machine:
 
     # Install dependencies
     brew install bat black ctags fd fzf node@16 par python@3.11 ripgrep
-    brew link node@14
+    brew link node@16
 
     # From within vim, to install plugins:
     :PlugInstall
