@@ -468,6 +468,7 @@ vnoremap gb :GBrowse<CR>
 " Set a mark for cursor location, yank current word (puts cursor at start of
 " word), return to marked location, then search project for the yanked word
 nnoremap ga mzyiw`z:execute 'Search ' . @"<CR>
+vnoremap ga y:execute 'Search ' . @"<CR>
 " Shortcut to rapidly toggle line numbers and white space
 nmap <silent> <leader>l :setlocal number!<CR>:setlocal list!<CR>:setlocal cursorcolumn!<CR>:IndentLinesToggle<CR>
 " Remap F1 to do what ESC does, and F2 to do what F1 does
