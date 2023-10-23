@@ -32,6 +32,7 @@ Plug 'sirver/UltiSnips', has('gui_running') ? {} : { 'on': [] }
 Plug 'styled-components/vim-styled-components', { 'branch': 'develop' }
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-git'
+Plug 'tpope/vim-obsession'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-rhubarb'
 Plug 'tpope/vim-surround'
@@ -101,6 +102,10 @@ set background=dark
 
 if !exists("g:VIMRC_FIRST_LOAD")
 	let g:VIMRC_FIRST_LOAD = 1
+
+	if filereadable("Session.vim")
+		silent source Session.vim
+	endif
 endif
 
 
@@ -445,7 +450,11 @@ augroup END
 
 " Toggle comments
 map <D-/> <plug>NERDCommenterToggle
+vmap <D-/> <plug>NERDCommenterToggle
+imap <D-/> <ESC><plug>NERDCommenterTogglea
 map <leader>- <plug>NERDCommenterToggle
+vmap <leader>- <plug>NERDCommenterToggle
+imap <leader>- <plug>NERDCommenterTogglea
 " Use `Q` to repeat macros instead of entering Ex-mode
 nmap Q @q
 " Fix `vv`
@@ -559,6 +568,10 @@ nnoremap <leader>W :%s/\s\+$//<cr>:let @/=''<CR>
 " Sort lines
 nnoremap <leader>so vip:!sort<cr>
 vnoremap <leader>so :!sort<cr>
+" Save a session
+nnoremap <leader>ss :Obsession<CR>
+" Delete a session
+nnoremap <leader>sd :Obsession!<CR>
 " Make j/k/0/$ move by display line, rather than by file line
 nnoremap j gj
 nnoremap k gk
