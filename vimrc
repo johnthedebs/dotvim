@@ -174,6 +174,8 @@ augroup Misc
     autocmd StdinReadPre * let s:std_in=1
     autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists('s:std_in') |
         \ execute 'cd '.argv()[0] | endif
+    " Close all terminals without prompting
+    autocmd QuitPre * call <sid>TermForceCloseAll()
 augroup END
 
 
@@ -699,6 +701,14 @@ function! <SID>SynStack()
   endif
   echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
 endfunc
+
+" Close all terminal buffers without prompting
+function! s:TermForceCloseAll() abort
+  let term_bufs = filter(range(1, bufnr('$')), 'getbufvar(v:val, "&buftype") == "terminal"')
+  for t in term_bufs
+    execute "bd! " t
+  endfor
+endfunction
 
 
 " toggle colorscheme
