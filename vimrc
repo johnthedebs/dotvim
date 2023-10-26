@@ -102,11 +102,11 @@ set background=dark
 
 
 if !exists("g:VIMRC_FIRST_LOAD")
-	let g:VIMRC_FIRST_LOAD = 1
+    let g:VIMRC_FIRST_LOAD = 1
 
-	if filereadable("Session.vim")
-		silent source Session.vim
-	endif
+    if filereadable("Session.vim")
+        silent source Session.vim
+    endif
 endif
 
 
@@ -119,9 +119,9 @@ if has("gui_running")
     cabbrev h tab help
     cabbrev help tab help
 
-	if VIMRC_FIRST_LOAD
-		set columns=110
-	endif
+    if VIMRC_FIRST_LOAD
+        set columns=110
+    endif
     set lines=999
     set fuoptions=maxhorz,maxvert " Proper fullscreen mode in MacVim
     set guioptions-=T " Hide menu icons by default in MacVim
@@ -445,10 +445,10 @@ let g:terminal_ansi_colors[14] = "#54dbed" " cyan bright
 let g:terminal_ansi_colors[7] = "#feffff" " white
 let g:terminal_ansi_colors[15] = "#feffff" " white bright
 augroup TermColors
-	autocmd!
-	highlight NormalNC guifg=#FFFBF6 guibg=#252731 ctermfg=white ctermbg=black
-	" Needed for gruvbox community theme which loses its colors when reloaded
-	autocmd BufEnter * if (&filetype == "floaterm") | highlight NormalNC guifg=#FFFBF6 guibg=#252731 ctermfg=white ctermbg=black | endif
+    autocmd!
+    highlight NormalNC guifg=#FFFBF6 guibg=#252731 ctermfg=white ctermbg=black
+    " Needed for gruvbox community theme which loses its colors when reloaded
+    autocmd BufEnter * if (&filetype == "floaterm") | highlight NormalNC guifg=#FFFBF6 guibg=#252731 ctermfg=white ctermbg=black | endif
 augroup END
 
 
@@ -633,10 +633,10 @@ command! -nargs=* -bang Search call RipgrepFzf(<q-args>, <bang>0)
 
 " This will use rg for initial search, and then filter with fzf
 command! -bang -nargs=? -complete=dir Search2
-	\ call fzf#vim#grep('rg --column --line-number --no-heading --color=always --smart-case -F -- '.shellescape(<q-args>),
-	\ <bang>0,
-	\ fzf#vim#with_preview({'options': ['--preview-window=down,50%', '--layout=reverse', '--info=inline']}),
-	\ <bang>0)
+  \ call fzf#vim#grep('rg --column --line-number --no-heading --color=always --smart-case -F -- '.shellescape(<q-args>),
+  \ <bang>0,
+  \ fzf#vim#with_preview({'options': ['--preview-window=down,50%', '--layout=reverse', '--info=inline']}),
+  \ <bang>0)
 
 
 let s:term_pos = {} " { bufnr: [winheight, n visible lines] }
