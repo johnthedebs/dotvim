@@ -37,6 +37,7 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-rhubarb'
 Plug 'tpope/vim-surround'
 Plug 'voldikss/vim-floaterm'
+Plug 'wellle/context.vim'
 Plug 'wellle/targets.vim'
 Plug '~/.vim/bundle/django'
 call plug#end()
@@ -444,9 +445,10 @@ let g:terminal_ansi_colors[14] = "#54dbed" " cyan bright
 let g:terminal_ansi_colors[7] = "#feffff" " white
 let g:terminal_ansi_colors[15] = "#feffff" " white bright
 augroup TermColors
-    autocmd!
-    highlight NormalNC guifg=#FFFBF6 guibg=#252731 ctermfg=white ctermbg=black
-    autocmd FileType floaterm set wincolor=NormalNC
+	autocmd!
+	highlight NormalNC guifg=#FFFBF6 guibg=#252731 ctermfg=white ctermbg=black
+	" Needed for gruvbox community theme which loses its colors when reloaded
+	autocmd BufEnter * if (&filetype == "floaterm") | highlight NormalNC guifg=#FFFBF6 guibg=#252731 ctermfg=white ctermbg=black | endif
 augroup END
 
 
