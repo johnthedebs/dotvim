@@ -462,7 +462,6 @@ vmap <D-/> <plug>NERDCommenterToggle
 imap <D-/> <ESC><plug>NERDCommenterTogglea
 map <leader>- <plug>NERDCommenterToggle
 vmap <leader>- <plug>NERDCommenterToggle
-imap <leader>- <plug>NERDCommenterTogglea
 " Use `Q` to repeat macros instead of entering Ex-mode
 nmap Q @q
 " Fix `vv`
