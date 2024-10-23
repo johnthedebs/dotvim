@@ -226,6 +226,10 @@ let g:delimitMate_expand_space = 1
 let g:delimitMate_expand_cr = 1
 let g:delimitMate_expand_inside_quotes = 1
 
+" EditorConfig settings
+" Fix cursor jumping to start of file when opening floating windows
+let g:EditorConfig_exclude_patterns = ['^.*!\w*sh$']
+
 " emmet settings
 let g:user_emmet_leader_key=','
 
@@ -545,7 +549,9 @@ nnoremap <leader>f :NERDTreeFind<CR>
 " Open current working directory in Finder
 nnoremap <leader>F :silent !open .<CR>
 " Open git gui
-nnoremap <leader>g :silent !gitx<CR>:redraw!<CR>
+nnoremap <leader>g :silent !fork .<CR>:redraw!<CR>
+" Open git blame
+nnoremap <leader>G :Git blame<CR>
 " Open project icons and fontawesome SVG directory
 nnoremap <leader>I :silent !open ./app/public/icons<CR>:silent !open '/Users/johndebs/Documents/Design Stuff/fontawesome-free-5.13.0-web/svgs/'<CR>
 " Show marks and easily select one to jump to
@@ -713,7 +719,7 @@ function! s:TermForceCloseAll() abort
 endfunction
 
 
-" toggle colorscheme
+" Toggle colorscheme
 function! ToggleColors()
     if g:colors_name == "gruvbox"
         colorscheme everforest
@@ -726,8 +732,16 @@ function! ToggleColors()
     elseif g:colors_name == "sonokai"
         colorscheme gruvbox
         let $BAT_THEME="gruvbox-dark"
-        set fillchars=vert:\ "Comment to preserve whitespace at eol
+        set fillchars=vert:\ " Comment to preserve whitespace at eol
     endif
 endfunction
+
+" Update everything
+function! Update()
+	PlugUpdate
+    CocUpdate
+endfunction
+
+command Update call Update()
 
 let g:VIMRC_FIRST_LOAD = 0
