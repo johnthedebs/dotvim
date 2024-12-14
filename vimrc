@@ -559,6 +559,10 @@ nnoremap <leader>m :<C-u>marks<CR>:normal! `
 nnoremap <leader>M :MundoToggle<CR>
 " Open fzf for files
 nnoremap <leader>p :Files<CR>
+if has('gui_running')
+    macmenu &File.Print key=<nop>
+    nnoremap <D-p> :Files<CR>
+endif
 " Open fzf for lines of code
 nnoremap <leader>P :Rg<CR>
 " Reveal current file in Finder
