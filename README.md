@@ -10,8 +10,11 @@ To install this vim configuration to a new machine:
     ln -s ~/.vim/ctags ~/.ctags
 
     # Install dependencies
-    brew install bat black ctags fd fzf node@16 par python@3.11 ripgrep
-    brew link node@16
+    brew install bat black ctags fd fzf par ripgrep
+
+    # via asdf, nvm, brew, whatever:
+    # node@22
+    # python@3.13 
 
     # From within vim, to install plugins:
     :PlugInstall
@@ -24,6 +27,9 @@ To install this vim configuration to a new machine:
     :CocUpdate
     # To remove one, delete from vimrc then:
     :CocUninstall <extension>
+
+    # To Update plugins & coc extensions at the same time
+    :Update
 
 
 For tailwindcss w/ full twin.macro support:
