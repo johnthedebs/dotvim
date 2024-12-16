@@ -548,7 +548,7 @@ nnoremap <leader>f :NERDTreeFind<CR>
 " Open current working directory in Finder
 nnoremap <leader>F :silent !open .<CR>
 " Open git gui
-nnoremap <leader>g :silent !fork .<CR>:redraw!<CR>
+"nnoremap <leader>g :silent !fork .<CR>:redraw!<CR>
 " Open git blame
 nnoremap <leader>G :Git blame<CR>
 " Open project icons and fontawesome SVG directory
@@ -577,6 +577,8 @@ vnoremap <leader>j :'<,'>!python -m json.tool<CR>
 nnoremap <leader>h :sp<CR>
 " Open new v split
 nnoremap <leader>v :vs<CR>
+" Open new v split but leave cursor here
+nnoremap <leader>V :vs<CR><C-w>h
 " Strip trailing whitespace in the current file
 nnoremap <leader>W :%s/\s\+$//<cr>:let @/=''<CR>
 " Sort lines
@@ -603,12 +605,14 @@ noremap <C-l> <C-w>l
 tnoremap <C-j> <C-w>j
 tnoremap <C-k> <C-w>k
 tnoremap <C-b> <C-\><C-n>
-nnoremap <C-t><C-t> <C-w>:FloatermToggle<CR>
-tnoremap <C-t><C-t> <C-w>:FloatermToggle<CR>
+nnoremap <C-t><C-t> <C-w>:FloatermToggle --name="default"<CR>
+tnoremap <C-t><C-t> <C-w>:FloatermToggle --name="default"<CR>
 tnoremap <C-l> <C-w>:FloatermNext<CR>
 tnoremap <C-h> <C-w>:FloatermPrev<CR>
 tnoremap <D-r> clear<CR>
 tnoremap <D-w> <C-w>:FloatermKill<CR>
+nnoremap <leader>g :FloatermNew --wintype=float --width=0.9 --height=0.9 lazygit<CR>
+nnoremap <leader>d :FloatermNew --wintype=float --width=0.9 --height=0.7 lazydocker<CR>
 
 " Move windows (alt + hjkl)
 noremap ˙ <C-w>H
